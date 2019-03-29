@@ -31,20 +31,20 @@ module.exports = {
       ['2', '286'].forEach((page) => {
         browser
           .smartURL((langprefix ? '/' + langprefix : '') + '/pager?page=' + page)
-          .waitForElementVisible('[aria-labelledby="pagination-heading--2"] .pager__items', 5000)
+          .waitForElementVisible('[role="navigation"]:nth-of-type(2) .pager__items', 5000)
           .perform(done => {
             i++;
             browser.savefullScreenShot(i.toString().padStart(2, '0'), langprefix);
             done();
           })
-          .elements('css selector', '[aria-labelledby="pagination-heading--2"] a', (result) => {
+          .elements('css selector', '[role="navigation"]:nth-of-type(2) a', (result) => {
             result.value.forEach(elem => {
               browser.perform(done => {
                 i++;
                 browser.elementIdAttribute(elem.ELEMENT, 'title', result => {
                   if (result.value) {
                     browser
-                      .focusOn('[aria-labelledby="pagination-heading--2"] li a[title="' + result.value + '"]')
+                      .focusOn('[role="navigation"]:nth-of-type(2) li a[title="' + result.value + '"]')
                       .pause(100)
                       .saveScreenShot(i.toString().padStart(2, '0'), langprefix);
                   }
