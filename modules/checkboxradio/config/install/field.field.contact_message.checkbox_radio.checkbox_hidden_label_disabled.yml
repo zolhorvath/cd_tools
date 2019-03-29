@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.checkbox_radio
+    - field.storage.contact_message.checkbox_hidden_label_disabled
+id: contact_message.checkbox_radio.checkbox_hidden_label_disabled
+field_name: checkbox_hidden_label_disabled
+entity_type: contact_message
+bundle: checkbox_radio
+label: 'Hidden label, disabled'
+description: Description
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

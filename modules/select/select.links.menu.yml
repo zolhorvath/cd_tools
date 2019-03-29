@@ -1,0 +1,7 @@
+select.test:
+  title: 'Select'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 10
+  route_parameters:
+    contact_form: select

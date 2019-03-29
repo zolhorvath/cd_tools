@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.link
+  module:
+    - link
+id: contact_message.textform.link
+field_name: link
+entity_type: contact_message
+bundle: textform
+label: Link
+description: 'Link field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

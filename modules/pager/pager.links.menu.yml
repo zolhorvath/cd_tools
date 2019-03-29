@@ -1,0 +1,5 @@
+pager.test:
+  title: Pagers
+  route_name: pager.test
+  menu_name: main
+  weight: 13

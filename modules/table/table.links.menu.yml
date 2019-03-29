@@ -1,0 +1,12 @@
+table.test:
+  title: 'Table'
+  route_name: table.test
+  menu_name: main
+  weight: 7
+table.field_ui:
+  title: 'Field UI'
+  route_name: entity.entity_view_display.node.default
+  route_parameters:
+    node_type: test_type
+  menu_name: main
+  weight: 8

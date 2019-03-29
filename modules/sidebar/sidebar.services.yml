@@ -1,0 +1,5 @@
+services:
+  sidebar.route_subscriber:
+    class: Drupal\sidebar\Routing\RouteSubscriber
+    tags:
+      - { name: 'event_subscriber' }

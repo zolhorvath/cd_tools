@@ -1,0 +1,5 @@
+cd_tools.dashboard:
+  route_name: cd_tools.dashboard
+  base_route: system.modules_list
+  title: 'Claro Dashboard'
+  weight: -101

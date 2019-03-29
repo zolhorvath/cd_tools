@@ -1,0 +1,6 @@
+name: 'Clarodist Tools'
+type: module
+description: "Dashboard and markup generator test modules for Claro theme's development"
+core: 8.x
+package: Claro
+dependencies: {}

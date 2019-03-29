@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Button Test module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function button_toolbar() {
+  $items['button_test'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Buttons'),
+      '#url' => Url::fromRoute('button.test'),
+    ],
+    '#weight' => 112,
+  ];
+
+  return $items;
+}

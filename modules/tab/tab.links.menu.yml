@@ -1,0 +1,5 @@
+pager.test:
+  title: Tabs
+  route_name: tab.overview
+  menu_name: main
+  weight: 14

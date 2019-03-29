@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.color
+  module:
+    - textfixtures
+id: contact_message.textform.color
+field_name: color
+entity_type: contact_message
+bundle: textform
+label: Color
+description: 'Color field description'
+required: false
+translatable: false
+default_value:
+  -
+    value: '#a863ff'
+default_value_callback: ''
+settings: {  }
+field_type: textfixture

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.date_disabled
+  module:
+    - datetime
+id: contact_message.textform.date_disabled
+field_name: date_disabled
+entity_type: contact_message
+bundle: textform
+label: 'Date (disabled)'
+description: 'Disabled date field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

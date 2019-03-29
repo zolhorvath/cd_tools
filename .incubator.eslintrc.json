@@ -1,0 +1,16 @@
+{
+  "extends": "./public_html/core/.eslintrc.legacy.json",
+  "env": {
+    "es6": true
+  },
+  "globals": {
+    "module": true,
+    "require": true,
+    "__dirname": true
+  },
+  "rules": {
+    "max-nested-callbacks": [
+      "warn", 6
+    ]
+  }
+}

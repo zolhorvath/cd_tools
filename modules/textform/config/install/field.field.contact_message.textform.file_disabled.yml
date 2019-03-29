@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.file_disabled
+  module:
+    - file
+id: contact_message.textform.file_disabled
+field_name: file_disabled
+entity_type: contact_message
+bundle: textform
+label: 'File (disabled)'
+description: 'Disabled file field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: '800'
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

@@ -1,0 +1,15 @@
+autocomplete.test:
+  path: '/autocomplete'
+  defaults:
+    _form: '\Drupal\autocomplete\Form\AutocompleteForm'
+    _title: 'Autocomplete'
+  requirements:
+    _permission: 'access content'
+
+autocomplete.country_autocomplete:
+  path: '/country_autocomplete'
+  defaults:
+    _controller: '\Drupal\autocomplete\Controller\AutocompleteController::autocomplete'
+  requirements:
+    # Explicitly allow access to country autocomplete.
+    _access: 'TRUE'

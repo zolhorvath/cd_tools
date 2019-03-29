@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for progress test page.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function progress_toolbar() {
+  $items['progress'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Progress'),
+      '#url' => Url::fromRoute('progress.test'),
+    ],
+    '#weight' => 111,
+  ];
+
+  return $items;
+}

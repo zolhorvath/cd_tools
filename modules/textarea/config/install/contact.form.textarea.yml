@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - textarea
+id: textarea
+label: 'Claro textarea test form'
+recipients:
+  - website@example.com
+reply: ''
+weight: 2
+message: ''
+redirect: ''

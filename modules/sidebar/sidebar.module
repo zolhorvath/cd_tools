@@ -1,0 +1,173 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Sidebar test module.
+ */
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+
+/**
+ * Provides list of dummy shortcut props.
+ */
+function _sidebar_nodes() {
+  return [
+    '55f03f5d-ba8a-4c6c-8e09-9ec7953eca91' => [
+      'title' => 'Sidebar test node',
+      'body' => [
+        'value' => '<p>A copy for the test node body</p>',
+        'format' => 'basic_html',
+      ],
+      'type' => 'cd',
+      'path' => [
+        'alias' => '/sidebar-test-node',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function sidebar_entity_type_alter(array &$entity_types) {
+  // Change node access control handler to allow access to the node.add_page
+  // route.
+  if (isset($entity_types['node'])) {
+    $entity_types['node']->setHandlerClass('access', '\Drupal\sidebar\NodeAccessControlHandler');
+  }
+}
+
+/**
+ * Implements hook_toolbar().
+ */
+function sidebar_toolbar() {
+  $items['sidebar_test'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Sidebar'),
+      '#url' => Url::fromRoute('node.add', [
+        'node_type' => 'cd',
+      ]),
+    ],
+    '#weight' => 117,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_entity_type_access() for node.
+ */
+function sidebar_node_access(NodeInterface $node, $operation, AccountInterface $account) {
+  // Prevent deleting the test node.
+  // It will be removed when sidebar module is uninstalled.
+  if (
+    in_array($node->uuid(), array_keys(_sidebar_nodes()))
+    && $operation === 'delete'
+  ) {
+    return AccessResult::forbidden();
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_form_alter() for all forms.
+ */
+function sidebar_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_permission_map = _sidebar_unsafe_forms();
+  if (!in_array($form_id, array_keys($form_permission_map))) {
+    return;
+  }
+
+  $current_user = \Drupal::currentUser();
+
+  if (
+    !empty($form_permission_map[$form_id]) &&
+    !$current_user->hasPermission($form_permission_map[$form_id])
+  ) {
+    // Make every child accessible and add the custom validaton to protect the
+    // form.
+    $item_keys = Element::children($form, FALSE);
+    foreach ($item_keys as $item_key) {
+      if (isset($form[$item_key]['#access']) && $form[$item_key]['#access'] === FALSE) {
+        $form[$item_key]['#access'] = TRUE;
+
+        if (
+          !empty($form[$item_key]['widget'])
+          && !empty($widget_deltas = Element::children($form[$item_key]['widget'], FALSE))
+        ) {
+          foreach ($widget_deltas as $widget_delta) {
+            if (
+              isset($form[$item_key]['widget'][$widget_delta]['#access'])
+              && $form[$item_key]['widget'][$widget_delta]['#access'] === FALSE
+            ) {
+              $form[$item_key]['widget'][$widget_delta]['#access'] = TRUE;
+            }
+          }
+        }
+      }
+    }
+
+    $form['#validate'] = $form['#validate'] ?? [];
+    array_unshift($form['#validate'], '_sidebar_form_validate');
+  }
+}
+
+/**
+ * Validate handler to get back some (false?) sense of security.
+ */
+function _sidebar_form_validate(&$form, FormStateInterface $form_state) {
+  $form_state->setErrorByName('__none__', t('Permission denied.'));
+}
+
+/**
+ * Returns runied form's id with the original required route perm.
+ *
+ * Some form's original route permission requirement is ruined by us.
+ * To keep the test module's changes safe as much as possible, we'll
+ * check in a custom form validation handler that the current user has the
+ * original permission.
+ *
+ * @see \Drupal\sidebar\Routing\RouteSubscriber.php
+ */
+function _sidebar_unsafe_forms() {
+  $info = [];
+
+  foreach (array_keys(\Drupal::service('entity_type.manager')->getStorage('node_type')->loadMultiple()) as $node_type_id) {
+    $info['node_' . $node_type_id . '_form'] = 'create ' . $node_type_id . ' content';
+    $info['node_' . $node_type_id . '_edit_form'] = 'edit any ' . $node_type_id . ' content';
+  }
+
+  return $info;
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function sidebar_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+  if (
+    $route_name !== 'node.add'
+    && !empty($data['tabs'][0])
+    && !empty($data['tabs'][0]['sidebar:edit'])
+  ) {
+    $test_node_is_active = $data['tabs'][0]['sidebar:edit']['#active'];
+
+    // Remove every other tabs.
+    if ($test_node_is_active) {
+      foreach (array_keys($data['tabs'][0]) as $task_id) {
+        if (in_array($task_id, ['sidebar.default', 'sidebar:edit'])) {
+          continue;
+        }
+        unset($data['tabs'][0][$task_id]);
+      }
+    }
+  }
+}

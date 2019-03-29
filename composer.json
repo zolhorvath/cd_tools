@@ -1,0 +1,14 @@
+{
+    "name": "zolhorvath/cd_tools",
+    "description": "Markup generator test modules and tests for Claro theme's development",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Zoltan Horvath",
+            "email": "z.a.horvath@gmail.com",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {}
+}

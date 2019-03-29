@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - checkboxradio
+  module:
+    - contact
+    - options
+id: contact_message.checkboxes_disabled
+field_name: checkboxes_disabled
+entity_type: contact_message
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: first
+      label: 'First option'
+    -
+      value: second
+      label: 'Second option'
+    -
+      value: third
+      label: 'Long label: lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elementum dolor orci, vitae elementum eros scelerisque non. In imperdiet diam sit amet iaculis dapibus'
+    -
+      value: fourth
+      label: 'Fourth option'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 2
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

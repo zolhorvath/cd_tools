@@ -1,0 +1,11 @@
+progress:
+  css:
+    theme:
+      css/progress.css: {}
+  js:
+    js/progress.js: {}
+  dependencies:
+    - core/drupal.ajax
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.ui

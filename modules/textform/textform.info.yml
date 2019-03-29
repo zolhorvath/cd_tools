@@ -1,0 +1,17 @@
+name: 'Textfield Test'
+type: module
+description: 'Test form for text-like form items'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - cd_core:cd_core
+  - cd_core:textfixtures
+  - drupal:contact
+  - drupal:datetime
+  - drupal:datetime_range
+  - drupal:field_layout
+  - drupal:image
+  - drupal:telephone
+  - drupal:text
+  - drupal:link

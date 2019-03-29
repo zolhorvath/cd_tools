@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.select
+    - field.storage.contact_message.select_multiple
+  module:
+    - options
+id: contact_message.select.select_multiple
+field_name: select_multiple
+entity_type: contact_message
+bundle: select
+label: 'Select (multiple)'
+description: 'Description of multiple select. Select <em>Option for error</em> to trigger an error.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

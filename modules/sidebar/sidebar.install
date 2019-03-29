@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Sidebar test module.
+ */
+
+use Drupal\user\RoleInterface;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_install().
+ */
+function sidebar_install() {
+  $perms = _sidebar_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Create test nodes.
+  foreach (_sidebar_nodes() as $uuid => $props) {
+    $props['uuid'] = $uuid;
+    $entity = Node::create($props);
+
+    try {
+      $entity->save();
+    }
+    catch (\Exception $e) {
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function sidebar_uninstall() {
+  $perms = _sidebar_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Delete test nodes created by us.
+  $entities = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->loadByProperties(['uuid' => array_keys(_sidebar_nodes())]);
+
+  foreach ($entities as $entity) {
+    $entity->delete();
+  }
+}
+
+/**
+ * Provides list of permissions that makes toolbar testable without login.
+ */
+function _sidebar_permissions() {
+  return [
+    'access sidebar test routes',
+  ];
+}

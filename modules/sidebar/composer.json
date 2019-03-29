@@ -1,0 +1,14 @@
+{
+    "name": "zolhorvath/sidebar",
+    "description": "Makes node add and edit forms accessible by anonymous users for testing entity meta sidebar",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Zoltan Horvath",
+            "email": "z.a.horvath@gmail.com",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {}
+}

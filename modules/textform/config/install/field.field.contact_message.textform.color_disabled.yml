@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.color_disabled
+  module:
+    - textfixtures
+id: contact_message.textform.color_disabled
+field_name: color_disabled
+entity_type: contact_message
+bundle: textform
+label: 'Color (disabled)'
+description: 'Disabled color field description'
+required: false
+translatable: false
+default_value:
+  -
+    value: '#a863ff'
+default_value_callback: ''
+settings: {  }
+field_type: textfixture

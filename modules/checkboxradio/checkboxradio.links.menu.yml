@@ -1,0 +1,7 @@
+checkboxradio.checkbox_radio:
+  title: 'Checkboxes and Radios'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 3
+  route_parameters:
+    contact_form: checkbox_radio

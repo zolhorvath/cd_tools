@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.number
+id: contact_message.textform.number
+field_name: number
+entity_type: contact_message
+bundle: textform
+label: Number
+description: 'Number field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 100
+  prefix: prefix
+  suffix: suffix
+field_type: integer

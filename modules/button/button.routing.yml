@@ -1,0 +1,17 @@
+button.test:
+  path: '/buttons'
+  defaults:
+    _form: '\Drupal\button\Form\ButtonTestForm'
+    _title: 'Button Test'
+    disabled: false
+  requirements:
+    _permission: 'access content'
+
+button.test_disabled:
+  path: '/buttons/disabled'
+  defaults:
+    _form: '\Drupal\button\Form\ButtonTestForm'
+    _title: 'Disabled Button Test'
+    disabled: true
+  requirements:
+    _permission: 'access content'

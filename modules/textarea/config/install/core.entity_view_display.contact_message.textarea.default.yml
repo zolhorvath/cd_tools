@@ -1,0 +1,68 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textarea
+    - field.field.contact_message.textarea.formatted_disabled
+    - field.field.contact_message.textarea.formatted_summary_disabled
+    - field.field.contact_message.textarea.message_disabled
+    - field.field.contact_message.textarea.formatted
+    - field.field.contact_message.textarea.formatted_summary
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: contact_message.textarea.default
+targetEntityType: contact_message
+bundle: textarea
+mode: default
+content:
+  formatted_disabled:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  formatted_summary_disabled:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  message_disabled:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  formatted:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  formatted_summary:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  message:
+    type: string
+    weight: 0
+    label: above
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  langcode: true

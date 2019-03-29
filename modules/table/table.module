@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Table Test module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function table_toolbar() {
+  $items['table_test'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Table'),
+      '#url' => Url::fromRoute('table.test'),
+    ],
+    '#weight' => 107,
+  ];
+  $items['table_field_ui'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Field UI'),
+      '#url' => Url::fromRoute('entity.entity_view_display.node.default', [
+        'node_type' => 'test_type',
+      ]),
+    ],
+    '#weight' => 108,
+  ];
+
+  return $items;
+}

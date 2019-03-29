@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.test_type.body
+    - node.type.test_type
+  module:
+    - text
+    - user
+id: node.test_type.default
+targetEntityType: node
+bundle: test_type
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  langcode:
+    type: language
+    weight: 0
+    region: content
+    label: inline
+    settings:
+      native_language: true
+      link_to_entity: false
+    third_party_settings: {  }
+  links:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

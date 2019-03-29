@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.datetime
+  module:
+    - datetime
+id: contact_message.textform.datetime
+field_name: datetime
+entity_type: contact_message
+bundle: textform
+label: 'Date and Time'
+description: '''Date and Time'' field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

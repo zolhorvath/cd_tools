@@ -1,0 +1,7 @@
+pager.test:
+  path: '/pager'
+  defaults:
+    _controller: '\Drupal\pager\Controller\PagerController::content'
+    _title: 'Pager test'
+  requirements:
+    _permission: 'access content'

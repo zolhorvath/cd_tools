@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Textarea module.
+ */
+
+use Drupal\user\RoleInterface;
+use Drupal\shortcut\Entity\Shortcut;
+
+/**
+ * Implements hook_install().
+ */
+function toolbartest_install() {
+  $perms = _toolbartest_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Create dummy shortcuts.
+  foreach (_toolbartest_shortcuts() as $uuid => $props) {
+    $props['uuid'] = $uuid;
+    $entity = Shortcut::create($props + [
+      'shortcut_set' => 'default',
+      'weight' => 0,
+    ]);
+
+    try {
+      $entity->save();
+    }
+    catch (\Exception $e) {
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function toolbartest_uninstall() {
+  $perms = _toolbartest_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Delete dummy shortcuts created by us.
+  $shortcuts = \Drupal::entityTypeManager()
+    ->getStorage('shortcut')
+    ->loadByProperties(['uuid' => array_keys(_toolbartest_shortcuts())]);
+
+  foreach ($shortcuts as $shortcut) {
+    $shortcut->delete();
+  }
+}
+
+/**
+ * Provides list of permissions that makes toolbar testable without login.
+ */
+function _toolbartest_permissions() {
+  return [
+    'access administration pages',
+    'access content overview',
+    'access files overview',
+    'access shortcuts',
+    'access site reports',
+    'access taxonomy overview',
+    'access toolbar test routes',
+    'access toolbar',
+    'access tour',
+  ];
+}
+
+/**
+ * Provides list of dummy shortcut props.
+ */
+function _toolbartest_shortcuts() {
+  return [
+    '689fab9b-2344-49c2-b61c-abfe5a4fe97a' => [
+      'title' => 'Filter tips',
+      'link' => ['uri' => 'internal:/filter/tips'],
+    ],
+    '6a5cdc6c-c333-4429-8b6e-14d9c50944ce' => [
+      'title' => 'Dummy Parent Page',
+      'link' => ['uri' => 'internal:/admin/content/dummy'],
+    ],
+    '6ec20f9b-5f71-4b4b-883a-e73b40205ca8' => [
+      'title' => 'Another filter tips',
+      'link' => ['uri' => 'internal:/admin/content/filter-tips'],
+    ],
+  ];
+}

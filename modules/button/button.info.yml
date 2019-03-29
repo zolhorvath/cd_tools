@@ -1,0 +1,7 @@
+name: 'Button Test'
+type: module
+description: 'Test pages for inputs and buttons'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies: {}

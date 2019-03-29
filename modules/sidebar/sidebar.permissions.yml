@@ -1,0 +1,4 @@
+access sidebar test routes:
+  title: 'Access sidebar test routes'
+  description: 'Access any sidebar test routes like node add and edit pages.'
+  restrict access: false

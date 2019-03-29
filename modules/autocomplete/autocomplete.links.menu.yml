@@ -1,0 +1,5 @@
+autocomplete.test:
+  title: 'Autocomplete'
+  route_name: autocomplete.test
+  menu_name: main
+  weight: 9

@@ -1,0 +1,9 @@
+cd_tools.dashboard:
+  path: /admin/modules/claro-tools
+  defaults:
+    _form: '\Drupal\cd_tools\Form\DashboardForm'
+    _title: 'Claro Tools Dashboard'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _permission: 'administer modules'

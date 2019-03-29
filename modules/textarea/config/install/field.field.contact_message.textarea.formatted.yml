@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textarea
+    - field.storage.contact_message.formatted
+  module:
+    - text
+id: contact_message.textarea.formatted
+field_name: formatted
+entity_type: contact_message
+bundle: textarea
+label: 'Formatted text'
+description: 'Description of formatted text field'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

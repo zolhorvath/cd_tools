@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Tab test module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function tab_toolbar() {
+  $items['tab'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Tabs'),
+      '#url' => Url::fromRoute('tab.overview'),
+    ],
+    '#weight' => 114,
+  ];
+
+  return $items;
+}

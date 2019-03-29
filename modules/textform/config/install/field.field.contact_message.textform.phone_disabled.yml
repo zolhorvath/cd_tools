@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.phone_disabled
+  module:
+    - telephone
+id: contact_message.textform.phone_disabled
+field_name: phone_disabled
+entity_type: contact_message
+bundle: textform
+label: 'Phone (disabled)'
+description: 'Disabled telephone number field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

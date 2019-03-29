@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.text
+id: contact_message.textform.text
+field_name: text
+entity_type: contact_message
+bundle: textform
+label: Text
+description: 'Text field description'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,340 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.field.contact_message.textform.color
+    - field.field.contact_message.textform.color_disabled
+    - field.field.contact_message.textform.date
+    - field.field.contact_message.textform.date_disabled
+    - field.field.contact_message.textform.daterange
+    - field.field.contact_message.textform.daterange_ad
+    - field.field.contact_message.textform.daterange_ad_disabled
+    - field.field.contact_message.textform.daterange_disabled
+    - field.field.contact_message.textform.datetime
+    - field.field.contact_message.textform.datetime_disabled
+    - field.field.contact_message.textform.email
+    - field.field.contact_message.textform.email_disabled
+    - field.field.contact_message.textform.file
+    - field.field.contact_message.textform.file_disabled
+    - field.field.contact_message.textform.image
+    - field.field.contact_message.textform.image_disabled
+    - field.field.contact_message.textform.link
+    - field.field.contact_message.textform.link_disabled
+    - field.field.contact_message.textform.link_title
+    - field.field.contact_message.textform.link_title_disabled
+    - field.field.contact_message.textform.number
+    - field.field.contact_message.textform.number_disabled
+    - field.field.contact_message.textform.password
+    - field.field.contact_message.textform.password_disabled
+    - field.field.contact_message.textform.phone
+    - field.field.contact_message.textform.phone_disabled
+    - field.field.contact_message.textform.search
+    - field.field.contact_message.textform.search_disabled
+    - field.field.contact_message.textform.text
+    - field.field.contact_message.textform.text_disabled
+    - field.field.contact_message.textform.timestamp
+    - field.field.contact_message.textform.timestamp_disabled
+  module:
+    - datetime
+    - datetime_range
+    - file
+    - image
+    - link
+id: contact_message.textform.default
+targetEntityType: contact_message
+bundle: textform
+mode: default
+content:
+  color:
+    weight: 27
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  color_disabled:
+    weight: 28
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  date:
+    weight: 15
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  date_disabled:
+    weight: 16
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  daterange:
+    weight: 19
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  daterange_ad:
+    weight: 21
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  daterange_ad_disabled:
+    weight: 22
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  daterange_disabled:
+    weight: 20
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  datetime:
+    weight: 17
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  datetime_disabled:
+    weight: 18
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  email:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  email_disabled:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  file:
+    weight: 23
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  file_disabled:
+    weight: 24
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  image:
+    weight: 25
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  image_disabled:
+    weight: 26
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  link:
+    weight: 5
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  link_disabled:
+    weight: 6
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  link_title:
+    weight: 9
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  link_title_disabled:
+    weight: 10
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  message:
+    type: string
+    weight: 0
+    label: above
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  number:
+    weight: 11
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  number_disabled:
+    weight: 12
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  password:
+    weight: 31
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  password_disabled:
+    weight: 32
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  phone:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  phone_disabled:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  search:
+    weight: 29
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  search_disabled:
+    weight: 30
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  text:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  text_disabled:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  timestamp:
+    weight: 13
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    type: timestamp
+    region: content
+  timestamp_disabled:
+    weight: 14
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    type: timestamp
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textarea
+    - field.storage.contact_message.formatted_disabled
+  module:
+    - text
+id: contact_message.textarea.formatted_disabled
+field_name: formatted_disabled
+entity_type: contact_message
+bundle: textarea
+label: 'Formatted text (disabled)'
+description: 'Description of the disabled formatted text field'
+required: false
+translatable: false
+default_value:
+  -
+    value: "<p>Etiam volutpat ligula sit amet mauris ornare molestie. Quisque vitae lectus in ex malesuada porttitor. Nulla risus leo, molestie eget odio at, lobortis aliquet lacus. Fusce tempus finibus hendrerit. Quisque suscipit magna sit amet ipsum ornare, vel ultrices lectus viverra. Donec ac augue non urna commodo rhoncus. Vivamus pulvinar odio sit amet diam mollis gravida.</p>\n"
+    format: basic_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

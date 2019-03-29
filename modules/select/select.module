@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Contains code for select test form.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function select_toolbar() {
+  $items['select'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Select'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'select',
+      ]),
+    ],
+    '#weight' => 110,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for select_form.
+ */
+function select_form_contact_message_select_form_alter(&$form, FormStateInterface $form_state) {
+  // Apply disabled state for some test widgets.
+  $form['select_single_disabled']['widget']['#disabled'] = TRUE;
+  $form['select_multiple_disabled']['widget']['#disabled'] = TRUE;
+
+  // Hide preview button for easier Nightwatch testing.
+  $form['actions']['preview']['#access'] = FALSE;
+
+  $form['#validate'][] = '_select_error_validate';
+}
+
+/**
+ * Hacky validate for select test form.
+ */
+function _select_error_validate(&$form, FormStateInterface $form_state) {
+  foreach ($form_state->getValues() as $field_name => $values) {
+    if ((strpos($field_name, '_disabled') === FALSE) && is_array($values)) {
+      foreach ($values as $value) {
+        if (
+          !empty($value['value']) &&
+          mb_stripos($value['value'], 'error') !== FALSE
+        ) {
+          $form_state->setErrorByName("$field_name", t('There is an error in the value of the <em>@field_name</em> field', [
+            '@field_name' => $field_name,
+          ]));
+          break 1;
+        }
+      }
+    }
+  }
+}

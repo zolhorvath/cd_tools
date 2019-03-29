@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.daterange_disabled
+  module:
+    - datetime_range
+id: contact_message.textform.daterange_disabled
+field_name: daterange_disabled
+entity_type: contact_message
+bundle: textform
+label: 'Date range (disabled)'
+description: 'Disabled ''date range'' field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

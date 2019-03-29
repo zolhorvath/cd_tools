@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for pager test page.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function pager_toolbar() {
+  $items['pager'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Pagers'),
+      '#url' => Url::fromRoute('pager.test'),
+    ],
+    '#weight' => 113,
+  ];
+
+  return $items;
+}

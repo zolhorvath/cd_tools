@@ -1,0 +1,4 @@
+access toolbar test routes:
+  title: 'Access toolbar test routes'
+  description: 'Access any toolbar test routes including appearance, modules, language config and people overview pages.'
+  restrict access: false

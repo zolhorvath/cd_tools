@@ -1,0 +1,9 @@
+progress.test:
+  path: '/progress/{progress_type}'
+  defaults:
+    _form: '\Drupal\progress\Form\ProgressForm'
+    _title_callback: '\Drupal\progress\Form\ProgressForm::title'
+    progress_type: 'all'
+  requirements:
+    _permission: 'access content'
+    progress_type: 'all|throbber|throbber-message|ajax-progress|ajax-progress-small|progress|fullscreen'

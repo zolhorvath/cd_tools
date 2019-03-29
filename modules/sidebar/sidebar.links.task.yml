@@ -1,0 +1,11 @@
+sidebar.default:
+  title: 'Add'
+  route_name: node.add
+  route_parameters:
+    node_type: cd
+  base_route: node.add_page
+
+sidebar:
+  class: \Drupal\Core\Menu\LocalTaskDefault
+  deriver: \Drupal\sidebar\Plugin\Derivative\SidebarLocalTaskDeriver
+  base_route: node.add_page

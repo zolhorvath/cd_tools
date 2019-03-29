@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Textarea module.
+ */
+
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function textarea_install() {
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, [
+    'use text format no_editor',
+  ]);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, [
+    'use text format no_editor',
+  ]);
+}

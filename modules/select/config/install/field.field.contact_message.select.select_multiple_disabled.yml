@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.select
+    - field.storage.contact_message.select_multiple_disabled
+  module:
+    - options
+id: contact_message.select.select_multiple_disabled
+field_name: select_multiple_disabled
+entity_type: contact_message
+bundle: select
+label: 'Select (multiple, disabled)'
+description: 'Description of disabled multi-value select.'
+required: true
+translatable: false
+default_value:
+  -
+    value: first
+default_value_callback: ''
+settings: {  }
+field_type: list_string

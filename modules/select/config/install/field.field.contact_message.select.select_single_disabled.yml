@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.select
+    - field.storage.contact_message.select_single_disabled
+  module:
+    - options
+id: contact_message.select.select_single_disabled
+field_name: select_single_disabled
+entity_type: contact_message
+bundle: select
+label: 'Select (single, disabled)'
+description: 'Description of disabled single-value select.'
+required: false
+translatable: false
+default_value:
+  -
+    value: first
+default_value_callback: ''
+settings: {  }
+field_type: list_string

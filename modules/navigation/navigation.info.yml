@@ -1,0 +1,7 @@
+name: 'Navigation Test'
+type: module
+description: 'Test pages for navigation component'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies: {  }

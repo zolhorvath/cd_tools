@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.number_disabled
+id: contact_message.textform.number_disabled
+field_name: number_disabled
+entity_type: contact_message
+bundle: textform
+label: 'Number (disabled)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 100
+  prefix: prefix
+  suffix: suffix
+field_type: integer

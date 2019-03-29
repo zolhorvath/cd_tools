@@ -1,0 +1,85 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.checkbox_radio
+    - field.field.contact_message.checkbox_radio.checkbox
+    - field.field.contact_message.checkbox_radio.checkbox_disabled
+    - field.field.contact_message.checkbox_radio.checkbox_hidden_label
+    - field.field.contact_message.checkbox_radio.checkbox_hidden_label_disabled
+    - field.field.contact_message.checkbox_radio.checkboxes
+    - field.field.contact_message.checkbox_radio.checkboxes_disabled
+    - field.field.contact_message.checkbox_radio.radios
+    - field.field.contact_message.checkbox_radio.radios_disabled
+  module:
+    - field_layout
+    - cd_core
+third_party_settings:
+  field_layout:
+    id: side_by_side
+    settings: {  }
+id: contact_message.checkbox_radio.default
+targetEntityType: contact_message
+bundle: checkbox_radio
+mode: default
+content:
+  checkbox:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: main
+  checkbox_disabled:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: main
+  checkbox_hidden_label:
+    weight: 0
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: main
+  checkbox_hidden_label_disabled:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: main
+  checkboxes:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: main
+  checkboxes_disabled:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: main
+  radios:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: main
+  radios_disabled:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: main
+hidden:
+  copy: true
+  langcode: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true

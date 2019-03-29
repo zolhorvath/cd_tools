@@ -1,0 +1,5 @@
+details.test:
+  title: 'Details'
+  route_name: system.site_information_settings
+  menu_name: main
+  weight: 116

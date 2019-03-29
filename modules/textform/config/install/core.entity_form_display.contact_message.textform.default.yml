@@ -1,0 +1,295 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.field.contact_message.textform.color
+    - field.field.contact_message.textform.color_disabled
+    - field.field.contact_message.textform.date
+    - field.field.contact_message.textform.date_disabled
+    - field.field.contact_message.textform.daterange
+    - field.field.contact_message.textform.daterange_ad
+    - field.field.contact_message.textform.daterange_ad_disabled
+    - field.field.contact_message.textform.daterange_disabled
+    - field.field.contact_message.textform.datetime
+    - field.field.contact_message.textform.datetime_disabled
+    - field.field.contact_message.textform.email
+    - field.field.contact_message.textform.email_disabled
+    - field.field.contact_message.textform.file
+    - field.field.contact_message.textform.file_disabled
+    - field.field.contact_message.textform.image
+    - field.field.contact_message.textform.image_disabled
+    - field.field.contact_message.textform.link
+    - field.field.contact_message.textform.link_disabled
+    - field.field.contact_message.textform.link_title
+    - field.field.contact_message.textform.link_title_disabled
+    - field.field.contact_message.textform.number
+    - field.field.contact_message.textform.number_disabled
+    - field.field.contact_message.textform.password
+    - field.field.contact_message.textform.password_disabled
+    - field.field.contact_message.textform.phone
+    - field.field.contact_message.textform.phone_disabled
+    - field.field.contact_message.textform.search
+    - field.field.contact_message.textform.search_disabled
+    - field.field.contact_message.textform.text
+    - field.field.contact_message.textform.text_disabled
+    - field.field.contact_message.textform.timestamp
+    - field.field.contact_message.textform.timestamp_disabled
+    - image.style.thumbnail
+  module:
+    - datetime
+    - datetime_range
+    - field_layout
+    - file
+    - image
+    - link
+    - cd_core
+    - telephone
+    - textfixtures
+third_party_settings:
+  field_layout:
+    id: side_by_side
+    settings: {  }
+id: contact_message.textform.default
+targetEntityType: contact_message
+bundle: textform
+mode: default
+content:
+  color:
+    weight: 30
+    settings:
+      type: color
+      placeholder: ''
+    third_party_settings: {  }
+    type: textfixture_default
+    region: main
+  color_disabled:
+    weight: 31
+    settings:
+      type: color
+      placeholder: ''
+    third_party_settings: {  }
+    type: textfixture_default
+    region: main
+  date:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: main
+  date_disabled:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: main
+  daterange:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: main
+  daterange_ad:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: main
+  daterange_ad_disabled:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: main
+  daterange_disabled:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: main
+  datetime:
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: main
+  datetime_disabled:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: main
+  email:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: main
+  email_disabled:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: main
+  file:
+    weight: 26
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: main
+  file_disabled:
+    weight: 27
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: main
+  image:
+    weight: 28
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  image_disabled:
+    weight: 29
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  link:
+    weight: 12
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: main
+  link_disabled:
+    weight: 13
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: main
+  link_title:
+    weight: 14
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: main
+  link_title_disabled:
+    weight: 15
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: main
+  number:
+    weight: 6
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: main
+  number_disabled:
+    weight: 7
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: main
+  password:
+    weight: 10
+    settings:
+      type: password
+      placeholder: ''
+    third_party_settings: {  }
+    type: textfixture_default
+    region: main
+  password_disabled:
+    weight: 11
+    settings:
+      type: password
+      placeholder: ''
+    third_party_settings: {  }
+    type: textfixture_default
+    region: main
+  phone:
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: main
+  phone_disabled:
+    weight: 5
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: main
+  search:
+    weight: 8
+    settings:
+      type: search
+      placeholder: ''
+    third_party_settings: {  }
+    type: textfixture_default
+    region: main
+  search_disabled:
+    weight: 9
+    settings:
+      type: search
+      placeholder: ''
+    third_party_settings: {  }
+    type: textfixture_default
+    region: main
+  text:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: Placeholder
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  text_disabled:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: 'Disabled placeholder'
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  timestamp:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_timestamp
+    region: main
+  timestamp_disabled:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_timestamp
+    region: main
+hidden:
+  copy: true
+  langcode: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true

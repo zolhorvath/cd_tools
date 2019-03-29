@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textarea
+    - field.storage.contact_message.formatted_summary
+  module:
+    - text
+id: contact_message.textarea.formatted_summary
+field_name: formatted_summary
+entity_type: contact_message
+bundle: textarea
+label: 'Formatted text with summary'
+description: 'Description of the <em>formatted text with summary</em> field'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

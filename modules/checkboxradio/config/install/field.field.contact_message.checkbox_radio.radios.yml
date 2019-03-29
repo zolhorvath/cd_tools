@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.checkbox_radio
+    - field.storage.contact_message.radios
+  module:
+    - options
+id: contact_message.checkbox_radio.radios
+field_name: radios
+entity_type: contact_message
+bundle: checkbox_radio
+label: Radios
+description: "Don't select anything to trigger an error"
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

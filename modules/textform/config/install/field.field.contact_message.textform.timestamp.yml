@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.timestamp
+id: contact_message.textform.timestamp
+field_name: timestamp
+entity_type: contact_message
+bundle: textform
+label: Timestamp
+description: 'Timestamp field description.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

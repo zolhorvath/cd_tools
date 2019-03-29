@@ -1,0 +1,7 @@
+name: 'Autocomplete Test'
+type: module
+description: 'Test pages for autocomplete form widget'
+package: Claro
+core: 8.x
+claro_test: true
+dependencies: {}

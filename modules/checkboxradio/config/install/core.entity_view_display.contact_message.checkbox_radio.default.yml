@@ -1,0 +1,91 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.checkbox_radio
+    - field.field.contact_message.checkbox_radio.checkbox
+    - field.field.contact_message.checkbox_radio.checkbox_disabled
+    - field.field.contact_message.checkbox_radio.checkbox_hidden_label
+    - field.field.contact_message.checkbox_radio.checkbox_hidden_label_disabled
+    - field.field.contact_message.checkbox_radio.checkboxes
+    - field.field.contact_message.checkbox_radio.checkboxes_disabled
+    - field.field.contact_message.checkbox_radio.radios
+    - field.field.contact_message.checkbox_radio.radios_disabled
+  module:
+    - options
+id: contact_message.checkbox_radio.default
+targetEntityType: contact_message
+bundle: checkbox_radio
+mode: default
+content:
+  checkbox:
+    weight: 0
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  checkbox_disabled:
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  checkbox_hidden_label:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  checkbox_hidden_label_disabled:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  checkboxes:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  checkboxes_disabled:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  radios:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  radios_disabled:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden:
+  langcode: true
+  message: true

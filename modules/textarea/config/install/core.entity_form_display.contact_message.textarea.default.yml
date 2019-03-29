@@ -1,0 +1,80 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textarea
+    - field.field.contact_message.textarea.formatted_disabled
+    - field.field.contact_message.textarea.formatted_summary_disabled
+    - field.field.contact_message.textarea.message_disabled
+    - field.field.contact_message.textarea.formatted
+    - field.field.contact_message.textarea.formatted_summary
+  module:
+    - field_layout
+    - cd_core
+    - text
+third_party_settings:
+  field_layout:
+    id: side_by_side
+    settings: {  }
+id: contact_message.textarea.default
+targetEntityType: contact_message
+bundle: textarea
+mode: default
+content:
+  formatted_disabled:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: main
+  formatted_summary_disabled:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+      summary_rows: 2
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: main
+  message_disabled:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: main
+  formatted:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: main
+  formatted_summary:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: Placeholder
+      summary_rows: 2
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: main
+  message:
+    type: string_textarea
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: 'Message placeholder'
+    region: main
+    third_party_settings: {  }
+hidden:
+  copy: true
+  langcode: true
+  mail: true
+  name: true
+  preview: true
+  subject: true

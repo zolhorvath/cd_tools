@@ -1,0 +1,8 @@
+name: 'Tab Test'
+type: module
+description: 'Provides test routes for tab testing'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - drupal:filter

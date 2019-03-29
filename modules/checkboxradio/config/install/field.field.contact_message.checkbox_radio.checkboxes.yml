@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.checkbox_radio
+    - field.storage.contact_message.checkboxes
+  module:
+    - options
+id: contact_message.checkbox_radio.checkboxes
+field_name: checkboxes
+entity_type: contact_message
+bundle: checkbox_radio
+label: 'Checkboxes - 2 option allowed, required'
+description: 'Select nothing or more than 2 options to trigger an error'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

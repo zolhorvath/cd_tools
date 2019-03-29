@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.checkbox_radio
+    - field.storage.contact_message.checkbox_disabled
+id: contact_message.checkbox_radio.checkbox_disabled
+field_name: checkbox_disabled
+entity_type: contact_message
+bundle: checkbox_radio
+label: 'Standalone checkbox, disabled'
+description: 'Disabled single checkbox description'
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

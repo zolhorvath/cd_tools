@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.checkbox_radio
+    - field.storage.contact_message.checkbox_hidden_label
+id: contact_message.checkbox_radio.checkbox_hidden_label
+field_name: checkbox_hidden_label
+entity_type: contact_message
+bundle: checkbox_radio
+label: 'Checkbox with hidden label'
+description: 'Checkbox with hidden label. <code>#title_display</code> is set to <code>attribute</code>'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

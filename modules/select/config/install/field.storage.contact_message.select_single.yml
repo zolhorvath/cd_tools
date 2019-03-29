@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - select
+  module:
+    - contact
+    - options
+id: contact_message.select_single
+field_name: select_single
+entity_type: contact_message
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: first
+      label: 'First option'
+    -
+      value: second
+      label: 'Second option'
+    -
+      value: third
+      label: 'Third option'
+    -
+      value: fourth
+      label: 'Fourth option'
+    -
+      value: error
+      label: 'Option for error'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

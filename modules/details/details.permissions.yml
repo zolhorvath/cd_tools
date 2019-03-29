@@ -1,0 +1,4 @@
+access details test routes:
+  title: 'Access details test routes'
+  description: 'Access any details test routes like site configure form.'
+  restrict access: false

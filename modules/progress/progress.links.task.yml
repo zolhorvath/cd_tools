@@ -1,0 +1,10 @@
+progress.types:
+  title: All
+  base_route: progress.test
+  route_name: progress.test
+  route_parameters:
+    progress_type: all
+
+progress.type:
+  class: \Drupal\Core\Menu\LocalTaskDefault
+  deriver: \Drupal\progress\Plugin\Derivative\ProgressLocalTask

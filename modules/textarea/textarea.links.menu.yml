@@ -1,0 +1,7 @@
+textarea.testform:
+  title: 'Textarea'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 4
+  route_parameters:
+    contact_form: textarea

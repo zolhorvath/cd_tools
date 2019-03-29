@@ -1,0 +1,7 @@
+sidebar.test:
+  title: 'Sidebar'
+  menu_name: main
+  route_name: node.add
+  route_parameters:
+    node_type: cd
+  weight: 117

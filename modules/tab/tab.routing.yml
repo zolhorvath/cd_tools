@@ -1,0 +1,23 @@
+tab.overview:
+  path: '/tabs'
+  defaults:
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+    _title: 'Tabs'
+  requirements:
+    _permission: 'access content'
+
+tab.filter_tips:
+  path: '/tabs/format/{filter_format}'
+  defaults:
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+    _title: 'Tabs compose tips'
+  requirements:
+    _entity_access: 'filter_format.use'
+
+tab.filter_tips_secondary:
+  path: '/tabs/{filter_format}'
+  defaults:
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+    _title: 'Tabs compose tips'
+  requirements:
+    _entity_access: 'filter_format.use'

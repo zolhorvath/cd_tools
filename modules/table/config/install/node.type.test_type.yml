@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - table
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Test type'
+type: test_type
+description: 'Test content type for table test'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

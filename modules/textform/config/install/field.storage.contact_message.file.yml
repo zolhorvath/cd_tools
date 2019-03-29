@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - textform
+  module:
+    - contact
+    - file
+id: contact_message.file
+field_name: file
+entity_type: contact_message
+type: file
+settings:
+  display_field: true
+  display_default: true
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

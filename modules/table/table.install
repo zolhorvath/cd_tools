@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall routines for Table Test module.
+ */
+
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function table_install() {
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, [
+    'administer node display',
+  ]);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, [
+    'administer node display',
+  ]);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function table_uninstall() {
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, [
+    'administer node display',
+  ]);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, [
+    'administer node display',
+  ]);
+}

@@ -1,0 +1,8 @@
+name: 'Pager Test'
+type: module
+description: 'Test pages for pagers'
+package: Claro
+core: 8.x
+claro_test: true
+dependencies:
+  - drupal:views

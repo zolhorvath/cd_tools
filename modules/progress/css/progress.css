@@ -1,0 +1,27 @@
+/**
+ * @file
+ * Theme for progress test page.
+ */
+
+.progress-test__item {
+  margin-top: 1.5px;
+  margin-bottom: 30px;
+}
+
+.progress-test__item--type-fullscreen  {
+  min-height: 10vh;
+}
+@media (min-width: 350px) {
+  .progress-test__item--type-fullscreen  {
+    min-height: 20vh;
+  }
+}
+@media (min-width: 600px) {
+  .progress-test__item--type-fullscreen  {
+    min-height: 50vh;
+  }
+}
+
+.progress-test__canvas {
+  background: rgba(0, 0, 0, 0.05) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' height='10' width='10'%3E%3Crect y='0' x='5' height='5' width='5' fill-opacity='0.05'/%3E%3Crect y='5' x='0' height='5' width='5' fill-opacity='0.05'/%3E%3C/svg%3E") 0 0;
+}

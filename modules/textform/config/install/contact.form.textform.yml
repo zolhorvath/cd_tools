@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - textform
+id: textform
+label: Text
+recipients:
+  - website@example.com
+reply: ''
+weight: 0
+message: ''
+redirect: ''

@@ -1,0 +1,21 @@
+tab.overview:
+  title: 'Every format'
+  route_name: tab.overview
+  base_route: tab.overview
+
+tab.overview_secondary:
+  title: 'Every format'
+  route_name: tab.overview
+  parent_id: tab.overview
+
+tab.filter_tips:
+  class: \Drupal\Core\Menu\LocalTaskDefault
+  deriver: \Drupal\tab\Plugin\Derivative\TabLocalTaskDeriver
+  route_name: tab.filter_tips
+  base_route: tab.overview
+
+tab.filter_tips_secondary:
+  class: \Drupal\Core\Menu\LocalTaskDefault
+  deriver: \Drupal\tab\Plugin\Derivative\TabLocalTaskDeriver
+  parent_id: tab.overview
+  route_name: tab.filter_tips_secondary

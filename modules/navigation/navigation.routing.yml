@@ -1,0 +1,8 @@
+navigation.configtest:
+  path: '/navigation/config'
+  defaults:
+    _controller: '\Drupal\navigation\Controller\NavigationTestController::overview'
+    link_id: 'system.admin_config'
+    _title: 'Navigation Test'
+  requirements:
+    _permission: 'access test navigation pages'

@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Textarea module.
+ */
+
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function navigation_install() {
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, [
+    'access test navigation pages',
+    'access administration pages',
+  ]);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, [
+    'access test navigation pages',
+    'access administration pages',
+  ]);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function navigation_uninstall() {
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, [
+    'access test navigation pages',
+    'access administration pages',
+  ]);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, [
+    'access test navigation pages',
+    'access administration pages',
+  ]);
+}

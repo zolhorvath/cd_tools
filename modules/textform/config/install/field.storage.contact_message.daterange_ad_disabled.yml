@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - textform
+  module:
+    - contact
+    - datetime_range
+id: contact_message.daterange_ad_disabled
+field_name: daterange_ad_disabled
+entity_type: contact_message
+type: daterange
+settings:
+  datetime_type: allday
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

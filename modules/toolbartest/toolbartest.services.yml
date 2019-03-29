@@ -1,0 +1,5 @@
+services:
+  toolbartest.route_subscriber:
+    class: Drupal\toolbartest\Routing\RouteSubscriber
+    tags:
+      - { name: 'event_subscriber' }

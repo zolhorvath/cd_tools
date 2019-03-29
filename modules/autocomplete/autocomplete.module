@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for autocomplete test form.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function autocomplete_toolbar() {
+  $items['autocomplete'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Autocomplete'),
+      '#url' => Url::fromRoute('autocomplete.test'),
+    ],
+    '#weight' => 109,
+  ];
+
+  return $items;
+}

@@ -1,0 +1,10 @@
+name: 'Toolbar Test'
+type: module
+description: 'Makes toolbar and some admin routes accessible by anonymous users'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - drupal:filter
+  - drupal:toolbar
+  - drupal:shortcut

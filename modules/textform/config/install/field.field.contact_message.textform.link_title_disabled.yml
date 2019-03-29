@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.link_title_disabled
+  module:
+    - link
+id: contact_message.textform.link_title_disabled
+field_name: link_title_disabled
+entity_type: contact_message
+bundle: textform
+label: 'Link with title (disabled)'
+description: 'Disabled ''link with title'' field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

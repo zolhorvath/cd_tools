@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Textform module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function textform_toolbar() {
+  $items['textform'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Text'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'textform',
+      ]),
+    ],
+    '#weight' => 102,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for textform.
+ */
+function textform_form_contact_message_textform_form_alter(&$form, FormStateInterface $form_state) {
+  $disabled_elements = [
+    'color_disabled',
+    'date_disabled',
+    'daterange_disabled',
+    'daterange_ad_disabled',
+    'datetime_disabled',
+    'email_disabled',
+    'file_disabled',
+    'image_disabled',
+    'link_disabled',
+    'link_title_disabled',
+    'number_disabled',
+    'password_disabled',
+    'phone_disabled',
+    'search_disabled',
+    'text_disabled',
+    'timestamp_disabled',
+  ];
+
+  foreach ($disabled_elements as $key) {
+    $form[$key]['#disabled'] = TRUE;
+  }
+
+  // Hide preview button for easier Nightwatch testing.
+  $form['actions']['preview']['#access'] = FALSE;
+
+  $form['#validate'][] = '_textform_message_error_validate';
+}
+
+/**
+ * Hacky validate for textform contact form's message input.
+ *
+ * Set an error if the input value contains the 'error' string.
+ */
+function _textform_message_error_validate(&$form, FormStateInterface $form_state) {
+  foreach ($form_state->getValues() as $field_name => $values) {
+    if ((strpos($field_name, '_disabled') === FALSE) && is_array($values)) {
+      foreach ($values as $delta => $value) {
+        if (
+          !empty($value['value']) &&
+          (
+            is_string($value['value']) ||
+            is_numeric($value['value'])
+          ) &&
+          (
+            mb_stripos($value['value'], 'error') !== FALSE ||
+            mb_stripos($value['value'], '#ff0000') !== FALSE ||
+            mb_stripos($value['value'], '33') !== FALSE
+          )
+        ) {
+          $form_state->setErrorByName("$field_name][$delta][value", t('There is an error in the value of the <em>@field_name</em> field', [
+            '@field_name' => $field_name,
+          ]));
+          break 1;
+        }
+      }
+    }
+  }
+}

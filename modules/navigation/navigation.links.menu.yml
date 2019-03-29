@@ -1,0 +1,5 @@
+navigation.configtest:
+  title: 'Nav config'
+  route_name: navigation.configtest
+  menu_name: main
+  weight: 5

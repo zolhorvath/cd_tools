@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textarea
+    - field.storage.contact_message.formatted_summary_disabled
+  module:
+    - text
+id: contact_message.textarea.formatted_summary_disabled
+field_name: formatted_summary_disabled
+entity_type: contact_message
+bundle: textarea
+label: 'Formatted text with summary (disabled)'
+description: 'Description of the disabled <em>formatted text with summary</em> field'
+required: false
+translatable: false
+default_value:
+  -
+    summary: 'Suspendisse sed dictum tortor, sit amet hendrerit augue. Nunc placerat tortor a nibh bibendum, sit amet facilisis dolor ultricies. Etiam a elit arcu.'
+    value: "<p>Nulla finibus purus elit, at pulvinar elit gravida ut. Sed auctor scelerisque rutrum.</p>\n\n<p>Phasellus eu elit laoreet, laoreet erat et, pellentesque sem. Quisque diam tortor, malesuada porttitor arcu nec, efficitur mollis mi. Maecenas bibendum elementum tincidunt.</p>\n"
+    format: basic_html
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

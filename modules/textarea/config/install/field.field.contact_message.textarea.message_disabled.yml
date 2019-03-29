@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textarea
+    - field.storage.contact_message.message_disabled
+id: contact_message.textarea.message_disabled
+field_name: message_disabled
+entity_type: contact_message
+bundle: textarea
+label: 'Message (disabled)'
+description: 'Description of the disabled message field'
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Cras sed facilisis eros. Nulla facilisi. Maecenas mollis volutpat diam, et dignissim nunc condimentum ac. Praesent sapien nisi, porttitor non bibendum ut, tristique tempus augue. In libero leo, cursus a eleifend condimentum, commodo non urna. Vivamus lacus magna, cursus et elementum id, suscipit vel est.'
+default_value_callback: ''
+settings: {  }
+field_type: string_long

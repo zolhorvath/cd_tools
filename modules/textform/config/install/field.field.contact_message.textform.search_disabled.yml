@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.search_disabled
+  module:
+    - textfixtures
+id: contact_message.textform.search_disabled
+field_name: search_disabled
+entity_type: contact_message
+bundle: textform
+label: 'Search (disabled)'
+description: 'Disabled search field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: textfixture

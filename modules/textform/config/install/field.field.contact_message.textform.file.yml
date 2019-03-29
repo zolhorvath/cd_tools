@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.file
+  module:
+    - file
+id: contact_message.textform.file
+field_name: file
+entity_type: contact_message
+bundle: textform
+label: File
+description: 'File field (with display and description) description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: '800'
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

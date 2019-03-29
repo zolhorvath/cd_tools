@@ -1,0 +1,7 @@
+textform.testform:
+  title: 'Text'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 2
+  route_parameters:
+    contact_form: textform

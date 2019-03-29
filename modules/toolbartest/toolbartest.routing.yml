@@ -1,0 +1,71 @@
+toolbartest.dummy:
+  path: '/admin/content/dummy'
+  defaults:
+    _title: 'Dummy Parent Page'
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+  requirements:
+    _permission: 'access toolbar test routes'
+
+toolbartest.dummy_child_1:
+  path: '/admin/content/dummy/child-1'
+  defaults:
+    _title: 'Dummy Child #1'
+    _controller: '\Drupal\toolbartest\Controller\DummyController::content'
+  requirements:
+    _permission: 'access toolbar test routes'
+
+toolbartest.dummy_child_2:
+  path: '/admin/content/dummy/child-2'
+  defaults:
+    _title: 'Dummy Child #2'
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+  requirements:
+    _permission: 'access toolbar test routes'
+
+toolbartest.dummy_child_3:
+  path: '/admin/content/dummy/child-3'
+  defaults:
+    _title: 'Dummy Child #3'
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+  requirements:
+    _permission: 'access toolbar test routes'
+
+toolbartest.filter_tips_all:
+  path: '/admin/content/filter-tips'
+  defaults:
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+    _title: 'Real compose tips'
+  requirements:
+    _permission: 'access toolbar test routes'
+
+toolbartest.filter_tips:
+  path: '/admin/content/filter-tips/{filter_format}'
+  defaults:
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+    _title: 'Compose tips'
+  requirements:
+    _entity_access: 'filter_format.use'
+
+toolbartest.dummy_filter_tips:
+  path: '/admin/content/dummy/child-2/filter-tips'
+  defaults:
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+    _title: 'Compose tips'
+  requirements:
+    _permission: 'access toolbar test routes'
+
+toolbartest.dummy_filter_tip:
+  path: '/admin/content/dummy/child-2/{filter_format}'
+  defaults:
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+    _title: 'Compose tips'
+  requirements:
+    _permission: 'access toolbar test routes'
+
+toolbartest.index:
+  path: '/filter'
+  defaults:
+    _title: 'Filters index'
+    _controller: '\Drupal\filter\Controller\FilterController::filterTips'
+  requirements:
+    _permission: 'access toolbar test routes'

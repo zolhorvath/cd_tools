@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Checkboxes and Radio test form.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function checkboxradio_toolbar() {
+  $items['checkboxradio'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Checkboxes and Radios'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'checkbox_radio',
+      ]),
+    ],
+    '#weight' => 103,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for checkbox_radio_form.
+ */
+function checkboxradio_form_contact_message_checkbox_radio_form_alter(&$form, FormStateInterface $form_state) {
+  // Apply disabled state for some test widgets.
+  $form['checkbox_hidden_label_disabled']['#disabled'] = TRUE;
+  $form['checkbox_disabled']['#disabled'] = TRUE;
+  $form['checkboxes_disabled']['#disabled'] = TRUE;
+  $form['radios_disabled']['#disabled'] = TRUE;
+
+  // Make label invisible for the 'hidden label' checkboxes.
+  $form['checkbox_hidden_label']['widget']['value']['#title_display'] = 'attribute';
+  $form['checkbox_hidden_label_disabled']['widget']['value']['#title_display'] = 'attribute';
+}

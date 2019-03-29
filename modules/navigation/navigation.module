@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Navigation Test.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_preprocess_HOOK() for block.
+ */
+function navigation_preprocess_block(&$variables) {
+  if (
+    $variables['plugin_id'] === 'system_main_block' &&
+    \Drupal::routeMatch()->getRouteName() === 'system.admin'
+  ) {
+    // Add compact mode switcher link to the '/admin' page's page content block.
+    if (!empty($variables['content']['#markup'])) {
+      $variables['content']['original'] = [
+        '#markup' => $variables['content']['#markup'],
+        '#weight' => 1,
+      ];
+      unset($variables['content']['#markup']);
+
+      $variables['content']['system_compact_link'] = [
+        '#type' => 'system_compact_link',
+        '#weight' => 0,
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_toolbar().
+ */
+function navigation_toolbar() {
+  $items['navigation_config'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Nav Config'),
+      '#url' => Url::fromRoute('navigation.configtest'),
+    ],
+    '#weight' => 105,
+  ];
+  $items['navigation_admin_tasks'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Nav Tasks'),
+      '#url' => Url::fromRoute('system.admin'),
+    ],
+    '#weight' => 106,
+  ];
+
+  return $items;
+}

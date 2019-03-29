@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - select
+id: select
+label: 'Select test form'
+recipients:
+  - webmaster@example.com
+reply: ''
+weight: 10
+message: ''
+redirect: ''

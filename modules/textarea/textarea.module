@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Textarea module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function textarea_toolbar() {
+  $items['textarea'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Textarea'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'textarea',
+      ]),
+    ],
+    '#weight' => 104,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for textarea.
+ */
+function textarea_form_contact_message_textarea_form_alter(&$form, FormStateInterface $form_state) {
+  // Add description for the default 'message' widget.
+  $form['message']['widget']['0']['value']['#description'] = t('Default message field. Type <code>error</code> to trigger an error.');
+
+  // Apply disabled state for some test widgets.
+  $form['message_disabled']['#disabled'] = TRUE;
+  $form['formatted_disabled']['#disabled'] = TRUE;
+  $form['formatted_summary_disabled']['#disabled'] = TRUE;
+
+  // Hide preview button for easier Nightwatch testing.
+  $form['actions']['preview']['#access'] = FALSE;
+
+  $form['#validate'][] = '_textarea_message_error_validate';
+}
+
+/**
+ * Hacky validate for textarea contact form's message input.
+ *
+ * Set an error if the input value contains the 'error' string.
+ */
+function _textarea_message_error_validate(&$form, FormStateInterface $form_state) {
+  if ($form_state->hasValue('message')) {
+    $message_items = $form_state->getValue('message');
+    foreach ($message_items as $delta => $message) {
+      if (mb_stripos($message['value'], 'error') !== FALSE) {
+        $form_state->setErrorByName("message][$delta][value", t('There is an error in the text of this input'));
+        break 1;
+      }
+    }
+  }
+}

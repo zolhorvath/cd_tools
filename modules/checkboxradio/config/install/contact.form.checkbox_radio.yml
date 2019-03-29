@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - checkboxradio
+id: checkbox_radio
+label: 'Claro Checkboxes and Radios'
+recipients:
+  - website@example.com
+reply: ''
+weight: 1
+message: ''
+redirect: ''

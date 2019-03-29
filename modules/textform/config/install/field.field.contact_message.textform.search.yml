@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.textform
+    - field.storage.contact_message.search
+  module:
+    - textfixtures
+id: contact_message.textform.search
+field_name: search
+entity_type: contact_message
+bundle: textform
+label: Search
+description: 'Search field description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: textfixture

@@ -1,0 +1,5 @@
+progress.test:
+  title: 'Progress'
+  route_name: progress.test
+  menu_name: main
+  weight: 11
