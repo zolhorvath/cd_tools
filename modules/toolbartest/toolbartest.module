@@ -45,6 +45,9 @@ function _toolbartest_form_submit(&$form, FormStateInterface $form_state) {
  */
 function _toolbartest_unsafe_forms() {
   return [
+    'block_settings_tray_form' => 'administer site configuration',
+    'block_form' => 'administer site configuration',
+    'block_delete_form' => 'administer site configuration',
     'cd_tools_dashboard_form' => 'administer modules',
     'comment_admin_overview' => 'administer comments',
     'language_admin_overview_form' => 'administer languages',

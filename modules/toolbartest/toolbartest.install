@@ -59,6 +59,7 @@ function _toolbartest_permissions() {
   return [
     'access administration pages',
     'access content overview',
+    'access contextual links',
     'access files overview',
     'access shortcuts',
     'access site reports',
@@ -66,6 +67,8 @@ function _toolbartest_permissions() {
     'access toolbar test routes',
     'access toolbar',
     'access tour',
+    'administer blocks',
+    'view own workspace',
   ];
 }
 

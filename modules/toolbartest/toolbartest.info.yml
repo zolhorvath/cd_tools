@@ -6,5 +6,8 @@ package: Claro
 claro_test: true
 dependencies:
   - drupal:filter
-  - drupal:toolbar
+  - drupal:settings_tray
   - drupal:shortcut
+  - drupal:toolbar
+  - drupal:tour
+  - drupal:workspaces
