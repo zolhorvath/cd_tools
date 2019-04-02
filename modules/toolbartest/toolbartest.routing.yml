@@ -5,6 +5,8 @@ toolbartest.dummy:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
 
 toolbartest.dummy_child_1:
   path: '/admin/content/dummy/child-1'
@@ -13,6 +15,8 @@ toolbartest.dummy_child_1:
     _controller: '\Drupal\toolbartest\Controller\DummyController::content'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
 
 toolbartest.dummy_child_2:
   path: '/admin/content/dummy/child-2'
@@ -21,6 +25,8 @@ toolbartest.dummy_child_2:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
 
 toolbartest.dummy_child_3:
   path: '/admin/content/dummy/child-3'
@@ -29,6 +35,8 @@ toolbartest.dummy_child_3:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
 
 toolbartest.filter_tips_all:
   path: '/admin/content/filter-tips'
@@ -37,6 +45,8 @@ toolbartest.filter_tips_all:
     _title: 'Real compose tips'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
 
 toolbartest.filter_tips:
   path: '/admin/content/filter-tips/{filter_format}'
@@ -45,6 +55,8 @@ toolbartest.filter_tips:
     _title: 'Compose tips'
   requirements:
     _entity_access: 'filter_format.use'
+  options:
+    _admin_route: FALSE
 
 toolbartest.dummy_filter_tips:
   path: '/admin/content/dummy/child-2/filter-tips'
@@ -53,6 +65,8 @@ toolbartest.dummy_filter_tips:
     _title: 'Compose tips'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
 
 toolbartest.dummy_filter_tip:
   path: '/admin/content/dummy/child-2/{filter_format}'
@@ -61,6 +75,8 @@ toolbartest.dummy_filter_tip:
     _title: 'Compose tips'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
 
 toolbartest.index:
   path: '/filter'
@@ -69,3 +85,5 @@ toolbartest.index:
     _controller: '\Drupal\filter\Controller\FilterController::filterTips'
   requirements:
     _permission: 'access toolbar test routes'
+  options:
+    _admin_route: FALSE
