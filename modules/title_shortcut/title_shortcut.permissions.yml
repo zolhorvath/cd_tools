@@ -1,0 +1,3 @@
+access page title test routes:
+  title: 'Access page title test routes'
+  restrict access: false

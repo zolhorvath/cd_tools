@@ -1,0 +1,7 @@
+pager.test:
+  title: 'Page title'
+  menu_name: main
+  route_name: filter.tips
+  route_parameters:
+    filter_format: plain_text
+  weight: 18

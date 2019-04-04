@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Title Test module.
+ */
+
+use Drupal\user\RoleInterface;
+use Drupal\shortcut\Entity\Shortcut;
+
+/**
+ * Implements hook_install().
+ */
+function title_shortcut_install() {
+  $perms = _title_shortcut_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Create dummy shortcuts.
+  foreach (_title_shortcut_shortcuts() as $uuid => $props) {
+    $props['uuid'] = $uuid;
+    $entity = Shortcut::create($props + [
+      'shortcut_set' => 'default',
+      'weight' => 0,
+    ]);
+
+    try {
+      $entity->save();
+    }
+    catch (\Exception $e) {
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function title_shortcut_uninstall() {
+  $perms = _title_shortcut_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Delete dummy shortcuts created by us.
+  $shortcuts = \Drupal::entityTypeManager()
+    ->getStorage('shortcut')
+    ->loadByProperties(['uuid' => array_keys(_title_shortcut_shortcuts())]);
+
+  foreach ($shortcuts as $shortcut) {
+    $shortcut->delete();
+  }
+}
+
+/**
+ * Provides list of permissions that makes toolbar testable without login.
+ */
+function _title_shortcut_permissions() {
+  return [
+    'access shortcuts',
+    'customize shortcut links',
+  ];
+}
+
+/**
+ * Provides list of dummy shortcut props.
+ */
+function _title_shortcut_shortcuts() {
+  return [
+    '676307a2-2a8d-4e26-bacb-72dc2ff009c8' => [
+      'title' => 'Filter tips',
+      'link' => ['uri' => 'route:filter.tips_all'],
+    ],
+  ];
+}

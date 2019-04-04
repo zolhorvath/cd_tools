@@ -1,0 +1,10 @@
+name: 'Page Title Test'
+type: module
+description: 'Tests page title with shortcuts'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - drupal:filter
+  - drupal:shortcut
+  - drupal:toolbar

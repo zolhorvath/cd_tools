@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Page title test module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function title_shortcut_toolbar() {
+  $items['title_shortcut'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Page title'),
+      '#url' => Url::fromRoute('filter.tips', [
+        'filter_format' => 'plain_text',
+      ]),
+    ],
+    '#weight' => 118,
+  ];
+
+  return $items;
+}
