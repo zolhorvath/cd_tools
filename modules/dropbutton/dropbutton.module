@@ -1,0 +1,190 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Dropbutton module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function dropbutton_toolbar() {
+  $items['dropbutton'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Dropbuttons'),
+      '#url' => Url::fromRoute('dropbutton.test', [
+        'dropbutton_type' => 'dropbutton',
+      ]),
+    ],
+    '#weight' => 119,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function dropbutton_entity_type_alter(&$entity_types) {
+  /* @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  if (isset($entity_types['configurable_language'])) {
+    $entity_types['configurable_language']->setHandlerClass('access', 'Drupal\dropbutton\LanguageAccessControlHandler');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for textarea.
+ */
+function dropbutton_form_language_admin_overview_form_alter(&$form, FormStateInterface $form_state) {
+  $dropbutton_type = \Drupal::routeMatch()->getParameter('dropbutton_type');
+
+  if (empty($dropbutton_type)) {
+    return;
+  }
+
+  $base_submit = $form['actions']['submit'];
+  $dropbutton_links = [];
+  $submit_clones = [
+    'one' => [
+      'input' => t('Multiple input'),
+      'link' => t('Multiple link'),
+    ],
+    'two' => [
+      'input' => t('Second input'),
+      'link' => t('Second link'),
+    ],
+    'three' => [
+      'input' => t('Third input'),
+      'link' => t('Third link'),
+    ],
+  ];
+
+  // Proper form title.
+  $form['#title'] = $dropbutton_type === 'operations' ? t('Operations test') : t('Dropbutton test');
+
+  foreach (Element::children($form['languages']) as $langcode) {
+    // Change dropbutton type inside the languages table.
+    $form['languages'][$langcode]['operations']['data']['#type'] = $dropbutton_type;
+  }
+
+  if (!empty($form['languages']['#header']['0'])) {
+    $data = $form['languages']['#header']['0'];
+    $form['languages']['#header']['0'] = [
+      'data' => $data,
+      'class' => [RESPONSIVE_PRIORITY_MEDIUM],
+    ];
+  }
+
+  // Add a valuable description for the languages table.
+  $form['languages']['#caption'] = t('Links in table');
+
+  // Change the label of the default submit button and flag it as dropbutton.
+  $form['actions']['submit']['#dropbutton'] = 'group-1';
+  $form['actions']['submit']['#value'] = t('Single input');
+
+  // Add description for the actions wrapper.
+  $form['actions']['title'] = [
+    '#type' => 'item',
+    '#plain_text' => t('Dropbuttons in actions'),
+    '#weight' => -100,
+  ];
+
+  // Add more submit inputs to the actions and prepare link dropbutton links.
+  foreach ($submit_clones as $key => $value) {
+    // Create a dummy submit button.
+    $form['actions'][$key] = $base_submit;
+    $form['actions'][$key]['#value'] = $value['input'];
+    $form['actions'][$key]['#dropbutton'] = 'group-2';
+
+    // Prepare a dummy submit link.
+    $dropbutton_links[$key . '_link'] = [
+      'title' => $value['link'],
+      'url' => Url::fromRoute('<current>'),
+    ];
+  }
+
+  // Add a single dropbutton link.
+  $form['actions']['dropbutton_single'] = [
+    '#type' => $dropbutton_type,
+    '#links' => [
+      'single' => [
+        'title' => t('Single link'),
+        'url' => Url::fromRoute('<current>'),
+      ],
+    ],
+  ];
+
+  // Add a multiple link dropbutton.
+  $form['actions']['dropbutton'] = [
+    '#type' => $dropbutton_type,
+    '#links' => $dropbutton_links,
+  ];
+
+  // Dummy dropbutton links out of table.
+  $form['dropbuttons_wrapper'] = [
+    '#type' => 'container',
+    'title' => [
+      '#type' => 'item',
+      '#plain_text' => t('Links out of table'),
+    ],
+    'single' => $form['actions']['dropbutton_single'],
+    'multiple' => $form['actions']['dropbutton'],
+  ];
+}
+
+/**
+ * Implements hook_form_alter() for all forms.
+ */
+function dropbutton_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_permission_map = _dropbutton_unsafe_forms();
+
+  if (!in_array($form_id, array_keys($form_permission_map))) {
+    return;
+  }
+
+  $current_user = \Drupal::currentUser();
+  if (
+    !empty($form_permission_map[$form_id]) &&
+    !$current_user->hasPermission($form_permission_map[$form_id])
+  ) {
+    $form['#validate'] = $form['#validate'] ?? [];
+    array_unshift($form['#validate'], '_dropbutton_form_validate');
+
+    foreach (Element::children($form['actions']) as $id) {
+      $form['actions'][$id]['#validate'] = $form['actions'][$id]['#validate'] ?? [];
+      array_unshift($form['actions'][$id]['#validate'], '_dropbutton_form_validate');
+    }
+  }
+}
+
+/**
+ * Validate handler to get back some (false?) sense of security.
+ */
+function _dropbutton_form_validate(&$form, FormStateInterface $form_state) {
+  $form_state->setErrorByName('__none__', t('Permission denied.'));
+}
+
+/**
+ * Returns runied form's id with the original required route perm.
+ *
+ * Some form's original route permission requirement is ruined by us.
+ * To keep the test module's changes safe as much as possible, we'll check in a
+ * custom form validation handler that the current user has the original
+ * permission.
+ *
+ * @see \Drupal\dropbutton\Routing\RouteSubscriber.php
+ */
+function _dropbutton_unsafe_forms() {
+  return [
+    'language_admin_overview_form' => 'administer languages',
+    'language_admin_edit_form' => 'administer languages',
+    'language_delete_form' => 'administer languages',
+    'view_edit_form' => 'administer views',
+  ];
+}

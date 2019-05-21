@@ -1,0 +1,10 @@
+name: 'Dropbutton Test'
+type: module
+description: 'Test pages for Dropbutton (or Operations) component'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - cd_core:lang_hebrew
+  - core:node
+  - core:views_ui

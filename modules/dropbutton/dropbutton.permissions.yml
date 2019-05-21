@@ -1,0 +1,3 @@
+access dropbutton test routes:
+  title: 'Access DropButton test routes'
+  restrict access: false

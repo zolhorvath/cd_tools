@@ -1,0 +1,5 @@
+services:
+  dropbutton.route_subscriber:
+    class: Drupal\dropbutton\Routing\RouteSubscriber
+    tags:
+      - { name: 'event_subscriber' }

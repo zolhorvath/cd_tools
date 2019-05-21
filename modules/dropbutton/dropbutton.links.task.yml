@@ -1,0 +1,18 @@
+dropbutton.dropbutton:
+  title: Dropbutton
+  route_name: dropbutton.test
+  route_parameters:
+    dropbutton_type: dropbutton
+  base_route: dropbutton.test
+
+dropbutton.operations:
+  title: Operations
+  route_name: dropbutton.test
+  route_parameters:
+    dropbutton_type: operations
+  base_route: dropbutton.test
+
+dropbutton.views_ui:
+  title: 'Dropbutton on Views UI form'
+  route_name: dropbutton.views_ui
+  base_route: dropbutton.test

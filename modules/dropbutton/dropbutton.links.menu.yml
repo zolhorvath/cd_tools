@@ -1,0 +1,7 @@
+dropbutton.test:
+  title: 'Dropbuttons'
+  route_name: dropbutton.test
+  route_parameters:
+    dropbutton_type: dropbutton
+  menu_name: main
+  weight: 19

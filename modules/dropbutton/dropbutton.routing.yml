@@ -1,0 +1,16 @@
+dropbutton.test:
+  path: '/dropbutton/{dropbutton_type}'
+  defaults:
+    _entity_list: 'configurable_language'
+    _title: 'Dropbutton'
+    dropbutton_type: dropbutton
+  requirements:
+    dropbutton_type: 'dropbutton|operations'
+    _permission: 'access dropbutton test routes'
+
+dropbutton.views_ui:
+  path: '/dropbutton-views'
+  defaults:
+    _controller: '\Drupal\dropbutton\Controller\ViewsUIController::contentViewEdit'
+  requirements:
+    _permission: 'access dropbutton test routes'
