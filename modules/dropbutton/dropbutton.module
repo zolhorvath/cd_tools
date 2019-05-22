@@ -52,8 +52,8 @@ function dropbutton_form_language_admin_overview_form_alter(&$form, FormStateInt
   $dropbutton_links = [];
   $submit_clones = [
     'one' => [
-      'input' => t('Multiple input'),
-      'link' => t('Multiple link'),
+      'input' => t('Multiple inputs'),
+      'link' => t('Multiple links'),
     ],
     'two' => [
       'input' => t('Second input'),
