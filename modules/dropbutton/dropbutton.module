@@ -188,3 +188,15 @@ function _dropbutton_unsafe_forms() {
     'view_edit_form' => 'administer views',
   ];
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter() for view_edit_form.
+ */
+function dropbutton_form_view_edit_form_alter(&$form, FormStateInterface $form_state) {
+  if (
+    !empty($form['displays'])
+    && !empty($form['displays']['top']['extra_actions'])
+  ) {
+    $form['displays']['top']['extra_actions']['#dropbutton_type'] = 'small';
+  }
+}
