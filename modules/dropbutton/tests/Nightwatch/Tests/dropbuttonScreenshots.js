@@ -24,12 +24,13 @@ module.exports = {
   'Dropbutton'(browser) {
     'use strict';
     ['', 'he'].forEach((langprefix) => {
-      // Node add form.
       browser
         .resizeWindow(1024, 600)
-        .smartURL((langprefix ? '/' + langprefix : '') + '/admin/config/regional/language')
-        .savefullScreenShot('01', langprefix)
 
+        // Operations test form.
+        .smartURL((langprefix ? '/' + langprefix : '') + '/dropbutton/operations')
+        .waitForElementPresent('.form-actions .dropbutton-multiple:last-of-type')
+        .savefullScreenShot('01', langprefix)
         // Dropbuttons in table.
         .focusOn('[data-drupal-selector="edit-languages-en-operations-data"] li:first-child a')
         .pause(300)
@@ -43,7 +44,6 @@ module.exports = {
         .focusOn('[data-drupal-selector="edit-languages-he-operations-data"] li:first-child + li + li a')
         .pause(300)
         .saveScreenShot('05', langprefix, 'Multiple expanded focused')
-
         // Dropbutton with inputs, in form actions.
         .focusOn('[data-drupal-selector="edit-group-1"] li:first-child .button')
         .pause(300)
@@ -57,7 +57,6 @@ module.exports = {
         .focusOn('[data-drupal-selector="edit-languages-he-operations-data"] li:nth-child(3) .button')
         .pause(300)
         .saveScreenShot('09', langprefix, 'Multiple input expanded focused')
-
         // Dropbutton with links, in form actions.
         .focusOn('[data-drupal-selector="edit-dropbutton-single"] li:first-child a')
         .pause(300)
@@ -70,7 +69,13 @@ module.exports = {
         .saveScreenShot('12', langprefix, 'Multiple links in actions expanded')
         .focusOn('[data-drupal-selector="edit-dropbutton"] li:nth-child(3) a')
         .pause(300)
-        .saveScreenShot('13', langprefix, 'Multiple links in actions focused');
+        .saveScreenShot('13', langprefix, 'Multiple links in actions focused')
+
+        // Views UI view edit test form.
+        .smartURL((langprefix ? '/' + langprefix : '') + '/dropbutton-views')
+        .waitForElementPresent('#views-display-top .dropbutton-multiple')
+        .click('#edit-displays-settings-settings-content-tab-content-details-columns-third > summary')
+        .savefullScreenShot('14', langprefix, 'Views UI dropbuttons');
     });
   }
 };
