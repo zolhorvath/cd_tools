@@ -1,0 +1,9 @@
+name: 'Fieldset Test'
+type: module
+description: 'Test pages for Fieldset component'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - cd_core:lang_hebrew
+  - core:views_ui

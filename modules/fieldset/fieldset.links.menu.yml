@@ -1,0 +1,5 @@
+fieldset.test:
+  title: 'Fieldset'
+  route_name: fieldset.test
+  menu_name: main
+  weight: 20

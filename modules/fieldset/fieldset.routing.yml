@@ -1,0 +1,7 @@
+fieldset.test:
+  path: '/fieldset'
+  defaults:
+    _entity_form: 'view.add'
+    _title: 'Fieldset test'
+  requirements:
+    _permission: 'access fieldset test routes'

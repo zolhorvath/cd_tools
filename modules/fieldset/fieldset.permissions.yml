@@ -1,0 +1,3 @@
+access fieldset test routes:
+  title: 'Access Fieldset test routes'
+  restrict access: false
