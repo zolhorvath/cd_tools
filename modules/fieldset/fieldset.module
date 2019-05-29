@@ -18,9 +18,7 @@ function fieldset_toolbar() {
     'tab' => [
       '#type' => 'link',
       '#title' => t('Fieldset'),
-      '#url' => Url::fromRoute('fieldset.test', [
-        'fieldset_type' => 'fieldset',
-      ]),
+      '#url' => Url::fromRoute('fieldset.test'),
     ],
     '#weight' => 120,
   ];

@@ -27,8 +27,8 @@ module.exports = {
       browser
         .resizeWindow(1024, 600)
         .smartURL((langprefix ? '/' + langprefix : '') + '/fieldset')
-        .click('[name="page[create]"]')
-        .waitForElementVisible('[name="page[style][style_plugin]"]')
+        .click('[name="block[create]"]')
+        .waitForElementVisible('[name="block[style][style_plugin]"]')
         .savefullScreenShot('01', langprefix);
     });
   }
