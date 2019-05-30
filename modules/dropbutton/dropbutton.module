@@ -88,11 +88,11 @@ function dropbutton_form_language_admin_overview_form_alter(&$form, FormStateInt
   $form['actions']['submit']['#dropbutton'] = 'group-1';
   $form['actions']['submit']['#value'] = t('Single input');
 
-  // Add description for the actions wrapper.
-  $form['actions']['title'] = [
+  // Add description before the actions wrapper.
+  $form['actions_title'] = [
     '#type' => 'item',
     '#plain_text' => t('Dropbuttons in actions'),
-    '#weight' => -100,
+    '#weight' => 99,
   ];
 
   // Add more submit inputs to the actions and prepare link dropbutton links.
