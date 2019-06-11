@@ -32,8 +32,8 @@
           $.noop
         );
         progressBar.setProgress(67, 'Progress message', 'Progress label');
-        var element = $(progressBar.element).addClass(
-          'ajax-progress ajax-progress-bar'
+        var element = $(
+          Drupal.theme('ajaxProgressBar', progressBar.element),
         );
         if ($(this).hasClass('ajax-progress-small-canvas')) {
           element.addClass('progress--small');
