@@ -13,7 +13,7 @@ use Drupal\Core\Url;
 /**
  * Implements hook_themes_installed().
  */
-function vertical_tab_themes_installed($theme_list) {
+function vertical_tabs_themes_installed($theme_list) {
   if (\Drupal::service('plugin.manager.block')->hasDefinition('system_powered_by_block')) {
     $block_values_default = [
       'plugin' => 'system_powered_by_block',
@@ -36,7 +36,7 @@ function vertical_tab_themes_installed($theme_list) {
 
     foreach ($theme_list as $theme_name) {
       $values = $block_values_default + [
-        'id' => $theme_name . '_vertical_tab_test',
+        'id' => $theme_name . '_vertical_tabs_test',
         'theme' => $theme_name,
       ];
 
@@ -53,24 +53,24 @@ function vertical_tab_themes_installed($theme_list) {
 /**
  * Implements hook_toolbar().
  */
-function vertical_tab_toolbar() {
+function vertical_tabs_toolbar() {
   $theme_settings = \Drupal::config('system.theme');
   $admin_theme = !empty($theme_settings->get('admin'))
     ? $theme_settings->get('admin')
     : $theme_settings->get('default');
 
-  $items['vertical_tab'] = [
+  $items['vertical_tabs'] = [
     '#type' => 'toolbar_item',
     'tab' => [
       '#type' => 'link',
-      '#title' => t('Vertical Tab'),
+      '#title' => t('Vertical Tabs'),
       '#url' => Url::fromRoute('entity.block.edit_form', [
-        'block' => $admin_theme . '_vertical_tab_test',
+        'block' => $admin_theme . '_vertical_tabs_test',
       ], [
         'attributes' => [
           'class' => [
-            'js--vertical_tab-test-link',
-            'js--vertical_tab-test-link--toolbar',
+            'js--vertical_tabs-test-link',
+            'js--vertical_tabs-test-link--toolbar',
           ],
         ],
       ]),
@@ -84,8 +84,8 @@ function vertical_tab_toolbar() {
 /**
  * Implements hook_form_alter() for all forms.
  */
-function vertical_tab_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  $form_permission_map = _vertical_tab_unsafe_forms();
+function vertical_tabs_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_permission_map = _vertical_tabs_unsafe_forms();
 
   if (!in_array($form_id, array_keys($form_permission_map))) {
     return;
@@ -97,11 +97,11 @@ function vertical_tab_form_alter(&$form, FormStateInterface $form_state, $form_i
     !$current_user->hasPermission($form_permission_map[$form_id])
   ) {
     $form['#validate'] = $form['#validate'] ?? [];
-    array_unshift($form['#validate'], '_vertical_tab_form_validate');
+    array_unshift($form['#validate'], '_vertical_tabs_form_validate');
 
     foreach (Element::children($form['actions']) as $id) {
       $form['actions'][$id]['#validate'] = $form['actions'][$id]['#validate'] ?? [];
-      array_unshift($form['actions'][$id]['#validate'], '_vertical_tab_form_validate');
+      array_unshift($form['actions'][$id]['#validate'], '_vertical_tabs_form_validate');
     }
   }
 }
@@ -109,7 +109,7 @@ function vertical_tab_form_alter(&$form, FormStateInterface $form_state, $form_i
 /**
  * Validate handler to get back some (false?) sense of security.
  */
-function _vertical_tab_form_validate(&$form, FormStateInterface $form_state) {
+function _vertical_tabs_form_validate(&$form, FormStateInterface $form_state) {
   $form_state->setErrorByName('__none__', t('Permission denied.'));
 }
 
@@ -121,7 +121,7 @@ function _vertical_tab_form_validate(&$form, FormStateInterface $form_state) {
  * custom form validation handler that the current user has the original
  * permission.
  */
-function _vertical_tab_unsafe_forms() {
+function _vertical_tabs_unsafe_forms() {
   return [
     'block_form' => 'administer blocks',
   ];

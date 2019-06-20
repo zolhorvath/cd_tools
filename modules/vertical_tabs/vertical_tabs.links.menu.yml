@@ -1,0 +1,10 @@
+vertical_tabs.test:
+  title: 'Vertical Tabs'
+  route_name: entity.block.edit_form
+  menu_name: main
+  weight: 21
+  deriver: Drupal\vertical_tabs\Plugin\Derivative\MenuLinkDeriver
+  options:
+    attributes:
+      class:
+        - js--vertical_tabs-test-link

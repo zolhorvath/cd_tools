@@ -1,0 +1,5 @@
+services:
+  vertical_tabs.route_subscriber:
+    class: Drupal\vertical_tabs\Routing\RouteSubscriber
+    tags:
+      - { name: 'event_subscriber' }

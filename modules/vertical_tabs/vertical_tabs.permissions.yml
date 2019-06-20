@@ -1,0 +1,3 @@
+access vertical tabs test routes:
+  title: 'Access Vertical Tabs test routes'
+  restrict access: false

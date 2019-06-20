@@ -11,7 +11,7 @@ use Drupal\user\RoleInterface;
 /**
  * Implements hook_install().
  */
-function vertical_tab_install() {
+function vertical_tabs_install() {
   // Add test block plugin instances.
   $theme_list = array_keys(\Drupal::service('theme_handler')->listInfo());
   $block_manager = \Drupal::service('plugin.manager.block');
@@ -38,7 +38,7 @@ function vertical_tab_install() {
 
     foreach ($theme_list as $theme_name) {
       $values = $block_values_default + [
-        'id' => $theme_name . '_vertical_tab_test',
+        'id' => $theme_name . '_vertical_tabs_test',
         'theme' => $theme_name,
       ];
 
@@ -52,7 +52,7 @@ function vertical_tab_install() {
   }
 
   // Add permissions needed for anonymous test.
-  $perms = _vertical_tab_permissions();
+  $perms = _vertical_tabs_permissions();
 
   user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
@@ -61,18 +61,18 @@ function vertical_tab_install() {
 /**
  * Implements hook_install().
  */
-function vertical_tab_uninstall() {
+function vertical_tabs_uninstall() {
   // Delete test block instances.
   $block_instances = \Drupal::service('entity_type.manager')->getStorage('block')->loadMultiple();
 
   foreach ($block_instances as $block_id => $block) {
-    if (strpos($block_id, '_vertical_tab_test')) {
+    if (strpos($block_id, '_vertical_tabs_test')) {
       $block->delete();
     }
   }
 
   // Revoke permissions.
-  $perms = _vertical_tab_permissions();
+  $perms = _vertical_tabs_permissions();
 
   user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
@@ -81,8 +81,8 @@ function vertical_tab_uninstall() {
 /**
  * Provides list of permissions that makes Dropbuttons testable without login.
  */
-function _vertical_tab_permissions() {
+function _vertical_tabs_permissions() {
   return [
-    'access vertical tab test routes',
+    'access vertical tabs test routes',
   ];
 }

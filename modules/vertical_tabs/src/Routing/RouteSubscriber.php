@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\vertical_tab\Routing;
+namespace Drupal\vertical_tabs\Routing;
 
 use Drupal\Core\Routing\RouteSubscriberBase;
 use Drupal\Core\Routing\RoutingEvents;
@@ -21,7 +21,7 @@ class RouteSubscriber extends RouteSubscriberBase {
 
     foreach ($test_routes as $route_name) {
       if ($route = $collection->get($route_name)) {
-        $route->setRequirements(['_permission' => 'access vertical tab test routes']);
+        $route->setRequirements(['_permission' => 'access vertical tabs test routes']);
       }
     }
   }

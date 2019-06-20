@@ -18,15 +18,15 @@ module.exports = {
       browser.end();
     }
   },
-  "Vertical Tab": function test(browser) {
+  "Vertical Tabs": function test(browser) {
     ["", "he"].forEach(langprefix => {
       let testUrl;
       let mobileTest;
       browser
         .resizeWindow(1024, 600)
         .smartURL(langprefix ? `/${langprefix}` : "")
-        .waitForElementPresent("a.js--vertical_tab-test-link")
-        .getAttribute("a.js--vertical_tab-test-link", "href", testlinkQuery => {
+        .waitForElementPresent("a.js--vertical_tabs-test-link")
+        .getAttribute("a.js--vertical_tabs-test-link", "href", testlinkQuery => {
           testUrl = testlinkQuery.value;
         })
         .perform(() => {
@@ -100,7 +100,7 @@ module.exports = {
               .focusOn('a[href="#edit-visibility-user-role"]')
               .pause(250)
               .saveScreenShot("04", langprefix, "Inactive roles tab focused")
-              // Test that url with fragment opens the right vertical tab content.
+              // Test that url with fragment opens the right vertical tabs content.
               .smartURL(langprefix ? `/${langprefix}` : "")
               .url(`${testUrl}#edit-visibility-request-path`)
               .pause(250)

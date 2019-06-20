@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\vertical_tab\Plugin\Derivative;
+namespace Drupal\vertical_tabs\Plugin\Derivative;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -50,8 +50,8 @@ class MenuLinkDeriver extends DeriverBase implements ContainerDeriverInterface {
       ? $theme_settings->get('admin')
       : $theme_settings->get('default');
 
-    $this->derivatives['vertical_tab.test'] = [
-      'route_parameters' => ['block' => $admin_theme . '_vertical_tab_test'],
+    $this->derivatives['vertical_tabs.test'] = [
+      'route_parameters' => ['block' => $admin_theme . '_vertical_tabs_test'],
     ] + $base_plugin_definition;
 
     return parent::getDerivativeDefinitions($base_plugin_definition);
