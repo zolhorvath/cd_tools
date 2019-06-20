@@ -5,7 +5,6 @@ namespace Drupal\dropbutton\Controller;
 use Drupal\views_ui\Controller\ViewsUIController as DefaultViewsUIController;
 use Drupal\views\Entity\View;
 use Drupal\views_ui\ViewUI;
-use Drupal\views\ViewsData;
 
 /**
  * Returns responses for Views UI routes.

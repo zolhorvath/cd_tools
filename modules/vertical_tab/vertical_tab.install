@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Vertical Tab test module.
+ */
+
+use Drupal\block\Entity\Block;
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function vertical_tab_install() {
+  // Add test block plugin instances.
+  $theme_list = array_keys(\Drupal::service('theme_handler')->listInfo());
+  $block_manager = \Drupal::service('plugin.manager.block');
+
+  if ($block_manager->hasDefinition('system_powered_by_block')) {
+    $block_values_default = [
+      'plugin' => 'system_powered_by_block',
+      'region' => 'content',
+      'visibility' => [
+        'request_path' => [
+          'id' => 'request_path',
+          'pages' => "/filter/tips\r\n/filter/tips/*",
+          'negate' => TRUE,
+          'context_mapping' => [],
+        ],
+      ],
+      'status' => 0,
+      'weight' => 100,
+      'settings' => [
+        'id' => 'system_powered_by_block',
+        'label' => 'Vertical Tab test block',
+      ],
+    ];
+
+    foreach ($theme_list as $theme_name) {
+      $values = $block_values_default + [
+        'id' => $theme_name . '_vertical_tab_test',
+        'theme' => $theme_name,
+      ];
+
+      try {
+        $block = Block::create($values);
+        $block->save();
+      }
+      catch (\Exception $e) {
+      }
+    }
+  }
+
+  // Add permissions needed for anonymous test.
+  $perms = _vertical_tab_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Implements hook_install().
+ */
+function vertical_tab_uninstall() {
+  // Delete test block instances.
+  $block_instances = \Drupal::service('entity_type.manager')->getStorage('block')->loadMultiple();
+
+  foreach ($block_instances as $block_id => $block) {
+    if (strpos($block_id, '_vertical_tab_test')) {
+      $block->delete();
+    }
+  }
+
+  // Revoke permissions.
+  $perms = _vertical_tab_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Provides list of permissions that makes Dropbuttons testable without login.
+ */
+function _vertical_tab_permissions() {
+  return [
+    'access vertical tab test routes',
+  ];
+}
