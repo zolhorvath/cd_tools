@@ -26,9 +26,13 @@ module.exports = {
         .resizeWindow(1024, 600)
         .smartURL(langprefix ? `/${langprefix}` : "")
         .waitForElementPresent("a.js--vertical_tabs-test-link")
-        .getAttribute("a.js--vertical_tabs-test-link", "href", testlinkQuery => {
-          testUrl = testlinkQuery.value;
-        })
+        .getAttribute(
+          "a.js--vertical_tabs-test-link",
+          "href",
+          testlinkQuery => {
+            testUrl = testlinkQuery.value;
+          }
+        )
         .perform(() => {
           browser.url(testUrl);
         })

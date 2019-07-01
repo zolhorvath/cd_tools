@@ -1,0 +1,7 @@
+message.test:
+  title: Messages
+  route_name: message.test
+  route_parameters:
+    length: short
+  menu_name: main
+  weight: 22

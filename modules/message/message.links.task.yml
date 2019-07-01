@@ -1,0 +1,12 @@
+# message.test:
+#   title: 'Short messages'
+#   route_name: message.test
+#   route_parameters:
+#     length: short
+#   base_route: message.test
+
+message.test:
+  class: \Drupal\Core\Menu\LocalTaskDefault
+  deriver: \Drupal\message\Plugin\Derivative\MessageLocalTaskDeriver
+  route_name: message.test
+  base_route: message.test
