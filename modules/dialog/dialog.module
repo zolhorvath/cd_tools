@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Dialog module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function dialog_toolbar() {
+  $items['dialog'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Dialogs'),
+      '#url' => Url::fromRoute('dialog.test'),
+    ],
+    '#weight' => 123,
+  ];
+
+  return $items;
+}
