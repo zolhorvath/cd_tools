@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Message module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function message_toolbar() {
+  $items['message'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Messages'),
+      '#url' => Url::fromRoute('message.test', ['length' => 'short']),
+    ],
+    '#weight' => 122,
+  ];
+
+  return $items;
+}

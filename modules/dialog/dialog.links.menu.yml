@@ -1,0 +1,5 @@
+dialog.test:
+  title: Dialogs
+  route_name: dialog.test
+  menu_name: main
+  weight: 23

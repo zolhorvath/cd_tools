@@ -1,0 +1,7 @@
+dialog.test:
+  path: '/dialog'
+  defaults:
+    _controller: '\Drupal\dialog\Controller\DialogController::dialogPage'
+    _title: 'Dialogs'
+  requirements:
+    _permission: 'access content'

@@ -27,6 +27,14 @@ module.exports = {
       browser
         .resizeWindow(1024, 600)
         .smartURL((langprefix ? '/' + langprefix : '') + '/admin/structure/taxonomy')
+        .execute(
+          /* eslint-disable func-names, prefer-rest-params */
+          function() {
+            document.querySelector(".block-system-main-block").style.overflow = 'hidden';
+          },
+          /* eslint-enable func-names, prefer-rest-params */
+        )
+        .pause(100)
         .saveScreenShot('01', langprefix, 'Toolbar default') // Horizontal on desktop, or collapsed on narrow devices.
         .elements('css selector', '.toolbar-icon-toggle-vertical', (results) => {
           // Toolbar orientation toggle exist only on wider browser windows.
@@ -39,6 +47,7 @@ module.exports = {
             browser.click('#toolbar-item-administration');
           }
         })
+        .pause(100)
         .waitForElementPresent('#toolbar-link-entity-taxonomy_vocabulary-collection.menu-item--active')
         .saveScreenShot('02', langprefix, 'Toolbar vertical')
         .click('#toolbar-link-system-admin_structure + button.open')
@@ -46,6 +55,7 @@ module.exports = {
         .click('#toolbar-link-system-admin_content + button:not(.open)')
         .saveScreenShot('04', langprefix, 'Toolbar second level handle')
         .click('#toolbar-link-toolbartest-dummy + button:not(.open)')
+        .pause(100)
         .waitForElementVisible('#toolbar-link-toolbartest-dummy_child_1')
         .saveScreenShot('05', langprefix, 'Toolbar second level menu')
         .click('#toolbar-link-toolbartest-dummy_child_1')
@@ -55,6 +65,7 @@ module.exports = {
               .click('#toolbar-item-administration:not(.is-active)');
           }
         })
+        .pause(100)
         .waitForElementVisible('#toolbar-link-toolbartest-dummy_child_2')
         .focusOn('#toolbar-link-toolbartest-dummy_child_2')
         .saveScreenShot('06', langprefix, 'Toolbar states')

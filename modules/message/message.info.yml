@@ -1,0 +1,7 @@
+name: 'Message Test'
+type: module
+description: 'Test page for Message component'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies: {}
