@@ -32,9 +32,11 @@
           $.noop
         );
         progressBar.setProgress(67, 'Progress message', 'Progress label');
-        var element = $(
-          Drupal.theme('ajaxProgressBar', progressBar.element),
-        );
+        var element =
+          typeof Drupal.theme.ajaxProgressBar !== 'undefined'
+            ? $(Drupal.theme('ajaxProgressBar', progressBar.element))
+            : $(progressBar.element).addClass('ajax-progress ajax-progress-bar');
+
         if ($(this).hasClass('ajax-progress-small-canvas')) {
           element.addClass('progress--small');
         }
