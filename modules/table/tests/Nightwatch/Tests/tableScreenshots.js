@@ -3,45 +3,48 @@
  * Captures tables.
  */
 module.exports = {
-  '@tags': ['claro'],
+  "@tags": ["claro"],
   before(browser) {
-    'use strict';
     if (browser.drupalInstall) {
       browser.drupalInstall({
-        installProfile: 'clarodist'
+        installProfile: "clarodist"
       });
     }
   },
   after(browser) {
-    'use strict';
     if (browser.drupalUninstall) {
       browser.drupalUninstall().end();
-    }
-    else {
+    } else {
       browser.end();
     }
   },
-  'Content form'(browser) {
-    'use strict';
-    ['', 'he'].forEach((langprefix) => {
+  "Content form": function contentFormTest(browser) {
+    ["", "he"].forEach(langprefix => {
       browser
         .resizeWindow(1024, 600)
-        .smartURL((langprefix ? '/' + langprefix : '') + '/table')
-        .waitTillElementPresent('table.test-table')
+        .smartURL(langprefix ? `/${langprefix}/table` : "/table")
+        .waitTillElementPresent("table.test-table")
         .click('[name="table[3]"]')
-        .moveToElement('table.test-table tbody tr:nth-child(1) td:first-child', 10, 10)
-        .click('table.test-table tbody tr:nth-child(1)')
-        .savefullScreenShot('01', langprefix);
+        .moveToElement(
+          "table.test-table tbody tr:nth-child(1) td:first-child",
+          10,
+          10
+        )
+        .click("table.test-table tbody tr:nth-child(1)")
+        .savefullScreenShot("01", langprefix);
     });
   },
-  'Field UI form'(browser) {
-    'use strict';
-    ['', 'he'].forEach((langprefix) => {
+  "Field UI form": function fieldUiFormTest(browser) {
+    ["", "he"].forEach(langprefix => {
       browser
         .resizeWindow(1024, 600)
-        .smartURL((langprefix ? '/' + langprefix : '') + '/admin/structure/types/manage/test_type/display')
-        .waitTillElementPresent('table.field-ui-overview')
-        .savefullScreenShot('02', langprefix);
+        .smartURL(
+          langprefix
+            ? `/${langprefix}/admin/structure/types/manage/test_type/display`
+            : "/admin/structure/types/manage/test_type/display"
+        )
+        .waitTillElementPresent("table.field-ui-overview")
+        .savefullScreenShot("02", langprefix);
     });
   }
 };
