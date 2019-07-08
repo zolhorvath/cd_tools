@@ -3,33 +3,29 @@
  * Captures Fieldsets.
  */
 module.exports = {
-  '@tags': ['claro'],
+  "@tags": ["claro"],
   before(browser) {
-    'use strict';
     if (browser.drupalInstall) {
       browser.drupalInstall({
-        installProfile: 'clarodist'
+        installProfile: "clarodist"
       });
     }
   },
   after(browser) {
-    'use strict';
     if (browser.drupalUninstall) {
       browser.drupalUninstall().end();
-    }
-    else {
+    } else {
       browser.end();
     }
   },
-  'Fieldset'(browser) {
-    'use strict';
-    ['', 'he'].forEach((langprefix) => {
+  Fieldset(browser) {
+    ["", "he"].forEach(langprefix => {
       browser
         .resizeWindow(1024, 600)
-        .smartURL((langprefix ? '/' + langprefix : '') + '/fieldset')
+        .smartURL(langprefix ? `/${langprefix}/fieldset` : "/fieldset")
         .click('[name="block[create]"]')
         .waitForElementVisible('[name="block[style][style_plugin]"]')
-        .savefullScreenShot('01', langprefix);
+        .savefullScreenShot("01", langprefix);
     });
   }
 };
