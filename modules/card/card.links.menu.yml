@@ -1,0 +1,5 @@
+card.test:
+  title: Card
+  route_name: system.themes_page
+  menu_name: main
+  weight: 24

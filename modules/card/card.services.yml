@@ -1,0 +1,5 @@
+services:
+  card.route_subscriber:
+    class: Drupal\card\Routing\RouteSubscriber
+    tags:
+      - { name: 'event_subscriber' }
