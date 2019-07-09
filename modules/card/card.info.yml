@@ -1,0 +1,7 @@
+name: Card Test
+type: module
+description: Makes appearance page accessible for anonymous users
+core: 8.x
+package: Claro
+claro_test: true
+dependencies: {}

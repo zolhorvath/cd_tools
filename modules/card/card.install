@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Card module.
+ */
+
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function card_install() {
+  $perms = _card_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Implements hook_install().
+ */
+function card_uninstall() {
+  $perms = _card_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Provides list of permissions that makes toolbar testable without login.
+ */
+function _card_permissions() {
+  return [
+    'access card test routes',
+  ];
+}

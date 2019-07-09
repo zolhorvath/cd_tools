@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Card module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function card_toolbar() {
+  $items['card'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Card'),
+      '#url' => Url::fromRoute('system.themes_page'),
+    ],
+    '#weight' => 124,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter() for all forms.
+ */
+function card_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_permission_map = _card_unsafe_forms();
+
+  if (!in_array($form_id, array_keys($form_permission_map))) {
+    return;
+  }
+
+  $current_user = \Drupal::currentUser();
+  if (
+    !empty($form_permission_map[$form_id]) &&
+    !$current_user->hasPermission($form_permission_map[$form_id])
+  ) {
+    $form['#validate'] = $form['#validate'] ?? [];
+    array_unshift($form['#validate'], '_card_form_validate');
+
+    if (!empty($form['actions'])) {
+      foreach (Element::children($form['actions']) as $id) {
+        $form['actions'][$id]['#validate'] = $form['actions'][$id]['#validate'] ?? [];
+        array_unshift($form['actions'][$id]['#validate'], '_card_form_validate');
+      }
+    }
+  }
+}
+
+/**
+ * Validate handler to get back some (false?) sense of security.
+ */
+function _card_form_validate(&$form, FormStateInterface $form_state) {
+  $form_state->setErrorByName('__none__', t('Permission denied.'));
+}
+
+/**
+ * Returns runied form's id with the original required route perm.
+ *
+ * Some form's original route permission requirement is ruined by us.
+ * To keep the card test module's changes safe as much as possible, we'll
+ * check in a custom form validation handler that the current user has the
+ * original permission.
+ *
+ * @see \Drupal\card\Routing\RouteSubscriber.php
+ */
+function _card_unsafe_forms() {
+  return [
+    'system_themes_admin_form' => 'administer themes',
+  ];
+}

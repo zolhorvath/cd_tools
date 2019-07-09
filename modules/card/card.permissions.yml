@@ -1,0 +1,4 @@
+access card test routes:
+  title: 'Access card test routes'
+  description: 'Access any card test routes.'
+  restrict access: false
