@@ -3,56 +3,78 @@
  * Captures pager with different states.
  */
 module.exports = {
-  '@tags': ['claro'],
+  "@tags": ["claro"],
   before(browser) {
-    'use strict';
     if (browser.drupalInstall) {
       browser.drupalInstall({
-        installProfile: 'clarodist'
+        installProfile: "clarodist"
       });
     }
   },
   after(browser) {
-    'use strict';
     if (browser.drupalUninstall) {
       browser.drupalUninstall().end();
-    }
-    else {
+    } else {
       browser.end();
     }
   },
-  'Pager'(browser) {
-    'use strict';
-    ['', 'he'].forEach((langprefix) => {
-      let i = 0;
-      browser
-        .resizeWindow(1024, 600);
+  Pager(browser) {
+    ["", "he"].forEach(langprefix => {
+      let index = 0;
+      browser.resizeWindow(1024, 600);
 
-      ['2', '286'].forEach((page) => {
+      ["2", "286"].forEach(page => {
         browser
-          .smartURL((langprefix ? '/' + langprefix : '') + '/pager?page=' + page)
-          .waitForElementVisible('[role="navigation"]:nth-of-type(2) .pager__items', 5000)
+          .smartURL(
+            langprefix
+              ? `/${langprefix}/pager?page=${page}`
+              : `/pager?page=${page}`
+          )
+          .waitForElementVisible(
+            '[role="navigation"]:nth-of-type(2) .pager__items',
+            5000
+          )
           .perform(done => {
-            i++;
-            browser.savefullScreenShot(i.toString().padStart(2, '0'), langprefix);
+            index += 1;
+            browser.savefullScreenShot(
+              index.toString().padStart(2, "0"),
+              langprefix
+            );
             done();
           })
-          .elements('css selector', '[role="navigation"]:nth-of-type(2) a', (result) => {
-            result.value.forEach(elem => {
-              browser.perform(done => {
-                i++;
-                browser.elementIdAttribute(elem.ELEMENT, 'title', result => {
-                  if (result.value) {
-                    browser
-                      .focusOn('[role="navigation"]:nth-of-type(2) li a[title="' + result.value + '"]')
-                      .pause(100)
-                      .saveScreenShot(i.toString().padStart(2, '0'), langprefix);
-                  }
+          .elements(
+            "css selector",
+            '[role="navigation"]:nth-of-type(2) a',
+            pagerLinkQueryResults => {
+              /* eslint-disable max-nested-callbacks */
+              pagerLinkQueryResults.value.forEach(elem => {
+                browser.perform(done => {
+                  index += 1;
+                  browser.elementIdAttribute(
+                    elem.ELEMENT,
+                    "title",
+                    pagerLinkTitleQueryResult => {
+                      if (pagerLinkTitleQueryResult.value) {
+                        browser
+                          .focusOn(
+                            `[role="navigation"]:nth-of-type(2) li a[title="${
+                              pagerLinkTitleQueryResult.value
+                            }"]`
+                          )
+                          .pause(100)
+                          .saveScreenShot(
+                            index.toString().padStart(2, "0"),
+                            langprefix
+                          );
+                      }
+                    }
+                  );
+                  done();
                 });
-                done();
               });
-            });
-          });
+              /* eslint-enable max-nested-callbacks */
+            }
+          );
       });
     });
   }
