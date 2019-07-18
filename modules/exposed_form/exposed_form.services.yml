@@ -1,0 +1,5 @@
+services:
+  exposed_form.route_subscriber:
+    class: Drupal\exposed_form\Routing\RouteSubscriber
+    tags:
+      - { name: 'event_subscriber' }

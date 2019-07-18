@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for (Views) Exposed Form test module.
+ */
+
+use Drupal\user\RoleInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Component\Utility\Random;
+
+/**
+ * Implements hook_install().
+ */
+function exposed_form_install() {
+  $perms = _exposed_form_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Create test nodes.
+  foreach (_exposed_form_node_uuids() as $uuid) {
+    $entity = Node::create([
+      'uuid' => $uuid,
+      'type' => 'cd',
+      'title' => Random::sentences(4, TRUE),
+      'body' => [
+        'value' => Random::sentences(mt_rand(20, 60)),
+        'format' => 'basic_html',
+      ],
+    ]);
+
+    try {
+      $entity->save();
+    }
+    catch (\Exception $e) {
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function exposed_form_uninstall() {
+  $perms = _exposed_form_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Delete test nodes created by us.
+  $entities = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->loadByProperties(['uuid' => _exposed_form_node_uuids()]);
+
+  foreach ($entities as $entity) {
+    $entity->delete();
+  }
+}
+
+/**
+ * Provides list of permissions that makes exposed form testable without login.
+ */
+function _exposed_form_permissions() {
+  return [
+    'access content overview',
+    'access exposed form test routes',
+  ];
+}

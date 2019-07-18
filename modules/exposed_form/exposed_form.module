@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Contains code for (Views) Exposed Form test module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function exposed_form_toolbar() {
+  $items['exposed_form'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Exposed form'),
+      '#url' => Url::fromRoute('system.admin_content'),
+    ],
+    '#weight' => 125,
+  ];
+
+  return $items;
+}
+
+/**
+ * Returns the uuids of test nodes.
+ */
+function _exposed_form_node_uuids() {
+  return [
+    '02207d2b-1150-4561-b530-6f7ad02246ff',
+    '0663ac0a-5e0e-4ff3-9114-a7f6d3560ea1',
+    '0833dc4d-f4e9-4373-974b-bcb2c966e058',
+    '0b083e65-9e75-4079-9a54-73e4eb780bd7',
+    '0b9a23e2-8b5f-4eb5-9eab-33423f7bae52',
+    '140739c5-01ee-4a68-b794-aeb8a3b2a81d',
+    '146b4461-e41a-4690-807b-a314d0357528',
+    '14acaf02-450b-4d17-a13d-e5b0e8bde9e1',
+    '14cfde0f-0872-4821-840a-91a4c28082ae',
+    '180a970d-8b3f-4a18-8e19-f1165b6ceb13',
+    '180e1500-e769-4b71-89db-8d26448c52c4',
+    '19398d91-3959-416a-a389-54eaac1ea094',
+    '21dddf64-8619-441f-b5b1-6b338a511dea',
+    '223da993-d965-470f-887b-a1e5611d7ae0',
+    '22bd6d95-e129-4c93-be5d-81501ff5658f',
+    '2bad2c65-b14e-4a60-a765-a530a0093e51',
+    '368f14ba-2ff8-4505-9768-1368ab7e71c8',
+    '37e270ac-adfc-4134-b8c3-ec787c5d326d',
+    '4298cb42-f11b-4774-b169-98187b80e3d3',
+    '42fa283a-5991-4053-a575-9d96f145fcc6',
+    '44639f9b-79b4-406c-9df8-163231d37a6e',
+    '453a8a47-d0c5-492f-8be4-30dedabbca47',
+    '634bc4df-1c3d-48e3-86a0-8113e3d03bfb',
+    '64fd2841-8c7d-4ee4-a05a-bbb4573cccd7',
+    '65b6e83b-8fdd-42ae-9bb0-38a36ab43185',
+    '694c64bc-0cc0-4e17-8c86-033ce6759deb',
+    '6996c9bd-2850-4cba-b404-39e945431eca',
+    '6dd02c7a-b5da-459f-95a4-5720e086d733',
+    '73aeeb26-8624-46d4-a846-c6b0cbde9853',
+    '745357c0-9eaf-4091-acd3-808ce786ee92',
+    '779ce3b8-6ae6-4885-b30e-4c4b3691dfdc',
+    '78967ec8-8fbd-4df6-9db7-dac3c54e9518',
+    '793e3aa1-ae07-43d9-ba00-ba57dd934ab5',
+    '79923fab-3180-4fff-83b8-9ab2e969367a',
+    '7bc453f1-3de4-45d5-9877-28366f2a067c',
+    '7f0a01df-676e-4c02-b70e-7fa8925e533b',
+    '7f72737d-e363-4a77-8410-ef3ec89f8ff0',
+    '80df5904-965b-4366-8c39-76152a4073c6',
+    '828ef20e-36da-411c-bf6a-fbc45bdb7ef0',
+    '8610ba90-b353-4e64-97a2-230fd9e88cf1',
+    '90289ca5-1274-4d2d-9652-6a23c1ea50f0',
+    '936a574c-b2c7-4b29-857c-693e2e8fe38d',
+    '94e2e2ad-e1d0-460c-a26f-ad08eab0de99',
+    '95d08e3f-3838-496e-8bf8-6180a6be46f1',
+    '973b3680-f153-4b54-895f-34d209b6782a',
+    'a2aa6738-0238-4df6-99dc-abe3930c82e1',
+    'a4a14c25-58fe-4103-97ac-ad3c4b101e2f',
+    'a4c17517-a7a3-4a42-8d38-def395d729e3',
+    'aa4e7e64-9e1d-4299-ae93-30db9b4793f7',
+    'cae103a8-5dcc-44ca-9fea-8beb23025e37',
+    'd03e081d-8283-477e-9649-0aaeed7751ad',
+    'd81f2006-3aef-4bfc-a082-16a27062270c',
+    'dd2dd8d1-ca3e-431a-975d-478a021cddb2',
+    'e0ad058f-32ac-4da0-966e-778846b4bdfe',
+    'e6110de7-6a77-486a-b3e6-1fa8a88708a6',
+    'ed974812-3de0-4c1f-9627-4a2a555bc88c',
+    'f2933f24-51d5-44b7-9412-c8e34ebd6eb7',
+    'f2dcbdf4-b147-4444-9386-ed0ad0f2ad94',
+    'fc508a7f-460c-44b3-85df-182f5fb7553e',
+    'fe790170-3728-4268-b2a9-fc8d9375c461',
+  ];
+}

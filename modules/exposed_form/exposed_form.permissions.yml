@@ -1,0 +1,3 @@
+access exposed form test routes:
+  title: 'Access Views exposed form test routes'
+  restrict access: false
