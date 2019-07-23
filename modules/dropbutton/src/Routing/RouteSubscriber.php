@@ -16,13 +16,22 @@ class RouteSubscriber extends RouteSubscriberBase {
    */
   protected function alterRoutes(RouteCollection $collection) {
     $routes = [
+      'entity.configurable_language.collection',
       'entity.configurable_language.edit_form',
       'entity.configurable_language.delete_form',
+      'entity.node_type.collection',
+      'entity.node_type.edit_form',
+      'entity.node_type.delete_form',
+      'entity.node.field_ui_fields',
+      'entity.entity_form_display.node.default',
+      'entity.entity_form_display.node.form_mode',
+      'entity.entity_view_display.node.default',
+      'entity.entity_view_display.node.view_mode',
     ];
 
-    foreach ($routes as $route) {
-      if ($route = $collection->get('entity.configurable_language.collection')) {
-        $route->setRequirement('_permission', 'access dropbutton test routes');
+    foreach ($routes as $route_name) {
+      if ($route = $collection->get($route_name)) {
+        $route->setRequirements(['_permission' => 'access dropbutton test routes']);
       }
     }
   }

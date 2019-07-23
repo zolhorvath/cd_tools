@@ -5,6 +5,8 @@ core: 8.x
 package: Claro
 claro_test: true
 dependencies:
+  - cd_core:cd_node
   - cd_core:lang_hebrew
   - core:node
+  - core:field_ui
   - core:views_ui
