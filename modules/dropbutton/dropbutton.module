@@ -108,14 +108,17 @@ function dropbutton_form_language_admin_overview_form_alter(&$form, FormStateInt
   $submit_clones = [
     'one' => [
       'input' => t('Multiple inputs'),
+      'name' => 'one',
       'link' => t('Multiple links'),
     ],
     'two' => [
       'input' => t('Second input'),
+      'name' => 'two',
       'link' => t('Second link'),
     ],
     'three' => [
       'input' => t('Third input'),
+      'name' => 'three',
       'link' => t('Third link'),
     ],
   ];
@@ -155,12 +158,17 @@ function dropbutton_form_language_admin_overview_form_alter(&$form, FormStateInt
     // Create a dummy submit button.
     $form['actions'][$key] = $base_submit;
     $form['actions'][$key]['#value'] = $value['input'];
+    $form['actions'][$key]['#attributes']['data-name'] = $value['name'];
     $form['actions'][$key]['#dropbutton'] = 'group-2';
 
     // Prepare a dummy submit link.
     $dropbutton_links[$key . '_link'] = [
       'title' => $value['link'],
-      'url' => Url::fromRoute('<current>'),
+      'url' => Url::fromRoute('<current>', [], [
+        'attributes' => [
+          'data-name' => $value['name'],
+        ],
+      ]),
     ];
   }
 

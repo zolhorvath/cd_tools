@@ -49,16 +49,18 @@ module.exports = {
         .pause(300)
         .saveScreenShot("04", langprefix, "Multiple expanded")
         .focusOn(
-          '[data-drupal-selector="edit-languages-he-operations-data"] li:first-child + li + li a'
+          '[data-drupal-selector="edit-languages-he-operations-data"] li a[href*="admin/config/regional/language/delete/he"]'
         )
         .pause(300)
         .saveScreenShot("05", langprefix, "Multiple expanded focused")
         // Dropbutton with inputs, in form actions.
-        .focusOn('[data-drupal-selector="edit-group-1"] li:first-child .button')
+        .focusOn(
+          '[data-drupal-selector="edit-group-1"] li:first-child input[type="submit"]'
+        )
         .pause(300)
         .saveScreenShot("06", langprefix, "Single input focused")
         .focusOn(
-          '.dropbutton[data-drupal-selector="edit-group-2"] li:first-child .button'
+          '.dropbutton[data-drupal-selector="edit-group-2"] li:first-child input[type="submit"]'
         )
         .pause(300)
         .saveScreenShot("07", langprefix, "Multiple input focused")
@@ -68,7 +70,7 @@ module.exports = {
         .pause(300)
         .saveScreenShot("08", langprefix, "Multiple input expanded")
         .focusOn(
-          '.dropbutton[data-drupal-selector="edit-group-2"] li:nth-child(4) .button'
+          '.dropbutton[data-drupal-selector="edit-group-2"] input[type="submit"][data-name="three"]'
         )
         .pause(300)
         .saveScreenShot("09", langprefix, "Multiple input expanded focused")
@@ -86,7 +88,9 @@ module.exports = {
         )
         .pause(300)
         .saveScreenShot("12", langprefix, "Multiple links in actions expanded")
-        .focusOn('[data-drupal-selector="edit-dropbutton"] li:nth-child(3) a')
+        .focusOn(
+          '[data-drupal-selector="edit-dropbutton"] a[data-name="three"]'
+        )
         .pause(300)
         .saveScreenShot("13", langprefix, "Multiple links in actions focused")
 
