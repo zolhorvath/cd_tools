@@ -5,6 +5,8 @@
  * Contains code for Dropbutton module.
  */
 
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Url;
@@ -32,10 +34,63 @@ function dropbutton_toolbar() {
  * Implements hook_entity_type_alter().
  */
 function dropbutton_entity_type_alter(&$entity_types) {
-  /* @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
   if (isset($entity_types['configurable_language'])) {
     $entity_types['configurable_language']->setHandlerClass('access', 'Drupal\dropbutton\LanguageAccessControlHandler');
   }
+
+  if (isset($entity_types['node_type'])) {
+    $entity_types['node_type']->setHandlerClass('access', '\Drupal\dropbutton\NodeTypeAccessControlHandler');
+  }
+}
+
+/**
+ * Implements hook_entity_operation().
+ *
+ * Copied from field_ui module and applies a cleaner logic.
+ */
+function dropbutton_entity_operation(EntityInterface $entity) {
+  $operations = [];
+  $info = $entity->getEntityType();
+  // Add manage fields and display links if this entity type is the bundle
+  // of another and that type has field UI enabled.
+  if (($bundle_of = $info->getBundleOf()) && \Drupal::entityManager()->getDefinition($bundle_of)->get('field_ui_base_route')) {
+
+    $url_fields = Url::fromRoute("entity.{$bundle_of}.field_ui_fields", [
+      $entity->getEntityTypeId() => $entity->id(),
+    ]);
+    if ($url_fields->access()) {
+      $operations['manage-fields'] = [
+        'title' => t('Manage fields'),
+        'weight' => 15,
+        'url' => $url_fields,
+      ];
+    }
+
+    $url_form_display = Url::fromRoute("entity.entity_form_display.{$bundle_of}.default", [
+      $entity->getEntityTypeId() => $entity->id(),
+    ]);
+    if ($url_form_display->access()) {
+      $operations['manage-form-display'] = [
+        'title' => t('Manage form display'),
+        'weight' => 20,
+        'url' => $url_form_display,
+      ];
+    }
+
+    $url_display = Url::fromRoute("entity.entity_view_display.{$bundle_of}.default", [
+      $entity->getEntityTypeId() => $entity->id(),
+    ]);
+    if ($url_display->access()) {
+      $operations['manage-display'] = [
+        'title' => t('Manage display'),
+        'weight' => 25,
+        'url' => $url_display,
+      ];
+    }
+  }
+
+  return $operations;
 }
 
 /**
@@ -186,6 +241,9 @@ function _dropbutton_unsafe_forms() {
     'language_admin_edit_form' => 'administer languages',
     'language_delete_form' => 'administer languages',
     'view_edit_form' => 'administer views',
+    'entity.node_type.collection' => 'administer content types',
+    'entity.node_type.edit_form' => 'administer content types',
+    'entity.node_type.delete_form' => 'administer content types',
   ];
 }
 
@@ -198,5 +256,21 @@ function dropbutton_form_view_edit_form_alter(&$form, FormStateInterface $form_s
     && !empty($form['displays']['top']['extra_actions'])
   ) {
     $form['displays']['top']['extra_actions']['#dropbutton_type'] = 'small';
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function dropbutton_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+
+  if ($route_name === 'entity.node_type.collection') {
+    $account = \Drupal::currentUser();
+    if (
+      !$account->hasPermission('administer node fields') &&
+      !empty($data['tabs'][0])
+    ) {
+      unset($data['tabs'][0]['entity.node_type.collection']);
+    }
   }
 }

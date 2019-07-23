@@ -16,3 +16,8 @@ dropbutton.views_ui:
   title: 'Dropbutton on Views UI form'
   route_name: dropbutton.views_ui
   base_route: dropbutton.test
+
+dropbutton.node_type:
+  title: 'Operations on content type collection'
+  route_name: entity.node_type.collection
+  base_route: dropbutton.test
