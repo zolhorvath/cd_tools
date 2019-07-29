@@ -29,18 +29,8 @@ module.exports = {
             : "/admin/structure/types"
         )
         .waitForElementPresent("tr:first-child li:first-child + li button")
-        .perform(() => {
-          browser.isVisible(
-            ".tableresponsive-toggle-columns button",
-            visibleToggle => {
-              if (visibleToggle.status) {
-                browser
-                  .click(".tableresponsive-toggle-columns button")
-                  .pause(100);
-              }
-            }
-          );
-        })
+        .click(".tableresponsive-toggle-columns button")
+        .pause(100)
         .savefullScreenShot("01", langprefix)
         .focusOn("tr:first-child .dropbutton > li:first-child a")
         .pause(300)

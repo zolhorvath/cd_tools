@@ -18,14 +18,16 @@ function exposed_form_install() {
   user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
 
+  $random = new Random();
+
   // Create test nodes.
   foreach (_exposed_form_node_uuids() as $uuid) {
     $entity = Node::create([
       'uuid' => $uuid,
       'type' => 'cd',
-      'title' => Random::sentences(4, TRUE),
+      'title' => $random->sentences(4, TRUE),
       'body' => [
-        'value' => Random::sentences(mt_rand(20, 60)),
+        'value' => $random->sentences(mt_rand(20, 60)),
         'format' => 'basic_html',
       ],
     ]);
