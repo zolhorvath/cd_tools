@@ -1,9 +1,9 @@
 message.test:
-  path: '/message/{length}'
+  path: '/message/{type}'
   defaults:
     _controller: '\Drupal\message\Controller\MessageController::messagePage'
     _title: 'Status Messages'
-    length: 'short'
+    type: 'short'
   requirements:
     _permission: 'access content'
-    length: 'short|long'
+    type: 'short|long|js'

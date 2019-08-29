@@ -16,16 +16,17 @@ class MessageLocalTaskDeriver extends DeriverBase {
    * {@inheritdoc}
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
-    $message_lengths = [
+    $message_test_types = [
       'short' => $this->t('Short messages'),
       'long' => $this->t('Longer messages'),
+      'js' => $this->t('JavaScript messages'),
     ];
     $weight = 1;
 
-    foreach ($message_lengths as $length => $title) {
-      $this->derivatives['message.test.' . $length] = [
+    foreach ($message_test_types as $type => $title) {
+      $this->derivatives['message.test.' . $type] = [
         'title' => $title,
-        'route_parameters' => ['length' => $length],
+        'route_parameters' => ['type' => $type],
         'weight' => $weight++,
       ] + $base_plugin_definition;
     }

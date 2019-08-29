@@ -1,0 +1,6 @@
+message-test:
+  js:
+    js/message-test.js: {}
+  dependencies:
+    - core/drupal.message
+    - core/jquery.once
