@@ -16,7 +16,7 @@ function message_toolbar() {
     'tab' => [
       '#type' => 'link',
       '#title' => t('Messages'),
-      '#url' => Url::fromRoute('message.test', ['length' => 'short']),
+      '#url' => Url::fromRoute('message.test', ['type' => 'short']),
     ],
     '#weight' => 122,
   ];
