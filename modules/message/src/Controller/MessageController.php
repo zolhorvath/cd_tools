@@ -3,6 +3,7 @@
 namespace Drupal\message\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Url;
 
 /**
  * Contrains code for Message test route.
@@ -24,13 +25,13 @@ class MessageController extends ControllerBase {
       '#markup' => $this->t('Messages'),
     ];
     $message_types = [
-       // This is a custom type.
-      'custom' => $this->t('Custom type message'),
-      'status' => $this->t('Status message'),
+      'status' => $this->t('A status message'),
        // This is a custom type that's defined by Claro design.
-      'info' => $this->t('Info message'),
-      'warning' => $this->t('Warning message'),
-      'error' => $this->t('Error message'),
+      'info' => $this->t('An info message'),
+      'warning' => $this->t('A warning message'),
+      'error' => $this->t('An error message'),
+       // This is a custom type.
+      'custom' => $this->t('A custom type message'),
     ];
 
     $recommendations_items = [
@@ -41,6 +42,9 @@ class MessageController extends ControllerBase {
       $this->t('Add punctuation'),
     ];
     $recommendations = [
+      '#prefix' => $this->t('Recommendations to make your <a href=":wiki_url_password_strength">password</a> stronger:', [
+        ':wiki_url_password_strength' => 'https://en.wikipedia.org/wiki/Password_strength#Usability_and_implementation_considerations',
+      ]),
       '#theme' => 'item_list',
       '#list_type' => 'ul',
     ];
@@ -63,8 +67,9 @@ class MessageController extends ControllerBase {
           $this->messenger()->addMessage($message, $message_type);
 
           if ($type === 'long') {
-            $this->messenger()->addMessage($this->t('Recommendations to make your <a href=":wiki_url_password_strength">password</a> stronger:', [
-              ':wiki_url_password_strength' => 'https://en.wikipedia.org/wiki/Password_strength#Usability_and_implementation_considerations',
+            $this->messenger()->addMessage($this->t('An another message with type %message-type. Check the <a href=":status_report_url">status report</a> page.', [
+              '%message-type' => $message_type,
+              ':status_report_url' => Url::fromRoute('system.status')->toString(),
             ]), $message_type);
             $this->messenger()->addMessage($recommendations, $message_type);
           }

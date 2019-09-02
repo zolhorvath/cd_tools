@@ -17,8 +17,8 @@ class MessageLocalTaskDeriver extends DeriverBase {
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
     $message_test_types = [
-      'short' => $this->t('Short messages'),
-      'long' => $this->t('Longer messages'),
+      'short' => $this->t('Short, single message per type'),
+      'long' => $this->t('Longer, multiple messages per type'),
       'js' => $this->t('JavaScript messages'),
     ];
     $weight = 1;
