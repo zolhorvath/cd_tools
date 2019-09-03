@@ -25,20 +25,20 @@ class ActionLinkController extends ControllerBase {
     $build = [];
 
     $icon_variants = !empty($variant) ? [$variant] : [
-      ['default', 'plus'], ['trash'], ['cog'], ['ex'], ['checkmark'],
+      NULL, 'plus', 'trash', 'cog', 'ex', 'checkmark',
     ];
 
     $variants = ['danger'];
 
-    foreach ($icon_variants as $delta => $icon_names) {
+    foreach ($icon_variants as $delta => $icon_name) {
       $build[$delta] = [
         '#type' => 'container',
         '#attributes' => ['class' => ['action-links', 'js-action-links-test']],
       ];
-      $icon_name = implode($icon_names, ', ');
       $base_classes = ['action-link'];
-      foreach ($icon_names as $name) {
-        $base_classes[] = Html::getClass('action-link--icon-' . $name);
+
+      if (!empty($icon_name)) {
+        $base_classes[] = Html::getClass('action-link--icon-' . $icon_name);
       }
 
       $base = [
@@ -49,10 +49,11 @@ class ActionLinkController extends ControllerBase {
         '#url' => Url::fromRoute('<current>'),
         '#attributes' => ['class' => $base_classes],
       ];
+      $id_base = 'action-link--' . (empty($icon_name) ? 'no-icon' : $icon_name);
 
       $build[$delta][] = NestedArray::mergeDeep($base, [
         '#attributes' => [
-          'id' => Html::getUniqueId('action-link--' . reset($icon_names)),
+          'id' => Html::getUniqueId($id_base),
         ],
       ]);
 
@@ -60,7 +61,7 @@ class ActionLinkController extends ControllerBase {
         $build[$delta][] = ['#markup' => ' '];
         $build[$delta][] = NestedArray::mergeDeep($base, [
           '#attributes' => [
-            'id' => Html::getUniqueId('action-link--' . reset($icon_names)),
+            'id' => Html::getUniqueId($id_base),
             'class' => [Html::getClass('action-link--' . $type_variant)],
           ],
         ]);
