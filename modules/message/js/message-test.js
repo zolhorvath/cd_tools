@@ -9,7 +9,7 @@
   "use strict";
 
   $.extend(Drupal.Message, {
-    getMessageTypeLabels() {
+    getMessageTypeLabels: function() {
       return {
         status: Drupal.t("Status message"),
         error: Drupal.t("Error message"),
