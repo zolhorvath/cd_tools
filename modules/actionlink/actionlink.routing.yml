@@ -1,0 +1,8 @@
+actionlink.test:
+  path: '/action-link/{variant}'
+  defaults:
+    _controller: '\Drupal\actionlink\Controller\ActionLinkController::testPage'
+    _title: 'Action Links'
+    variant: ''
+  requirements:
+    _permission: 'access content'

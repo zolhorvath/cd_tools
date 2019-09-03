@@ -1,0 +1,5 @@
+actionlink.test:
+  title: Action Links
+  route_name: actionlink.test
+  menu_name: main
+  weight: 26

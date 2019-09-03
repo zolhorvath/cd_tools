@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Action Link test module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function actionlink_toolbar() {
+  $items['actionlink'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Action Links'),
+      '#url' => Url::fromRoute('actionlink.test'),
+    ],
+    '#weight' => 126,
+  ];
+
+  return $items;
+}
