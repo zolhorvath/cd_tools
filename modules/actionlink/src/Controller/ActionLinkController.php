@@ -28,43 +28,69 @@ class ActionLinkController extends ControllerBase {
       NULL, 'plus', 'trash', 'cog', 'ex', 'checkmark',
     ];
 
-    $variants = ['danger'];
+    $variants = [NULL, 'danger'];
 
-    foreach ($icon_variants as $delta => $icon_name) {
-      $build[$delta] = [
+    // Loop on icon modifiers.
+    foreach ($icon_variants as $icon_name) {
+      $group = empty($icon_name) ? 'noicon' : $icon_name;
+      $build[$group] = [
         '#type' => 'container',
-        '#attributes' => ['class' => ['action-links', 'js-action-links-test']],
-      ];
-      $base_classes = ['action-link'];
-
-      if (!empty($icon_name)) {
-        $base_classes[] = Html::getClass('action-link--icon-' . $icon_name);
-      }
-
-      $base = [
-        '#type' => 'link',
-        '#title' => $this->t('Action link %variant', [
-          '%variant' => $icon_name,
-        ]),
-        '#url' => Url::fromRoute('<current>'),
-        '#attributes' => ['class' => $base_classes],
-      ];
-      $id_base = 'action-link--' . (empty($icon_name) ? 'no-icon' : $icon_name);
-
-      $build[$delta][] = NestedArray::mergeDeep($base, [
-        '#attributes' => [
-          'id' => Html::getUniqueId($id_base),
+        '#attributes' => ['class' => ['form-item', 'js-action-links-test']],
+        'type_label' => [
+          '#type' => 'html_tag',
+          '#tag' => 'strong',
+          '#value' => $group === 'noicon' ? $this->t('No icon') : $this->t('Icon: %icon-name', [
+            '%icon-name' => $icon_name,
+          ]),
         ],
-      ]);
+      ];
 
-      foreach ($variants as $type_variant) {
-        $build[$delta][] = ['#markup' => ' '];
-        $build[$delta][] = NestedArray::mergeDeep($base, [
-          '#attributes' => [
-            'id' => Html::getUniqueId($id_base),
-            'class' => [Html::getClass('action-link--' . $type_variant)],
+      // Loop on size modifiers.
+      foreach (['', 'small'] as $size) {
+        $delta = empty($size) ? 'default' : $size;
+        $build[$group][$delta] = [
+          '#type' => 'container',
+          '#attributes' => ['class' => ['action-links']],
+        ];
+        $base_classes = ['action-link'];
+
+        if (!empty($icon_name)) {
+          $base_classes[] = Html::getClass('action-link--icon-' . $icon_name);
+        }
+        if (!empty($size)) {
+          $base_classes[] = Html::getClass('action-link--' . $size);
+        }
+
+        $base = [
+          '#suffix' => ' ',
+          '#type' => 'link',
+          '#title' => $this->t('Action link'),
+          '#url' => Url::fromRoute('<current>'),
+          '#attributes' => ['class' => $base_classes],
+        ];
+        $id_base = 'action-link--' . (empty($icon_name) ? 'no-icon' : $icon_name);
+
+        $build[$group][$delta][] = [
+          '#type' => 'container',
+          'label' => [
+            '#type' => 'html_tag',
+            '#tag' => 'small',
+            '#value' => empty($size) ? $this->t('Default size') : $this->t('Size: %size', [
+              '%size' => $size,
+            ]),
           ],
-        ]);
+        ];
+
+        // Loop on action modifiers.
+        foreach ($variants as $type_variant) {
+          // Leading icons.
+          $build[$group][$delta][] = NestedArray::mergeDeep($base, [
+            '#attributes' => [
+              'id' => Html::getUniqueId($id_base),
+              'class' => $type_variant ? [Html::getClass('action-link--' . $type_variant)] : [],
+            ],
+          ]);
+        }
       }
     }
 
