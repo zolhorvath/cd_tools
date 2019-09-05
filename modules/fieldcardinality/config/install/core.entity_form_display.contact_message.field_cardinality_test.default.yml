@@ -1,0 +1,96 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.field_cardinality_test
+    - field.field.contact_message.field_cardinality_test.multitext_limited
+    - field.field.contact_message.field_cardinality_test.multitext_limited_disabled
+    - field.field.contact_message.field_cardinality_test.multitext_limited_required
+    - field.field.contact_message.field_cardinality_test.multitext_limited_required_dis
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited_disabled
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited_required
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited_required_dis
+  module:
+    - cd_core
+    - field_layout
+third_party_settings:
+  field_layout:
+    id: side_by_side
+    settings: {  }
+id: contact_message.field_cardinality_test.default
+targetEntityType: contact_message
+bundle: field_cardinality_test
+mode: default
+content:
+  multitext_limited:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  multitext_limited_disabled:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  multitext_limited_required:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: Placeholder
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  multitext_limited_required_dis:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: Placeholder
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  multitext_unlimited:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  multitext_unlimited_disabled:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  multitext_unlimited_required:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: Placeholder
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+  multitext_unlimited_required_dis:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: Placeholder
+    third_party_settings: {  }
+    type: string_textfield
+    region: main
+hidden:
+  copy: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true

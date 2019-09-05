@@ -1,0 +1,98 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.field_cardinality_test
+    - field.field.contact_message.field_cardinality_test.multitext_limited
+    - field.field.contact_message.field_cardinality_test.multitext_limited_disabled
+    - field.field.contact_message.field_cardinality_test.multitext_limited_required
+    - field.field.contact_message.field_cardinality_test.multitext_limited_required_dis
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited_disabled
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited_required
+    - field.field.contact_message.field_cardinality_test.multitext_unlimited_required_dis
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: contact_message.field_cardinality_test.default
+targetEntityType: contact_message
+bundle: field_cardinality_test
+mode: default
+content:
+  multitext_limited:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  multitext_limited_disabled:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  multitext_limited_required:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  multitext_limited_required_dis:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  multitext_unlimited:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  multitext_unlimited_disabled:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  multitext_unlimited_required:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  multitext_unlimited_required_dis:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  message:
+    type: string
+    weight: 0
+    label: above
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }

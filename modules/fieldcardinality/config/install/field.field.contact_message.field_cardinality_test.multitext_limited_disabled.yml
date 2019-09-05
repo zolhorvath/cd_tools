@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.field_cardinality_test
+    - field.storage.contact_message.multitext_limited_disabled
+id: contact_message.field_cardinality_test.multitext_limited_disabled
+field_name: multitext_limited_disabled
+entity_type: contact_message
+bundle: field_cardinality_test
+label: 'Multiple, limited text (disabled)'
+description: 'Help text for disabled ''Multiple, limited text''. Three items are specified.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

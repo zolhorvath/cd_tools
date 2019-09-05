@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Field Cardinality test module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function fieldcardinality_toolbar() {
+  $items['fieldcardinality'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Field Cardinality'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'field_cardinality_test',
+      ]),
+    ],
+    '#weight' => 127,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for fieldcardinality.
+ */
+function fieldcardinality_form_contact_message_field_cardinality_test_form_alter(&$form, FormStateInterface $form_state) {
+  $disabled_elements = [
+    'multitext_limited_disabled',
+    'multitext_unlimited_disabled',
+    'multitext_limited_required_dis',
+    'multitext_unlimited_required_dis',
+  ];
+
+  foreach ($disabled_elements as $key) {
+    $form[$key]['#disabled'] = TRUE;
+  }
+
+  // Hide preview button for easier Nightwatch testing.
+  $form['actions']['preview']['#access'] = FALSE;
+
+  $form['#validate'][] = '_fieldcardinality_message_error_validate';
+}
+
+/**
+ * Hacky validate for fieldcardinality contact form's message input.
+ *
+ * Set an error if the input value contains the 'error' string.
+ */
+function _fieldcardinality_message_error_validate(&$form, FormStateInterface $form_state) {
+  foreach ($form_state->getValues() as $field_name => $values) {
+    if (
+      (
+        strpos($field_name, '_disabled') === FALSE ||
+        substr($field_name, -1, 4) !== '_dis'
+      ) &&
+      is_array($values)
+    ) {
+      foreach ($values as $delta => $value) {
+        if (
+          (
+            is_array($value) &&
+            !empty($value['value'])
+          ) &&
+          (
+            is_string($value['value']) ||
+            is_numeric($value['value'])
+          ) &&
+          mb_stripos($value['value'], 'error') !== FALSE
+        ) {
+          $form_state->setErrorByName("$field_name][$delta][value", t('There is an error in the value of the <em>@field_name</em> field', [
+            '@field_name' => $field_name,
+          ]));
+        }
+      }
+    }
+  }
+}
