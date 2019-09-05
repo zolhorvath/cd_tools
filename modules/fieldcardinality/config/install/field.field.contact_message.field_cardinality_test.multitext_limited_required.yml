@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.field_cardinality_test
+    - field.storage.contact_message.multitext_limited_required
+id: contact_message.field_cardinality_test.multitext_limited_required
+field_name: multitext_limited_required
+entity_type: contact_message
+bundle: field_cardinality_test
+label: 'Multiple, limited text (required)'
+description: 'Help text for ''Multiple, limited text'' with a single default (preexisting) value. Three items are specified.<br> Type <em>error</em> to trigger an error.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 'Default value'
+default_value_callback: ''
+settings: {  }
+field_type: string

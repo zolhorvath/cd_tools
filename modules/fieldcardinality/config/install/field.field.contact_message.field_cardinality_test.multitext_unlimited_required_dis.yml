@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.field_cardinality_test
+    - field.storage.contact_message.multitext_unlimited_required_dis
+id: contact_message.field_cardinality_test.multitext_unlimited_required_dis
+field_name: multitext_unlimited_required_dis
+entity_type: contact_message
+bundle: field_cardinality_test
+label: 'Multiple, unlimited text (required, disabled)'
+description: 'Help text for disabled ''Multiple, unlimited text'' with a single default (preexisting) value.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 'Default value'
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,7 @@
+fieldcardinality.testform:
+  title: 'Field Cardinality'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 27
+  route_parameters:
+    contact_form: field_cardinality_test

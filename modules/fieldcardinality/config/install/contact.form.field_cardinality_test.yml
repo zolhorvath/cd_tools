@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - fieldcardinality
+id: field_cardinality_test
+label: 'Field Cardinality Test'
+recipients:
+  - webmaster@example.com
+reply: ''
+weight: 0
+message: ''
+redirect: ''
