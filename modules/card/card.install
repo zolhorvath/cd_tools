@@ -15,6 +15,12 @@ function card_install() {
 
   user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  $themes_available = \Drupal::service('theme_handler')->rebuildThemeData();
+
+  if (!empty($themes_available['noscreenshot_theme'])) {
+    \Drupal::service('theme_installer')->install(['noscreenshot_theme']);
+  }
 }
 
 /**
@@ -25,6 +31,10 @@ function card_uninstall() {
 
   user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  if (\Drupal::service('theme_handler')->themeExists('noscreenshot_theme')) {
+    \Drupal::service('theme_installer')->uninstall(['noscreenshot_theme']);
+  }
 }
 
 /**
