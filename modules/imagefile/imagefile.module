@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Image and File module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function imagefile_toolbar() {
+  $items['imagefile_file'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('File'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'imagefile_file',
+      ]),
+    ],
+    '#weight' => 128,
+  ];
+  $items['imagefile_image'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Image'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'imagefile_image',
+      ]),
+    ],
+    '#weight' => 128,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for imagefile_image.
+ */
+function imagefile_form_contact_message_imagefile_image_form_alter(&$form, FormStateInterface $form_state) {
+  _imagefile_contact_message_form_alter($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for imagefile_file.
+ */
+function imagefile_form_contact_message_imagefile_file_form_alter(&$form, FormStateInterface $form_state) {
+  _imagefile_contact_message_form_alter($form, $form_state);
+}
+
+/**
+ * Helper callback for imagefile contact form alter hooks.
+ */
+function _imagefile_contact_message_form_alter(&$form, FormStateInterface $form_state) {
+  $disabled_elements = [
+    'imagefile_file_dis',
+    'imagefile_file_limited_dis',
+    'imagefile_file_multi_dis',
+    'imagefile_file_plain_dis',
+    'imagefile_file_req_dis',
+    'imagefile_image_dis',
+    'imagefile_image_limited_dis',
+    'imagefile_image_multi_def_dis',
+    'imagefile_image_multi_dis',
+    'imagefile_image_plain_dis',
+    'imagefile_image_req_dis',
+  ];
+
+  foreach ($disabled_elements as $key) {
+    $form[$key]['#disabled'] = TRUE;
+  }
+
+  // Hide preview button for easier Nightwatch testing.
+  $form['actions']['preview']['#access'] = FALSE;
+
+  $form['#validate'][] = '_imagefile_message_error_validate';
+}
+
+/**
+ * Hacky validate for imagefile contact form's message input.
+ *
+ * Set an error if the input value contains the 'error' string.
+ */
+function _imagefile_message_error_validate(&$form, FormStateInterface $form_state) {
+  foreach ($form_state->getValues() as $field_name => $values) {
+    if ((strpos($field_name, '_disabled') === FALSE) && is_array($values)) {
+      foreach ($values as $delta => $value) {
+        if (
+          !empty($value['value']) &&
+          (
+            is_string($value['value']) ||
+            is_numeric($value['value'])
+          ) &&
+          (
+            mb_stripos($value['value'], 'error') !== FALSE ||
+            mb_stripos($value['value'], '#ff0000') !== FALSE ||
+            mb_stripos($value['value'], '33') !== FALSE
+          )
+        ) {
+          $form_state->setErrorByName("$field_name][$delta][value", t('There is an error in the value of the <em>@field_name</em> field', [
+            '@field_name' => $field_name,
+          ]));
+          break 1;
+        }
+      }
+    }
+  }
+}

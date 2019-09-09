@@ -1,0 +1,13 @@
+{
+  "extends": ".eslintrc.drupal.json",
+  "globals": {
+    "proccess": true,
+    "module": true,
+    "require": true,
+    "__dirname": true
+  },
+  "rules": {
+    "max-nested-callbacks": ["warn", 6],
+    "no-console": "off"
+  }
+}

@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.imagefile_file
+    - field.storage.contact_message.imagefile_file_limited
+  module:
+    - file
+id: contact_message.imagefile_file.imagefile_file_limited
+field_name: imagefile_file_limited
+entity_type: contact_message
+bundle: imagefile_file
+label: 'Limited files with a single pre-existing value (required)'
+description: 'Description for the <em>Limited files with a single pre-existing value (required)</em> field.<br> Display and description properties are allowed.<br> The field has a pre-existing value and its cardinality is set to 2.'
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: 0ea905ac-e6cd-4822-b0bc-db9253060405
+    description: 'Description: Changelog file in Drupal'
+    display: true
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: '500'
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

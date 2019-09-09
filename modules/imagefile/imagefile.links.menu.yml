@@ -1,0 +1,15 @@
+imagefile.file_testform:
+  title: File
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 28
+  route_parameters:
+    contact_form: imagefile_file
+
+imagefile.image_testform:
+  title: Image
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 28
+  route_parameters:
+    contact_form: imagefile_image

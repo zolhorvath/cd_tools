@@ -1,0 +1,135 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.imagefile_image
+    - field.field.contact_message.imagefile_image.imagefile_image
+    - field.field.contact_message.imagefile_image.imagefile_image_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_limited
+    - field.field.contact_message.imagefile_image.imagefile_image_limited_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_multi
+    - field.field.contact_message.imagefile_image.imagefile_image_multi_def
+    - field.field.contact_message.imagefile_image.imagefile_image_multi_def_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_multi_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_plain
+    - field.field.contact_message.imagefile_image.imagefile_image_plain_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_req
+    - field.field.contact_message.imagefile_image.imagefile_image_req_dis
+    - image.style.thumbnail
+  module:
+    - cd_core
+    - file
+    - image
+third_party_settings:
+  field_layout:
+    id: side_by_side
+    settings: {  }
+id: contact_message.imagefile_image.default
+targetEntityType: contact_message
+bundle: imagefile_image
+mode: default
+content:
+  imagefile_image:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_dis:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_limited:
+    weight: 10
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_limited_dis:
+    weight: 11
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_multi:
+    weight: 6
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_multi_def:
+    weight: 8
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_multi_def_dis:
+    weight: 9
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_multi_dis:
+    weight: 7
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_req:
+    weight: 2
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_req_dis:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_plain:
+    weight: 4
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+  imagefile_image_plain_dis:
+    weight: 5
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: main
+hidden:
+  copy: true
+  langcode: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true
