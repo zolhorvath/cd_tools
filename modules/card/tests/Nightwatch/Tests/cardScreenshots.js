@@ -25,7 +25,7 @@ module.exports = {
         .smartURL(
           langprefix ? `/${langprefix}/admin/appearance` : "/admin/appearance"
         )
-        .savefullScreenShot();
+        .savefullScreenShot("01", langprefix);
     });
   }
 };
