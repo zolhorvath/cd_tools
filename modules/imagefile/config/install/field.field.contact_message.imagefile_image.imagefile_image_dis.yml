@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.imagefile_image
+    - field.storage.contact_message.imagefile_image_dis
+  module:
+    - image
+id: contact_message.imagefile_image.imagefile_image_dis
+field_name: imagefile_image_dis
+entity_type: contact_message
+bundle: imagefile_image
+label: 'Image (disabled)'
+description: 'Description for the <em>Image (disabled)</em> field.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png jpg jpeg'
+  max_filesize: '50 KB'
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: true
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

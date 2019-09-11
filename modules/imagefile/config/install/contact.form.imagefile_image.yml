@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - imagefile
+id: imagefile_image
+label: 'Image widgets'
+recipients:
+  - website@example.com
+reply: ''
+weight: 0
+message: ''
+redirect: ''

@@ -1,0 +1,136 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.imagefile_image
+    - field.field.contact_message.imagefile_image.imagefile_image
+    - field.field.contact_message.imagefile_image.imagefile_image_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_limited
+    - field.field.contact_message.imagefile_image.imagefile_image_limited_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_multi
+    - field.field.contact_message.imagefile_image.imagefile_image_multi_def
+    - field.field.contact_message.imagefile_image.imagefile_image_multi_def_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_multi_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_plain
+    - field.field.contact_message.imagefile_image.imagefile_image_plain_dis
+    - field.field.contact_message.imagefile_image.imagefile_image_req
+    - field.field.contact_message.imagefile_image.imagefile_image_req_dis
+  module:
+    - file
+    - image
+id: contact_message.imagefile_image.default
+targetEntityType: contact_message
+bundle: imagefile_image
+mode: default
+content:
+  imagefile_image:
+    weight: 0
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_dis:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_limited:
+    weight: 10
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_limited_dis:
+    weight: 11
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_multi:
+    weight: 5
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_multi_def:
+    weight: 8
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_multi_def_dis:
+    weight: 9
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_multi_dis:
+    weight: 7
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_plain:
+    weight: 4
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_plain_dis:
+    weight: 5
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_req:
+    weight: 2
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  imagefile_image_req_dis:
+    weight: 3
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  langcode: true
+  message: true

@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Image and file test module.
+ */
+
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_install().
+ */
+function imagefile_install() {
+  $entity_repository = \Drupal::service('entity.repository');
+
+  // Create the needed file entities.
+  foreach (_imagefile_files() as $uuid => $props) {
+    if (
+      empty($props['src']) ||
+      $entity_repository->loadEntityByUuid('file', $uuid)
+    ) {
+      continue;
+    }
+
+    $props['dest'] = empty($props['dest']) ?
+      $props['dest'] : 'public://';
+    $file_name = basename($props['src']);
+    $file_target = $props['dest'] . (substr($props['dest'], -1) === '/' ? '' : '/') . $file_name;
+    $file_uri = file_exists($file_target) ? $file_target : FALSE;
+
+    if (
+      !$file_uri &&
+      file_exists($props['src']) &&
+      file_prepare_directory($props['dest'], FILE_CREATE_DIRECTORY)
+    ) {
+      $file_uri = file_unmanaged_copy($props['src'], $file_target, FILE_EXISTS_RENAME);
+    }
+
+    if ($file_uri) {
+      $file_prop_array = [
+        'uuid' => $uuid,
+        'uri' => $file_uri,
+      ];
+
+      $file_entity = File::create($file_prop_array);
+      $file_entity->setPermanent();
+      $file_entity->save();
+    }
+  }
+
+  // Update field instances.
+  $config_factory = \Drupal::configFactory();
+  $field_config_storage = \Drupal::service('entity_type.manager')->getStorage('field_config');
+
+  foreach ($config_factory->listAll('field.field.contact_message.imagefile.') as $field_instance_config_id) {
+    $field_instance_config = $config_factory->getEditable($field_instance_config_id);
+    $raw_data = $field_instance_config->getRawData();
+
+    if (!empty($raw_data['default_value'])) {
+      $field_instance_id = str_replace('field.field.', '', $field_instance_config_id);
+      $field_instance = $field_config_storage->load($field_instance_id);
+      $default_value = $field_instance->get('default_value');
+
+      foreach ($default_value as $delta => $value) {
+        if (
+          !empty($value['target_uuid']) &&
+          $file = $entity_repository->loadEntityByUuid('file', $value['target_uuid'])
+        ) {
+          $default_value[$delta]['target_id'] = $file->id();
+          unset($default_value[$delta]['target_uuid']);
+        }
+      }
+      $field_instance->set('default_value', $default_value);
+      $field_instance->trustData()->save();
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function imagefile_uninstall() {
+  // Delete files created by us.
+  $files = \Drupal::entityTypeManager()
+    ->getStorage('file')
+    ->loadByProperties(['uuid' => array_keys(_imagefile_files())]);
+
+  foreach ($files as $file) {
+    $file->delete();
+  }
+}
+
+/**
+ * Provides list of the required entities.
+ */
+function _imagefile_files() {
+  return [
+    '03847e95-54ad-4c55-b357-762c62b641e5' => [
+      'src' => __DIR__ . '/assets/drupal-8-logo-Stacked-CMYK-300.png',
+      'dest' => 'public://images',
+    ],
+    '0ea905ac-e6cd-4822-b0bc-db9253060405' => [
+      'src' => DRUPAL_ROOT . '/core/CHANGELOG.txt',
+      'dest' => 'public://files',
+    ],
+  ];
+}

@@ -1,0 +1,11 @@
+name: 'Image and File Widget Test'
+type: module
+description: 'Test form for image and managed file form widgets'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - cd_core:cd_core
+  - drupal:contact
+  - drupal:field_layout
+  - drupal:image

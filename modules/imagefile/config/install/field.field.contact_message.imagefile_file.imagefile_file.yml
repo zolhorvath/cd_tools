@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.imagefile_file
+    - field.storage.contact_message.imagefile_file
+  module:
+    - file
+id: contact_message.imagefile_file.imagefile_file
+field_name: imagefile_file
+entity_type: contact_message
+bundle: imagefile_file
+label: File
+description: 'Description for the <em>File</em> field.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: '500'
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.imagefile_image
+    - field.storage.contact_message.imagefile_image_plain_dis
+  module:
+    - image
+id: contact_message.imagefile_image.imagefile_image_plain_dis
+field_name: imagefile_image_plain_dis
+entity_type: contact_message
+bundle: imagefile_image
+label: 'Plain image – no alt or title (disabled)'
+description: 'Description for the <em>Plain image – no alt or title (disabled)</em> field.<br> Alt and title properties are disabled.<br> This field has a pre-existing value.'
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 03847e95-54ad-4c55-b357-762c62b641e5
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png jpg jpeg'
+  max_filesize: '50 KB'
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image
