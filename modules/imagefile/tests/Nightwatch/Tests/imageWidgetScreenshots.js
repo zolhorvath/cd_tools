@@ -55,7 +55,27 @@ module.exports = {
             ? `/${langprefix}/contact/imagefile_image`
             : "/contact/imagefile_image"
         )
+        .waitTillElementPresent('.js-sbs-menu-item[data-option="all"]', 5000)
+        // Click Show all columns needed.
+        .element(
+          "css selector",
+          '.js-sbs-menu-item[data-option="all"]:not(.active)',
+          allOptionQuery => {
+            browser.perform(done => {
+              /* eslint-disable max-nested-callbacks */
+              if (allOptionQuery.status > -1) {
+                browser.click(
+                  '.js-sbs-menu-item[data-option="all"]:not(.active)'
+                );
+              }
+              done();
+              /* eslint-enable max-nested-callbacks */
+            });
+          }
+        )
         .savefullScreenShot("01", langprefix)
+        // Show only the first column.
+        .click('.js-sbs-menu-item[data-option="odd"]:not(.active)')
         .perform(() => {
           if (fileTest) {
             browser
@@ -75,22 +95,24 @@ module.exports = {
                 "Test title: Green square"
               )
               // Required image field with a value - let's remove the pre-existing image.
-              .click(
-                '[name="imagefile_image_req_0_remove_button"]:not([disabled])'
+              .waitTillElementPresent(
+                '[name="imagefile_image_req_0_remove_button"]:not([disabled])',
+                5000
               )
-              .pause(100)
+              .pause(500) // Animation happens in Seven
+              .click('[name="imagefile_image_req_0_remove_button"]')
               .waitTillElementPresent(
                 '[name="files[imagefile_image_req_0]"]:not([disabled])',
                 5000
               )
-              .pause(100)
+              // Unlimited image field.
               .waitTillElementPresent(
                 '[name="files[imagefile_image_multi_0][]"]:not([disabled])',
                 5000
               )
-              // Unlimited image field.
+              .pause(100)
               .setValueAndChange(
-                '[name="files[imagefile_image_multi_0][]"]:not([disabled])',
+                '[name="files[imagefile_image_multi_0][]"]',
                 imagePath
               )
               .pause(100)
@@ -123,10 +145,21 @@ module.exports = {
               )
               // The mandatory 'Limited image with a pre-existing value'
               // field. Removing the pre-existing value.
-              .click(
-                '[name="imagefile_image_limited_0_remove_button"]:not([disabled])'
+              .pause(500) // Animation happens in Seven
+              .waitTillElementPresent(
+                '[name="imagefile_image_limited_1_remove_button"]:not([disabled])',
+                5000
               )
               .pause(100)
+              .click('[name="imagefile_image_limited_1_remove_button"]')
+              .pause(500) // Animation happens in Seven
+              .waitTillElementPresent(
+                '[name="imagefile_image_limited_0_remove_button"]:not([disabled])',
+                5000
+              )
+              .pause(100)
+              .click('[name="imagefile_image_limited_0_remove_button"]')
+              .pause(500) // Animation happens in Seven
               .waitTillElementPresent(
                 '[name="files[imagefile_image_limited_0][]"]:not([disabled])',
                 5000
@@ -134,20 +167,33 @@ module.exports = {
           } else {
             browser
               // Required image field with a value - remove pre-existing.
-              .click(
-                '[name="imagefile_image_req_0_remove_button"]:not([disabled])'
+              .waitTillElementPresent(
+                '[name="imagefile_image_req_0_remove_button"]:not([disabled])',
+                5000
               )
-              .pause(100)
+              .pause(500) // Animation happens in Seven
+              .click('[name="imagefile_image_req_0_remove_button"]')
               .waitTillElementPresent(
                 '[name="files[imagefile_image_req_0]"]:not([disabled])',
                 5000
               )
               // 'Limited image with a pre-existing value (required)' field.
               // Remove the pre-existing value.
-              .click(
-                '[name="imagefile_image_limited_0_remove_button"]:not([disabled])'
+              .pause(500) // Animation happens in Seven
+              .waitTillElementPresent(
+                '[name="imagefile_image_limited_1_remove_button"]:not([disabled])',
+                5000
               )
               .pause(100)
+              .click('[name="imagefile_image_limited_1_remove_button"]')
+              .pause(500) // Animation happens in Seven
+              .waitTillElementPresent(
+                '[name="imagefile_image_limited_0_remove_button"]:not([disabled])',
+                5000
+              )
+              .pause(100)
+              .click('[name="imagefile_image_limited_0_remove_button"]')
+              .pause(500) // Animation happens in Seven
               .waitTillElementPresent(
                 '[name="files[imagefile_image_limited_0][]"]:not([disabled])',
                 5000
@@ -175,6 +221,11 @@ module.exports = {
               )
               // Remove the value of the 'Unlimited image' field and try to and
               // an invalid image.
+              .waitTillElementPresent(
+                '[name="imagefile_image_multi_0_remove_button"]:not([disabled])',
+                5000
+              )
+              .pause(500) // Animation happens in Seven
               .click('[name="imagefile_image_multi_0_remove_button"]')
               .pause(100)
               .waitTillElementPresent(

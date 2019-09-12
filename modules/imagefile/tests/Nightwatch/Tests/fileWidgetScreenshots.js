@@ -55,7 +55,27 @@ module.exports = {
             ? `/${langprefix}/contact/imagefile_file`
             : "/contact/imagefile_file"
         )
+        .waitTillElementPresent('.js-sbs-menu-item[data-option="all"]', 5000)
+        // Click Show all columns needed.
+        .element(
+          "css selector",
+          '.js-sbs-menu-item[data-option="all"]:not(.active)',
+          allOptionQuery => {
+            browser.perform(done => {
+              /* eslint-disable max-nested-callbacks */
+              if (allOptionQuery.status > -1) {
+                browser.click(
+                  '.js-sbs-menu-item[data-option="all"]:not(.active)'
+                );
+              }
+              done();
+              /* eslint-enable max-nested-callbacks */
+            });
+          }
+        )
         .savefullScreenShot("01", langprefix)
+        // Show only the first column.
+        .click('.js-sbs-menu-item[data-option="odd"]:not(.active)')
         .perform(() => {
           if (fileTest) {
             browser
@@ -75,15 +95,16 @@ module.exports = {
                 "Test description: lorem ipsum copy"
               )
               // Required file field with a value - let's remove the pre-existing file.
-              .click(
-                '[name="imagefile_file_req_0_remove_button"]:not([disabled])'
+              .waitTillElementPresent(
+                '[name="imagefile_file_req_0_remove_button"]:not([disabled])',
+                5000
               )
-              .pause(100)
+              .pause(500) // Animation happens in Seven
+              .click('[name="imagefile_file_req_0_remove_button"]')
               .waitTillElementPresent(
                 '[name="files[imagefile_file_req_0]"]:not([disabled])',
                 5000
               )
-              .pause(100)
               // Unlimited file field.
               .waitTillElementPresent(
                 '[name="files[imagefile_file_multi_0][]"]:not([disabled])',
@@ -100,13 +121,22 @@ module.exports = {
               )
               .pause(100)
               // The mandatory 'Limited files with a pre-existing value'
-              // field. Removing the pre-existing value.
+              // field. Removing the pre-existing values.
+              .pause(500) // Animation happens in Seven
+              .waitTillElementPresent(
+                '[name="imagefile_file_limited_1_remove_button"]:not([disabled])',
+                5000
+              )
+              .pause(100)
+              .click('[name="imagefile_file_limited_1_remove_button"]')
+              .pause(500) // Animation happens in Seven
               .waitTillElementPresent(
                 '[name="imagefile_file_limited_0_remove_button"]:not([disabled])',
                 5000
               )
-              .click('[name="imagefile_file_limited_0_remove_button"]')
               .pause(100)
+              .click('[name="imagefile_file_limited_0_remove_button"]')
+              .pause(500) // Animation happens in Seven
               .waitTillElementPresent(
                 '[name="files[imagefile_file_limited_0][]"]:not([disabled])',
                 5000
@@ -118,20 +148,29 @@ module.exports = {
                 '[name="imagefile_file_req_0_remove_button"]:not([disabled])',
                 5000
               )
+              .pause(500) // Animation happens in Seven
               .click('[name="imagefile_file_req_0_remove_button"]')
-              .pause(100)
               .waitTillElementPresent(
                 '[name="files[imagefile_file_req_0]"]:not([disabled])',
                 5000
               )
               // The mandatory 'Limited files with a pre-existing value'
-              // field. Removing the pre-existing value.
+              // field. Removing the pre-existing values.
+              .pause(500) // Animation happens in Seven
+              .waitTillElementPresent(
+                '[name="imagefile_file_limited_1_remove_button"]:not([disabled])',
+                5000
+              )
+              .pause(100)
+              .click('[name="imagefile_file_limited_1_remove_button"]')
+              .pause(500) // Animation happens in Seven
               .waitTillElementPresent(
                 '[name="imagefile_file_limited_0_remove_button"]:not([disabled])',
                 5000
               )
-              .click('[name="imagefile_file_limited_0_remove_button"]')
               .pause(100)
+              .click('[name="imagefile_file_limited_0_remove_button"]')
+              .pause(500) // Animation happens in Seven
               .waitTillElementPresent(
                 '[name="files[imagefile_file_limited_0][]"]:not([disabled])',
                 5000
@@ -167,6 +206,7 @@ module.exports = {
                 '[name="imagefile_file_multi_0_remove_button"]:not([disabled])',
                 5000
               )
+              .pause(500) // Animation happens in Seven
               .click('[name="imagefile_file_multi_0_remove_button"]')
               .pause(100)
               .waitTillElementPresent(
@@ -174,7 +214,7 @@ module.exports = {
                 5000
               )
               .setValueAndChange(
-                '[name="files[imagefile_file_multi_0][]"]',
+                '[name="files[imagefile_file_multi_0][]"]:not([disabled])',
                 fileInvalidPath
               );
           }
