@@ -19,6 +19,10 @@ default_value:
     target_uuid: 03847e95-54ad-4c55-b357-762c62b641e5
     alt: 'Alt text: Pre-existing image'
     title: 'Title text: Pre-existing image'
+  -
+    target_uuid: 042cd58e-08d6-4549-8987-273d40a04afb
+    alt: 'Alt text: Druplicon'
+    title: 'Title text: Druplicon'
 default_value_callback: ''
 settings:
   file_directory: '[date:custom:Y]-[date:custom:m]'

@@ -6,12 +6,17 @@
  */
 
 use Drupal\file\Entity\File;
+use Drupal\user\RoleInterface;
 
 /**
  * Implements hook_install().
  */
 function imagefile_install() {
+  $perms = _imagefile_permissions();
   $entity_repository = \Drupal::service('entity.repository');
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
 
   // Create the needed file entities.
   foreach (_imagefile_files() as $uuid => $props) {
@@ -80,6 +85,11 @@ function imagefile_install() {
  * Implements hook_install().
  */
 function imagefile_uninstall() {
+  $perms = _imagefile_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
   // Delete files created by us.
   $files = \Drupal::entityTypeManager()
     ->getStorage('file')
@@ -99,9 +109,27 @@ function _imagefile_files() {
       'src' => __DIR__ . '/assets/drupal-8-logo-Stacked-CMYK-300.png',
       'dest' => 'public://images',
     ],
+    '042cd58e-08d6-4549-8987-273d40a04afb' => [
+      'src' => DRUPAL_ROOT . '/core/misc/druplicon.png',
+      'dest' => 'public://images',
+    ],
     '0ea905ac-e6cd-4822-b0bc-db9253060405' => [
       'src' => DRUPAL_ROOT . '/core/CHANGELOG.txt',
       'dest' => 'public://files',
     ],
+    '03443f0f-195e-4e45-a29d-915706a3cec2' => [
+      'src' => DRUPAL_ROOT . '/core/lib/README.txt',
+      'dest' => 'public://files',
+    ],
+  ];
+}
+
+/**
+ * Provides list of the needed permissions.
+ */
+function _imagefile_permissions() {
+  return [
+    'access imagefile_file contact form',
+    'access imagefile_image contact form',
   ];
 }

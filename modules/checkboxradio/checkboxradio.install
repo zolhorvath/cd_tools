@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains install and update functions for Textarea module.
+ * Contains install and update functions.
  */
 
 use Drupal\user\RoleInterface;
@@ -10,8 +10,8 @@ use Drupal\user\RoleInterface;
 /**
  * Implements hook_install().
  */
-function textarea_install() {
-  $perms = _textarea_permissions();
+function checkboxradio_install() {
+  $perms = _checkboxradio_permissions();
 
   user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
@@ -20,8 +20,8 @@ function textarea_install() {
 /**
  * Implements hook_install().
  */
-function textarea_uninstall() {
-  $perms = _textarea_permissions();
+function checkboxradio_uninstall() {
+  $perms = _checkboxradio_permissions();
 
   user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
   user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
@@ -30,8 +30,8 @@ function textarea_uninstall() {
 /**
  * Provides list of the needed permissions.
  */
-function _textarea_permissions() {
+function _checkboxradio_permissions() {
   return [
-    'access textarea contact form',
+    'access checkbox_radio contact form',
   ];
 }
