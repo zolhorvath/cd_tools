@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - tabledrag
+name: 'A vocabulary'
+vid: test_vocabulary
+description: 'Some description for the test vocabulary'
+weight: 0
