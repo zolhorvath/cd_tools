@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains code for Tabledrag module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_toolbar().
+ */
+function tabledrag_toolbar() {
+  $items['tabledrag'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Tabledrag'),
+      '#url' => Url::fromRoute('tabledrag.test'),
+    ],
+    '#weight' => 128,
+  ];
+
+  return $items;
+}

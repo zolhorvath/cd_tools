@@ -1,0 +1,5 @@
+tabledrag.test:
+  title: Tabledrag
+  route_name: tabledrag.test
+  menu_name: main
+  weight: 28

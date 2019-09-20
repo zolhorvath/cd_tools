@@ -1,0 +1,8 @@
+tabledrag.test:
+  path: '/tabledrag'
+  defaults:
+    _form: 'Drupal\taxonomy\Form\OverviewTerms'
+    _title: 'Term tabledrag'
+    taxonomy_vocabulary: test_vocabulary
+  requirements:
+    _permission: 'access content'

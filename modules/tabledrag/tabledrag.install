@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Tabledrag test module.
+ */
+
+use Drupal\user\RoleInterface;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Component\Utility\Random;
+
+/**
+ * Implements hook_install().
+ */
+function tabledrag_install() {
+  $perms = _tabledrag_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  $random = new Random();
+
+  // Create test terms.
+  $last_term_id = NULL;
+  foreach (_tabledrag_term_uuids() as $index => $uuid) {
+    $entity_structure = [
+      'uuid' => $uuid,
+      'vid' => 'test_vocabulary',
+      'name' => $random->sentences(($index % 4) ?: 1, TRUE),
+      'description' => [
+        'value' => $random->sentences(mt_rand(20, 60)),
+        'format' => 'plain_text',
+      ],
+      'weight' => $index,
+    ];
+
+    // Add the previous term as parent term.
+    if (($index % 3 !== 0) && $last_term_id && !in_array($index, [3])) {
+      $entity_structure['parent'] = ['target_id' => $last_term_id];
+    }
+
+    $entity = Term::create($entity_structure);
+
+    try {
+      $entity->save();
+      $last_term_id = !in_array($index, [4, 2]) ? $entity->id() : $last_term_id;
+    }
+    catch (\Exception $e) {
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function tabledrag_uninstall() {
+  $perms = _tabledrag_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+
+  // Delete test nodes created by us.
+  $entities = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadByProperties(['uuid' => _tabledrag_term_uuids()]);
+
+  foreach ($entities as $entity) {
+    $entity->delete();
+  }
+}
+
+/**
+ * Provides list of permissions that makes tabledrag testable without login.
+ */
+function _tabledrag_permissions() {
+  return [
+    'edit terms in test_vocabulary',
+    'delete terms in test_vocabulary',
+  ];
+}
+
+/**
+ * Returns the uuids of test entities.
+ */
+function _tabledrag_term_uuids() {
+  return [
+    '8083138e-b202-4de5-81b7-d3573ed17cd1',
+    '80e5f35f-bb6b-4589-bca4-36f47b88f3f1',
+    '810e62fe-6d33-4f89-b506-85a5bff8c23c',
+    '83023688-8706-4b2d-986c-bd237ab39170',
+    '86b79911-9471-47b7-b426-d7cd9dfcd8f4',
+    '87caf969-8844-458e-b5bf-1f7340eeac30',
+    '8a811b17-6d49-4fe6-b734-0474fbffe557',
+    '8aced400-1975-4005-9288-f49c5caa1869',
+    '8cdd3800-a2b8-4f68-b047-579d6d4889ad',
+    '8e4e75a2-712a-400d-a1fe-eb1407c4f011',
+    '8eb55503-a0df-46f3-9661-84049918df33',
+  ];
+}
