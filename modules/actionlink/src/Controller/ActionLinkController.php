@@ -25,7 +25,14 @@ class ActionLinkController extends ControllerBase {
     $build = [];
 
     $icon_variants = !empty($variant) ? [$variant] : [
-      NULL, 'plus', 'trash', 'cog', 'ex', 'checkmark',
+      NULL,
+      'plus',
+      'trash',
+      'cog',
+      'ex',
+      'checkmark',
+      'show',
+      'hide',
     ];
 
     $variants = [NULL, 'danger'];
@@ -46,7 +53,7 @@ class ActionLinkController extends ControllerBase {
       ];
 
       // Loop on size modifiers.
-      foreach (['', 'small'] as $size) {
+      foreach (['', 'small', 'extrasmall'] as $size) {
         $delta = empty($size) ? 'default' : $size;
         $build[$group][$delta] = [
           '#type' => 'container',
