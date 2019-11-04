@@ -51,12 +51,20 @@ function textarea_form_contact_message_textarea_form_alter(&$form, FormStateInte
  * Set an error if the input value contains the 'error' string.
  */
 function _textarea_message_error_validate(&$form, FormStateInterface $form_state) {
-  if ($form_state->hasValue('message')) {
-    $message_items = $form_state->getValue('message');
-    foreach ($message_items as $delta => $message) {
-      if (mb_stripos($message['value'], 'error') !== FALSE) {
-        $form_state->setErrorByName("message][$delta][value", t('There is an error in the text of this input'));
-        break 1;
+  foreach ($form_state->getValues() as $field_name => $values) {
+    if ((strpos($field_name, '_disabled') === FALSE) && is_array($values)) {
+      foreach ($values as $delta => $value) {
+        foreach (['value', 'summary'] as $property) {
+          if (
+            !empty($value[$property]) &&
+            is_string($value[$property]) &&
+            mb_stripos($value[$property], 'error') !== FALSE
+          ) {
+            $form_state->setErrorByName("$field_name][$delta][$property", t('There is an error in the value of the <em>@field_name</em> field', [
+              '@field_name' => $field_name,
+            ]));
+          }
+        }
       }
     }
   }

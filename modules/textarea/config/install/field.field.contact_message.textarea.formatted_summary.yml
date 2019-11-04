@@ -11,7 +11,7 @@ field_name: formatted_summary
 entity_type: contact_message
 bundle: textarea
 label: 'Formatted text with summary'
-description: 'Description of the <em>formatted text with summary</em> field'
+description: 'Description of the <em>formatted text with summary</em> field. Type <code>error</code> to trigger an error.'
 required: true
 translatable: false
 default_value: {  }
