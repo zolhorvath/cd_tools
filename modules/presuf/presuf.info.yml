@@ -1,0 +1,11 @@
+name: 'Prefix Suffix'
+type: module
+description: 'Test form for form item prefixes and suffixes'
+core: 8.x
+package: Claro
+claro_test: true
+dependencies:
+  - cd_core:cd_core
+  - drupal:contact
+  - drupal:field_layout
+  - drupal:field_ui

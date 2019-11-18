@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.presuf_number
+    - field.storage.contact_message.presuf_number_pre_suf_m
+id: contact_message.presuf_number.presuf_number_pre_suf_m
+field_name: presuf_number_pre_suf_m
+entity_type: contact_message
+bundle: presuf_number
+label: 'Number prefix suffix multiple'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: 'prefix prefix'
+  suffix: 'suffix suffix'
+field_type: integer

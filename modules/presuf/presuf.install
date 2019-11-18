@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Prefix Suffix test module.
+ */
+
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function presuf_install() {
+  $perms = _presuf_permissions();
+
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Implements hook_install().
+ */
+function presuf_uninstall() {
+  $perms = _presuf_permissions();
+
+  user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, $perms);
+  user_role_revoke_permissions(RoleInterface::AUTHENTICATED_ID, $perms);
+}
+
+/**
+ * Provides list of the needed permissions.
+ */
+function _presuf_permissions() {
+  return [
+    'access presuf test routes',
+    'access presuf_text contact form',
+    'access presuf_formatted contact form',
+    'access presuf_number contact form',
+  ];
+}

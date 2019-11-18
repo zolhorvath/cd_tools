@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.presuf_text
+    - field.storage.contact_message.presuf_text_pre_suf
+id: contact_message.presuf_text.presuf_text_pre_suf
+field_name: presuf_text_pre_suf
+entity_type: contact_message
+bundle: presuf_text
+label: 'Text prefix suffix'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

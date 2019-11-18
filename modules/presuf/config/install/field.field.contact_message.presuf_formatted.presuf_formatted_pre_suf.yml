@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.presuf_formatted
+    - field.storage.contact_message.presuf_formatted_pre_suf
+  module:
+    - text
+id: contact_message.presuf_formatted.presuf_formatted_pre_suf
+field_name: presuf_formatted_pre_suf
+entity_type: contact_message
+bundle: presuf_formatted
+label: 'Formatted prefix suffix'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

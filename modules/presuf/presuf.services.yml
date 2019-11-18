@@ -1,0 +1,5 @@
+services:
+  presuf.route_subscriber:
+    class: Drupal\presuf\Routing\RouteSubscriber
+    tags:
+      - { name: 'event_subscriber' }

@@ -1,0 +1,31 @@
+prefixsuffix.text_testform:
+  title: 'Text prefix suffix'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 29
+  route_parameters:
+    contact_form: presuf_text
+
+prefixsuffix.formatted_testform:
+  title: 'Formatted text prefix suffix'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 29
+  route_parameters:
+    contact_form: presuf_formatted
+
+prefixsuffix.number_testform:
+  title: 'Number prefix suffix'
+  route_name: entity.contact_form.canonical
+  menu_name: main
+  weight: 29
+  route_parameters:
+    contact_form: presuf_number
+
+prefixsuffix.machine:
+  title: Machine
+  route_name: entity.entity_form_mode.add_form
+  menu_name: main
+  weight: 29
+  route_parameters:
+    entity_type_id: 'contact_message'
