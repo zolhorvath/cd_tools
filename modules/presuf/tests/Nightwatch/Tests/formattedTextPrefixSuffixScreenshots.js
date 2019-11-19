@@ -35,22 +35,26 @@ module.exports = {
           '[data-drupal-selector="edit-presuf-formatted-m"] td:first-child .tabledrag-handle',
           5000
         )
-        .click('[name="presuf_formatted_m_add_more"]:not([disabled])')
-        .click('[name="presuf_formatted_pre_m_add_more"]:not([disabled])')
-        .click('[name="presuf_formatted_suf_m_add_more"]:not([disabled])')
-        .click('[name="presuf_formatted_pre_suf_m_add_more"]:not([disabled])')
-        .waitTillElementPresent(
-          '[name="presuf_formatted_m_add_more"]:not([disabled])'
+        .smartClick(
+          '[name="presuf_formatted_m_add_more"]:not([disabled])',
+          "mousedown"
         )
-        .waitTillElementPresent(
-          '[name="presuf_formatted_pre_m_add_more"]:not([disabled])'
+        .waitTillElementPresent('[name="presuf_formatted_m[1][value]"]')
+        .smartClick(
+          '[name="presuf_formatted_pre_m_add_more"]:not([disabled])',
+          "mousedown"
         )
-        .waitTillElementPresent(
-          '[name="presuf_formatted_suf_m_add_more"]:not([disabled])'
+        .waitTillElementPresent('[name="presuf_formatted_pre_m[1][value]"]')
+        .smartClick(
+          '[name="presuf_formatted_suf_m_add_more"]:not([disabled])',
+          "mousedown"
         )
-        .waitTillElementPresent(
-          '[name="presuf_formatted_pre_suf_m_add_more"]:not([disabled])'
+        .waitTillElementPresent('[name="presuf_formatted_suf_m[1][value]"]')
+        .smartClick(
+          '[name="presuf_formatted_pre_suf_m_add_more"]:not([disabled])',
+          "mousedown"
         )
+        .waitTillElementPresent('[name="presuf_formatted_pre_suf_m[1][value]"]')
         .setValueAndChange('[name="presuf_formatted[0][value]"]', text)
         .setValueAndChange('[name="presuf_formatted_m[0][value]"]', text)
         .setValueAndChange('[name="presuf_formatted_pre[0][value]"]', text)
@@ -63,7 +67,7 @@ module.exports = {
           text
         )
         .savefullScreenShot("01", langprefix)
-        .click("#edit-submit")
+        .smartClick("#edit-submit")
         .waitTillElementPresent("[data-drupal-messages] div", 5000)
         .elements(
           "css selector",

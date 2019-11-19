@@ -38,7 +38,7 @@ module.exports = {
           5000
         )
         .savefullScreenShot("02", langprefix)
-        .click('[name="label"].machine-name-source ~ * .admin-link .link')
+        .smartClick('[name="label"].machine-name-source ~ * .admin-link .link')
         .waitTillElementPresent(
           ".js-form-type-machine-name:not(.visually-hidden)"
         )
