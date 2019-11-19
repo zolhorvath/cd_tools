@@ -1,0 +1,90 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.presuf_number
+    - field.field.contact_message.presuf_number.presuf_number
+    - field.field.contact_message.presuf_number.presuf_number_m
+    - field.field.contact_message.presuf_number.presuf_number_pre
+    - field.field.contact_message.presuf_number.presuf_number_pre_m
+    - field.field.contact_message.presuf_number.presuf_number_pre_suf
+    - field.field.contact_message.presuf_number.presuf_number_pre_suf_m
+    - field.field.contact_message.presuf_number.presuf_number_suf
+    - field.field.contact_message.presuf_number.presuf_number_suf_m
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: contact_message.presuf_number.default
+targetEntityType: contact_message
+bundle: presuf_number
+mode: default
+content:
+  presuf_number:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  presuf_number_m:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  presuf_number_pre:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  presuf_number_pre_m:
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  presuf_number_pre_suf:
+    weight: 6
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  presuf_number_pre_suf_m:
+    weight: 7
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  presuf_number_suf:
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  presuf_number_suf_m:
+    weight: 5
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+hidden:
+  copy: true
+  langcode: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true

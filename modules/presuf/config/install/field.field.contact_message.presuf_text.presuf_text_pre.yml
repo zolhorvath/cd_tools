@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.presuf_text
+    - field.storage.contact_message.presuf_text_pre
+id: contact_message.presuf_text.presuf_text_pre
+field_name: presuf_text_pre
+entity_type: contact_message
+bundle: presuf_text
+label: 'Text prefix'
+description: 'Field description. Type <code>error</code> to trigger an error.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

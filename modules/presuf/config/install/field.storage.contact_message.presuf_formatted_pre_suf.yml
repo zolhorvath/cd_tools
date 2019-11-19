@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - text
+  enforced:
+    module:
+      - presuf
+id: contact_message.presuf_formatted_pre_suf
+field_name: presuf_formatted_pre_suf
+entity_type: contact_message
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

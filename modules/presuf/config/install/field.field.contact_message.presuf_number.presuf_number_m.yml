@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.presuf_number
+    - field.storage.contact_message.presuf_number_m
+id: contact_message.presuf_number.presuf_number_m
+field_name: presuf_number_m
+entity_type: contact_message
+bundle: presuf_number
+label: 'Number multiple'
+description: 'Field description. Type <code>33</code> to trigger an error.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

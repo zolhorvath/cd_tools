@@ -1,0 +1,3 @@
+access presuf test routes:
+  title: 'Access prefix suffix test routes'
+  restrict access: false

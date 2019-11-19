@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - presuf
+id: presuf_text
+label: 'Text prefixes and suffixes'
+recipients:
+  - website@example.com
+reply: ''
+weight: 1
+message: ''
+redirect: ''

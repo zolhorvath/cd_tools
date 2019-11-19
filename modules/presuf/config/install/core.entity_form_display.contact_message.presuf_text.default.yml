@@ -1,0 +1,98 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.presuf_text
+    - field.field.contact_message.presuf_text.presuf_text
+    - field.field.contact_message.presuf_text.presuf_text_m
+    - field.field.contact_message.presuf_text.presuf_text_pre
+    - field.field.contact_message.presuf_text.presuf_text_pre_m
+    - field.field.contact_message.presuf_text.presuf_text_pre_suf
+    - field.field.contact_message.presuf_text.presuf_text_pre_suf_m
+    - field.field.contact_message.presuf_text.presuf_text_suf
+    - field.field.contact_message.presuf_text.presuf_text_suf_m
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: contact_message.presuf_text.default
+targetEntityType: contact_message
+bundle: presuf_text
+mode: default
+content:
+  presuf_text:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  presuf_text_m:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  presuf_text_pre:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  presuf_text_pre_m:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  presuf_text_pre_suf:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  presuf_text_pre_suf_m:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  presuf_text_suf:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  presuf_text_suf_m:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  copy: true
+  langcode: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true

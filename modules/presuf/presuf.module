@@ -1,0 +1,234 @@
+<?php
+
+/**
+ * @file
+ * Contains code for PRefix Suffix module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Field\FieldFilteredMarkup;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_toolbar().
+ */
+function presuf_toolbar() {
+  $items['presuf_text'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Text prefix suffix'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'presuf_text',
+      ]),
+    ],
+    '#weight' => 129,
+  ];
+  $items['presuf_formatted'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Formatted text prefix suffix'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'presuf_formatted',
+      ]),
+    ],
+    '#weight' => 129,
+  ];
+  $items['presuf_number'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Number prefix suffix'),
+      '#url' => Url::fromRoute('entity.contact_form.canonical', [
+        'contact_form' => 'presuf_number',
+      ]),
+    ],
+    '#weight' => 129,
+  ];
+  $items['presuf_machine'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Machine'),
+      '#url' => Url::fromRoute('entity.entity_form_mode.add_form', [
+        'entity_type_id' => 'contact_message',
+      ]),
+    ],
+    '#weight' => 129,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter() for all forms.
+ */
+function presuf_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_permission_map = _presuf_unsafe_forms();
+  if (!in_array($form_id, array_keys($form_permission_map))) {
+    return;
+  }
+
+  $current_user = \Drupal::currentUser();
+  if (
+    !empty($form_permission_map[$form_id]) &&
+    !$current_user->hasPermission($form_permission_map[$form_id])
+  ) {
+    $form['#validate'] = $form['#validate'] ?? [];
+    array_unshift($form['#validate'], '_presuf_form_submit');
+  }
+}
+
+/**
+ * Validate handler to get back some (false?) sense of security.
+ */
+function _presuf_form_submit(&$form, FormStateInterface $form_state) {
+  $form_state->setErrorByName('__none__', t('Permission denied.'));
+}
+
+/**
+ * Returns runied form's id with the original required route perm.
+ *
+ * Some form's original route permission requirement is ruined by us.
+ * To keep the test module's changes safe as much as possible, we'll
+ * check in a custom form validation handler that the current user has the
+ * original permission.
+ *
+ * @see \Drupal\details\Routing\RouteSubscriber.php
+ */
+function _presuf_unsafe_forms() {
+  return [
+    'entity_form_mode_add_form' => 'administer display modes',
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for presuf_text_form.
+ */
+function presuf_form_contact_message_presuf_text_form_alter(&$form, FormStateInterface $form_state) {
+  _presuf_contact_form_alter($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for presuf_formatted_form.
+ */
+function presuf_form_contact_message_presuf_formatted_form_alter(&$form, FormStateInterface $form_state) {
+  _presuf_contact_form_alter($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for presuf_number_form.
+ */
+function presuf_form_contact_message_presuf_number_form_alter(&$form, FormStateInterface $form_state) {
+  _presuf_contact_form_alter($form, $form_state);
+}
+
+/**
+ * Helper callback for altering presuf contact forms.
+ */
+function _presuf_contact_form_alter(&$form, FormStateInterface $form_state) {
+  $field_widgets = Element::children($form);
+  $field_names_with_prefix = [
+    'presuf_text_pre',
+    'presuf_text_pre_m',
+    'presuf_text_pre_suf',
+    'presuf_text_pre_suf_m',
+    'presuf_formatted_pre',
+    'presuf_formatted_pre_m',
+    'presuf_formatted_pre_suf',
+    'presuf_formatted_pre_suf_m',
+  ];
+  $field_names_with_suffix = [
+    'presuf_text_suf',
+    'presuf_text_suf_m',
+    'presuf_text_pre_suf',
+    'presuf_text_pre_suf_m',
+    'presuf_formatted_suf',
+    'presuf_formatted_suf_m',
+    'presuf_formatted_pre_suf',
+    'presuf_formatted_pre_suf_m',
+  ];
+
+  foreach ($field_widgets as $field_name) {
+
+    if (
+      isset($form[$field_name]['widget']) &&
+      in_array($field_name, $field_names_with_prefix)
+    ) {
+      $widget_keys = Element::children($form[$field_name]['widget']);
+
+      foreach ($widget_keys as $widget_key) {
+        $prefix = FieldFilteredMarkup::create('prefix prefix');
+        if (isset($form[$field_name]['widget'][$widget_key]['#type'])) {
+          $form[$field_name]['widget'][$widget_key]['#field_prefix'] = $prefix;
+        }
+        elseif (
+          isset($form[$field_name]['widget'][$widget_key]['value']) &&
+          is_array($form[$field_name]['widget'][$widget_key]['value']) &&
+          isset($form[$field_name]['widget'][$widget_key]['value']['#type'])
+        ) {
+          $form[$field_name]['widget'][$widget_key]['value']['#field_prefix'] = $prefix;
+        }
+      }
+    }
+
+    if (
+      isset($form[$field_name]['widget']) &&
+      in_array($field_name, $field_names_with_suffix)
+    ) {
+      $widget_keys = Element::children($form[$field_name]['widget']);
+
+      foreach ($widget_keys as $widget_key) {
+        $suffix = FieldFilteredMarkup::create('suffix suffix');
+        if (isset($form[$field_name]['widget'][$widget_key]['#type'])) {
+          $form[$field_name]['widget'][$widget_key]['#field_suffix'] = $suffix;
+        }
+        elseif (
+          isset($form[$field_name]['widget'][$widget_key]['value']) &&
+          is_array($form[$field_name]['widget'][$widget_key]['value']) &&
+          isset($form[$field_name]['widget'][$widget_key]['value']['#type'])
+        ) {
+          $form[$field_name]['widget'][$widget_key]['value']['#field_suffix'] = $suffix;
+        }
+      }
+    }
+  }
+
+  // Hide preview button for easier Nightwatch testing.
+  $form['actions']['preview']['#access'] = FALSE;
+
+  $form['#validate'][] = '_presuf_error_validate';
+}
+
+/**
+ * Hacky validate for presuf contact forms.
+ *
+ * Set an error if an input value contains the 'error' string.
+ */
+function _presuf_error_validate(&$form, FormStateInterface $form_state) {
+  foreach ($form_state->getValues() as $field_name => $values) {
+    if ((strpos($field_name, '_disabled') === FALSE) && is_array($values)) {
+      foreach ($values as $delta => $value) {
+        if (
+          is_array($value) &&
+          !empty($value['value']) &&
+          (
+            is_string($value['value']) ||
+            is_numeric($value['value'])
+          ) &&
+          (
+            mb_stripos($value['value'], 'error') !== FALSE ||
+            mb_stripos($value['value'], '33') !== FALSE
+          )
+        ) {
+          $form_state->setErrorByName("$field_name][$delta][value", t('There is an error in the value of the <em>@field_name</em> field', [
+            '@field_name' => $field_name,
+          ]));
+          break 1;
+        }
+      }
+    }
+  }
+}
