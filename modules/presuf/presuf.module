@@ -104,7 +104,6 @@ function _presuf_unsafe_forms() {
   ];
 }
 
-
 /**
  * Implements hook_form_FORM_ID_alter() for presuf_text_form.
  */

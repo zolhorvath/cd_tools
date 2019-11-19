@@ -1,11 +1,9 @@
 /**
  * @file
- * Captures file widget with different states.
+ * Captures machine name widgets with different states.
  *
  * Error state's fileName vary by the state of the inline_form_errors module.
  */
-
-const path = require("path");
 
 module.exports = {
   "@tags": ["claro"],
@@ -44,7 +42,22 @@ module.exports = {
         .waitTillElementPresent(
           ".js-form-type-machine-name:not(.visually-hidden)"
         )
-        .savefullScreenShot("03", langprefix);
+        .savefullScreenShot("03", langprefix)
+        .submitForm("form.entity-form-mode-add-form")
+        .waitTillElementPresent("[data-drupal-messages] div", 5000)
+        .elements(
+          "css selector",
+          ".form-item__error-message, .form-item--error-message, .fieldset__error-message",
+          inlineFormMessagesQueryResults => {
+            browser.savefullScreenShot(
+              inlineFormMessagesQueryResults.value.length ? "05" : "04",
+              langprefix,
+              inlineFormMessagesQueryResults.value.length
+                ? "Machine Name with inline errors"
+                : "Machine Name with simple errors"
+            );
+          }
+        );
     });
   }
 };

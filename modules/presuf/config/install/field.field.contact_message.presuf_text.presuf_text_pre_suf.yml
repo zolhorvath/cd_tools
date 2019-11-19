@@ -9,7 +9,7 @@ field_name: presuf_text_pre_suf
 entity_type: contact_message
 bundle: presuf_text
 label: 'Text prefix suffix'
-description: ''
+description: 'Field description. Type <code>error</code> to trigger an error.'
 required: false
 translatable: false
 default_value: {  }

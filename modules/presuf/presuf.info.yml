@@ -6,6 +6,8 @@ package: Claro
 claro_test: true
 dependencies:
   - cd_core:cd_core
+  - cd_core:lang_hebrew
+  - cd_core:testfilters
   - drupal:contact
   - drupal:field_layout
   - drupal:field_ui

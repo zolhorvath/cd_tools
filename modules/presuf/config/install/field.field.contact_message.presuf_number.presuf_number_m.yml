@@ -9,7 +9,7 @@ field_name: presuf_number_m
 entity_type: contact_message
 bundle: presuf_number
 label: 'Number multiple'
-description: ''
+description: 'Field description. Type <code>33</code> to trigger an error.'
 required: false
 translatable: false
 default_value: {  }
