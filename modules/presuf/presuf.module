@@ -160,7 +160,7 @@ function _presuf_contact_form_alter(&$form, FormStateInterface $form_state) {
       $widget_keys = Element::children($form[$field_name]['widget']);
 
       foreach ($widget_keys as $widget_key) {
-        $prefix = FieldFilteredMarkup::create('prefix prefix');
+        $prefix = FieldFilteredMarkup::create('prefix');
         if (isset($form[$field_name]['widget'][$widget_key]['#type'])) {
           $form[$field_name]['widget'][$widget_key]['#field_prefix'] = $prefix;
         }
@@ -181,7 +181,7 @@ function _presuf_contact_form_alter(&$form, FormStateInterface $form_state) {
       $widget_keys = Element::children($form[$field_name]['widget']);
 
       foreach ($widget_keys as $widget_key) {
-        $suffix = FieldFilteredMarkup::create('suffix suffix');
+        $suffix = FieldFilteredMarkup::create('suffix');
         if (isset($form[$field_name]['widget'][$widget_key]['#type'])) {
           $form[$field_name]['widget'][$widget_key]['#field_suffix'] = $suffix;
         }
