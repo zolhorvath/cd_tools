@@ -2,7 +2,31 @@ tabledrag.test:
   path: '/tabledrag'
   defaults:
     _form: 'Drupal\taxonomy\Form\OverviewTerms'
-    _title: 'Term tabledrag'
+    _title: 'Term overview'
     taxonomy_vocabulary: test_vocabulary
   requirements:
     _permission: 'access content'
+
+tabledrag.test_mixed_height:
+  path: '/tabledrag/mixed-height'
+  defaults:
+    _controller: '\Drupal\tabledrag\Controller\TableDragController::mixedHeightTable'
+    _title: 'Draggable table test'
+  requirements:
+    _access: 'TRUE'
+
+tabledrag.test_nested:
+  path: '/tabledrag/nested'
+  defaults:
+    _controller: '\Drupal\tabledrag\Controller\TableDragController::nestedTable'
+    _title: 'Nested draggable tables'
+  requirements:
+    _access: 'TRUE'
+
+tabledrag.test_nested_hierarchy:
+  path: '/tabledrag/nested-hierarchy'
+  defaults:
+    _controller: '\Drupal\tabledrag\Controller\TableDragController::nestedWithHierarchyTable'
+    _title: 'Nested draggable tables with initial hierarchy'
+  requirements:
+    _access: 'TRUE'
