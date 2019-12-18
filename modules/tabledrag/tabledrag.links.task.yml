@@ -1,0 +1,24 @@
+tabledrag.term:
+  title: 'Term overview'
+  route_name: tabledrag.test
+  base_route: tabledrag.test
+
+tabledrag.term_secondary:
+  title: 'Term overview'
+  route_name: tabledrag.test
+  parent_id: tabledrag.test
+
+tabledrag.mixed_height:
+  title: 'Mixed height'
+  route_name: tabledrag.test_mixed_height
+  base_route: tabledrag.test
+
+tabledrag.test_nested:
+  title: 'Nested draggables'
+  route_name: tabledrag.test_nested
+  base_route: tabledrag.test
+
+tabledrag.test_nested_hierarchy:
+  title: 'Nested with hierarchy'
+  route_name: tabledrag.test_nested_hierarchy
+  base_route: tabledrag.test
