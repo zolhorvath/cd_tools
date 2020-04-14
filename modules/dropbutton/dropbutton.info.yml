@@ -10,3 +10,4 @@ dependencies:
   - core:node
   - core:field_ui
   - core:views_ui
+core_version_requirement: ^8 || ^9

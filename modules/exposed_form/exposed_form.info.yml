@@ -8,3 +8,4 @@ dependencies:
   - cd_core:lang_hebrew
   - cd_core:cd_node
   - core:views
+core_version_requirement: ^8 || ^9

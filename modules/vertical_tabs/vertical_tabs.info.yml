@@ -7,3 +7,4 @@ claro_test: true
 dependencies:
   - cd_core:lang_hebrew
   - drupal:block
+core_version_requirement: ^8 || ^9

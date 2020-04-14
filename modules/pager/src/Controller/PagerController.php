@@ -16,7 +16,7 @@ class PagerController extends ControllerBase {
    *   The test page as renderable array.
    */
   public function content() {
-    pager_default_initialize(300, 1);
+    \Drupal::service('pager.manager')->createPager(300, 1, 0);
     $build = [];
 
     $build['pager_views_mini'] = [

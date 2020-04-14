@@ -4,3 +4,4 @@ description: "Dashboard and markup generator test modules for Claro theme's deve
 core: 8.x
 package: Claro
 dependencies: {}
+core_version_requirement: ^8 || ^9

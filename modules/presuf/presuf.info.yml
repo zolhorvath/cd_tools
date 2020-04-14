@@ -11,3 +11,4 @@ dependencies:
   - drupal:contact
   - drupal:field_layout
   - drupal:field_ui
+core_version_requirement: ^8 || ^9

@@ -5,3 +5,4 @@ package: Claro
 core: 8.x
 claro_test: true
 dependencies: {}
+core_version_requirement: ^8 || ^9

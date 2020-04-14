@@ -69,7 +69,7 @@ class DashboardForm extends FormBase {
 
     // Sort all modules by their names.
     try {
-      $modules = system_rebuild_module_data();
+      $modules = \Drupal::service('extension.list.module')->reset()->getList();
       uasort($modules, 'system_sort_modules_by_info_name');
     }
     catch (InfoParserException $e) {
