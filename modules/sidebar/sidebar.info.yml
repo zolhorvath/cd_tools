@@ -6,3 +6,4 @@ package: Claro
 claro_test: true
 dependencies:
   - cd_core:cd_node
+core_version_requirement: ^8 || ^9

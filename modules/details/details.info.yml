@@ -6,3 +6,4 @@ package: Claro
 claro_test: true
 dependencies:
   - drupal:user
+core_version_requirement: ^8 || ^9

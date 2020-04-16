@@ -8,3 +8,4 @@ dependencies:
   - drupal:filter
   - drupal:shortcut
   - drupal:toolbar
+core_version_requirement: ^8 || ^9

@@ -12,3 +12,4 @@ dependencies:
   - drupal:toolbar
   - drupal:tour
   - drupal:workspaces
+core_version_requirement: ^8 || ^9

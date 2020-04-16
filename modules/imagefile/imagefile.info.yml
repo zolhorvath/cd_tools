@@ -9,3 +9,4 @@ dependencies:
   - drupal:contact
   - drupal:field_layout
   - drupal:image
+core_version_requirement: ^8 || ^9

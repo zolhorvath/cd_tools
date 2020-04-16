@@ -36,9 +36,15 @@ function imagefile_install() {
     if (
       !$file_uri &&
       file_exists($props['src']) &&
-      file_prepare_directory($props['dest'], FILE_CREATE_DIRECTORY)
+      \Drupal::service('file_system')->prepareDirectory($props['dest'], \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY)
     ) {
-      $file_uri = file_unmanaged_copy($props['src'], $file_target, FILE_EXISTS_RENAME);
+      try {
+        $file_system = \Drupal::service('file_system');
+        $file_uri = $file_system->copy($props['src'], $file_target, \Drupal\Core\File\FileSystemInterface::EXISTS_RENAME);
+      }
+      catch (\Drupal\Core\File\Exception\FileException $e) {
+        $file_uri = FALSE;
+      }
     }
 
     if ($file_uri) {

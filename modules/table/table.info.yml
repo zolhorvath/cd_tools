@@ -8,3 +8,4 @@ dependencies:
   - drupal:field_ui
   - drupal:node
   - drupal:path
+core_version_requirement: ^8 || ^9

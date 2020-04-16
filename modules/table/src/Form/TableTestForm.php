@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Utility\TableSort;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -107,8 +108,8 @@ class TableTestForm extends FormBase {
       ],
     ];
 
-    $order = tablesort_get_order($form['table']['#header']);
-    $sort = tablesort_get_sort($form['table']['#header']);
+    $order = TableSort::getOrder($form['table']['#header'], \Drupal::request());
+    $sort = TableSort::getSort($form['table']['#header'], \Drupal::request());
     $sort_option = [];
 
     foreach ($rows as $delta => $row) {

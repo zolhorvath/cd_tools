@@ -2,6 +2,7 @@
 
 namespace Drupal\cd_tools\Form;
 
+use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -48,7 +49,8 @@ class DashboardForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('module_handler'),
-      $container->get('module_installer')
+      $container->get('module_installer'),
+      $container->get('extension.list.module')
     );
   }
 
@@ -60,7 +62,7 @@ class DashboardForm extends FormBase {
    * @param \Drupal\Core\Extension\ModuleInstallerInterface $module_installer
    *   The module installer.
    */
-  public function __construct(ModuleHandlerInterface $module_handler, ModuleInstallerInterface $module_installer) {
+  public function __construct(ModuleHandlerInterface $module_handler, ModuleInstallerInterface $module_installer, ModuleExtensionList $module_extension_list) {
     $this->moduleHandler = $module_handler;
     $this->moduleInstaller = $module_installer;
 
@@ -69,7 +71,7 @@ class DashboardForm extends FormBase {
 
     // Sort all modules by their names.
     try {
-      $modules = system_rebuild_module_data();
+      $modules = $module_extension_list->getList();
       uasort($modules, 'system_sort_modules_by_info_name');
     }
     catch (InfoParserException $e) {
