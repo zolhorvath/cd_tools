@@ -71,7 +71,7 @@ class DashboardForm extends FormBase {
 
     // Sort all modules by their names.
     try {
-      $modules = $module_extension_list->getList();
+      $modules = $module_extension_list->reset()->getList();
       uasort($modules, 'system_sort_modules_by_info_name');
     }
     catch (InfoParserException $e) {
